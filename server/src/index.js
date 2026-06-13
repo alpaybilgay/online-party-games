@@ -6,8 +6,16 @@ const { Server } = require('socket.io');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// CORS configuration
+const corsOrigin = process.env.FRONTEND_URL 
+  ? process.env.FRONTEND_URL.split(',').map(url => url.trim()) 
+  : "*";
+
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: corsOrigin,
+  methods: ["GET", "POST"]
+}));
 app.use(express.json());
 
 // Health Check Endpoint
@@ -18,7 +26,7 @@ app.get('/health', (req, res) => {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: corsOrigin,
     methods: ["GET", "POST"]
   }
 });
