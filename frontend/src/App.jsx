@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { socket } from "./socket/socket";
+import { socket, SERVER_URL } from "./socket/socket";
 import ServerWakeScreen from "./components/ServerWakeScreen";
 import HomeScreen from "./components/HomeScreen";
 import WordLadder from "./games/WordLadder/WordLadder";
@@ -29,7 +29,7 @@ function App() {
 
     const checkHealth = async () => {
       try {
-        const response = await fetch("/health");
+        const response = await fetch(`${SERVER_URL}/health`);
         if (response.ok) {
           const data = await response.json();
           if (data.status === "ok") {
