@@ -1420,5 +1420,705 @@ export const quickChoiceQuestions = [
     question: "Başkomutanlık Meydan Muharebesi hangi yıl yapılmıştır?",
     options: ["1920", "1921", "1922", "1923"],
     correctAnswer: "1922"
-  }
+  },
+  {
+  id: 201,
+  category: "matematik",
+  question: "İki basamaklı en büyük asal sayı kaçtır?",
+  options: ["91", "93", "97", "99"],
+  correctAnswer: "97"
+},
+{
+  id: 202,
+  category: "matematik",
+  question: "25'in karesi kaçtır?",
+  options: ["125", "225", "625", "1025"],
+  correctAnswer: "625"
+},
+{
+  id: 203,
+  category: "matematik",
+  question: "Bir üçgenin iç açılarının toplamı kaç derecedir?",
+  options: ["90", "180", "270", "360"],
+  correctAnswer: "180"
+},
+{
+  id: 204,
+  category: "matematik",
+  question: "Hangi sayının 3 katının 5 fazlası 20 eder?",
+  options: ["3", "4", "5", "6"],
+  correctAnswer: "5"
+},
+{
+  id: 205,
+  category: "matematik",
+  question: "Pi sayısı (π) virgülden sonra hangi rakamla başlar?",
+  options: ["1", "4", "5", "9"],
+  correctAnswer: "1"
+},
+{
+  id: 206,
+  category: "matematik",
+  question: "Ardışık iki çift sayının EBOB'u kaçtır?",
+  options: ["1", "2", "4", "Çarpımları"],
+  correctAnswer: "2"
+},
+{
+  id: 207,
+  category: "matematik",
+  question: "0,25 sayısı yüzde kaçtır?",
+  options: ["%0.25", "%2.5", "%25", "%250"],
+  correctAnswer: "%25"
+},
+{
+  id: 208,
+  category: "matematik",
+  question: "3 basamaklı en küçük tam kare sayı kaçtır?",
+  options: ["100", "121", "144", "1000"],
+  correctAnswer: "100"
+},
+{
+  id: 209,
+  category: "matematik",
+  question: "0'ın faktöriyeli (0!) kaçtır?",
+  options: ["0", "1", "Tanımsız", "-1"],
+  correctAnswer: "1"
+},
+{
+  id: 210,
+  category: "matematik",
+  question: "Bir zar havaya atıldığında üst yüzüne tek sayı gelme olasılığı nedir?",
+  options: ["1/6", "1/3", "1/2", "2/3"],
+  correctAnswer: "1/2"
+},
+{
+  id: 211,
+  category: "matematik",
+  question: "x² - 9 = 0 denkleminin pozitif kökü kaçtır?",
+  options: ["1", "3", "9", "81"],
+  correctAnswer: "3"
+},
+{
+  id: 212,
+  category: "matematik",
+  question: "12 ve 18 sayısının en küçük ortak katı (EKOK) kaçtır?",
+  options: ["6", "36", "54", "72"],
+  correctAnswer: "36"
+},
+{
+  id: 213,
+  category: "matematik",
+  question: "Kök 144 (√144) dışarıya nasıl çıkar?",
+  options: ["11", "12", "14", "16"],
+  correctAnswer: "12"
+},
+{
+  id: 214,
+  category: "matematik",
+  question: "Bir dairenin alan formülü hangisidir?",
+  options: ["2πr", "πr²", "πd", "2πr²"],
+  correctAnswer: "πr²"
+},
+{
+  id: 215,
+  category: "matematik",
+  question: "10 tabanına göre logaritma 100 (log 100) kaçtır?",
+  options: ["1", "2", "10", "100"],
+  correctAnswer: "2"
+},
+{
+  id: 216,
+  category: "matematik",
+  question: "7 ile 8'in çarpımı kaçtır?",
+  options: ["48", "54", "56", "64"],
+  correctAnswer: "56"
+},
+{
+  id: 217,
+  category: "matematik",
+  question: "144 sayısının 12'ye bölümü kaçtır?",
+  options: ["10", "11", "12", "13"],
+  correctAnswer: "12"
+},
+{
+  id: 218,
+  category: "matematik",
+  question: "Bir sayının yarısı 18 ise bu sayı kaçtır?",
+  options: ["24", "30", "36", "42"],
+  correctAnswer: "36"
+},
+{
+  id: 219,
+  category: "matematik",
+  question: "5'in küpü kaçtır?",
+  options: ["25", "75", "100", "125"],
+  correctAnswer: "125"
+},
+{
+  id: 220,
+  category: "matematik",
+  question: "2⁶ kaçtır?",
+  options: ["16", "32", "64", "128"],
+  correctAnswer: "64"
+},
+{
+  id: 221,
+  category: "matematik",
+  question: "3⁴ kaçtır?",
+  options: ["27", "64", "81", "243"],
+  correctAnswer: "81"
+},
+{
+  id: 222,
+  category: "matematik",
+  question: "1000 sayısının yüzde 15'i kaçtır?",
+  options: ["100", "125", "150", "200"],
+  correctAnswer: "150"
+},
+{
+  id: 223,
+  category: "matematik",
+  question: "240 sayısının yüzde 25'i kaçtır?",
+  options: ["40", "50", "60", "80"],
+  correctAnswer: "60"
+},
+{
+  id: 224,
+  category: "matematik",
+  question: "80 sayısının yüzde 10 fazlası kaçtır?",
+  options: ["84", "86", "88", "90"],
+  correctAnswer: "88"
+},
+{
+  id: 225,
+  category: "matematik",
+  question: "120 sayısının yüzde 20 eksiği kaçtır?",
+  options: ["80", "90", "96", "100"],
+  correctAnswer: "96"
+},
+{
+  id: 226,
+  category: "matematik",
+  question: "Bir ürün 200 TL'den 150 TL'ye düşerse indirim oranı yüzde kaçtır?",
+  options: ["%10", "%20", "%25", "%30"],
+  correctAnswer: "%25"
+},
+{
+  id: 227,
+  category: "matematik",
+  question: "Bir ürün 80 TL'den 100 TL'ye çıkarsa artış oranı yüzde kaçtır?",
+  options: ["%10", "%20", "%25", "%30"],
+  correctAnswer: "%25"
+},
+{
+  id: 228,
+  category: "matematik",
+  question: "15 sayısının 4 katının 10 eksiği kaçtır?",
+  options: ["40", "45", "50", "60"],
+  correctAnswer: "50"
+},
+{
+  id: 229,
+  category: "matematik",
+  question: "Bir sayının 5 katı 75 ise bu sayı kaçtır?",
+  options: ["10", "12", "15", "20"],
+  correctAnswer: "15"
+},
+{
+  id: 230,
+  category: "matematik",
+  question: "Bir sayının 3 fazlasının 2 katı 20 ise bu sayı kaçtır?",
+  options: ["5", "6", "7", "8"],
+  correctAnswer: "7"
+},
+{
+  id: 231,
+  category: "matematik",
+  question: "Ardışık üç doğal sayının toplamı 36 ise ortadaki sayı kaçtır?",
+  options: ["10", "11", "12", "13"],
+  correctAnswer: "12"
+},
+{
+  id: 232,
+  category: "matematik",
+  question: "Ardışık iki tek sayının toplamı 40 ise küçük sayı kaçtır?",
+  options: ["17", "19", "21", "23"],
+  correctAnswer: "19"
+},
+{
+  id: 233,
+  category: "matematik",
+  question: "En küçük asal sayı kaçtır?",
+  options: ["0", "1", "2", "3"],
+  correctAnswer: "2"
+},
+{
+  id: 234,
+  category: "matematik",
+  question: "Aşağıdakilerden hangisi asal sayıdır?",
+  options: ["21", "27", "29", "39"],
+  correctAnswer: "29"
+},
+{
+  id: 235,
+  category: "matematik",
+  question: "Aşağıdakilerden hangisi çift asal sayıdır?",
+  options: ["2", "3", "5", "7"],
+  correctAnswer: "2"
+},
+{
+  id: 236,
+  category: "matematik",
+  question: "36 sayısının pozitif bölen sayısı kaçtır?",
+  options: ["6", "7", "8", "9"],
+  correctAnswer: "9"
+},
+{
+  id: 237,
+  category: "matematik",
+  question: "24 sayısının pozitif bölenlerinden en büyüğü kaçtır?",
+  options: ["6", "8", "12", "24"],
+  correctAnswer: "24"
+},
+{
+  id: 238,
+  category: "matematik",
+  question: "18 ve 24 sayılarının EBOB'u kaçtır?",
+  options: ["3", "6", "9", "12"],
+  correctAnswer: "6"
+},
+{
+  id: 239,
+  category: "matematik",
+  question: "8 ve 12 sayılarının EKOK'u kaçtır?",
+  options: ["12", "18", "24", "36"],
+  correctAnswer: "24"
+},
+{
+  id: 240,
+  category: "matematik",
+  question: "15 ve 20 sayılarının EBOB'u kaçtır?",
+  options: ["2", "4", "5", "10"],
+  correctAnswer: "5"
+},
+{
+  id: 241,
+  category: "matematik",
+  question: "9 ve 15 sayılarının EKOK'u kaçtır?",
+  options: ["30", "35", "45", "60"],
+  correctAnswer: "45"
+},
+{
+  id: 242,
+  category: "matematik",
+  question: "1/2 ile 1/4 toplamı kaçtır?",
+  options: ["1/4", "1/2", "3/4", "1"],
+  correctAnswer: "3/4"
+},
+{
+  id: 243,
+  category: "matematik",
+  question: "3/5 sayısının ondalık gösterimi hangisidir?",
+  options: ["0,3", "0,5", "0,6", "0,8"],
+  correctAnswer: "0,6"
+},
+{
+  id: 244,
+  category: "matematik",
+  question: "0,75 sayısı kesir olarak nasıl yazılır?",
+  options: ["1/4", "1/2", "3/4", "4/3"],
+  correctAnswer: "3/4"
+},
+{
+  id: 245,
+  category: "matematik",
+  question: "2/3 sayısının 18 ile çarpımı kaçtır?",
+  options: ["6", "9", "12", "15"],
+  correctAnswer: "12"
+},
+{
+  id: 246,
+  category: "matematik",
+  question: "1/5 sayısı yüzde kaçtır?",
+  options: ["%5", "%10", "%20", "%25"],
+  correctAnswer: "%20"
+},
+{
+  id: 247,
+  category: "matematik",
+  question: "0,4 sayısı yüzde kaçtır?",
+  options: ["%4", "%14", "%40", "%400"],
+  correctAnswer: "%40"
+},
+{
+  id: 248,
+  category: "matematik",
+  question: "Bir dikdörtgenin kısa kenarı 6, uzun kenarı 10 ise alanı kaçtır?",
+  options: ["16", "32", "60", "100"],
+  correctAnswer: "60"
+},
+{
+  id: 249,
+  category: "matematik",
+  question: "Bir karenin çevresi 36 ise bir kenarı kaçtır?",
+  options: ["6", "8", "9", "12"],
+  correctAnswer: "9"
+},
+{
+  id: 250,
+  category: "matematik",
+  question: "Bir karenin bir kenarı 7 ise alanı kaçtır?",
+  options: ["14", "28", "49", "56"],
+  correctAnswer: "49"
+},
+{
+  id: 251,
+  category: "matematik",
+  question: "Bir dikdörtgenin alanı 48, kısa kenarı 6 ise uzun kenarı kaçtır?",
+  options: ["6", "7", "8", "9"],
+  correctAnswer: "8"
+},
+{
+  id: 252,
+  category: "matematik",
+  question: "Dik üçgende dik kenarlar 3 ve 4 ise hipotenüs kaçtır?",
+  options: ["4", "5", "6", "7"],
+  correctAnswer: "5"
+},
+{
+  id: 253,
+  category: "matematik",
+  question: "Dik üçgende dik kenarlar 5 ve 12 ise hipotenüs kaçtır?",
+  options: ["10", "12", "13", "15"],
+  correctAnswer: "13"
+},
+{
+  id: 254,
+  category: "matematik",
+  question: "Bir çemberin çevre formülü hangisidir?",
+  options: ["πr", "2πr", "πr²", "2πr²"],
+  correctAnswer: "2πr"
+},
+{
+  id: 255,
+  category: "matematik",
+  question: "Bir dairenin yarıçapı 3 ise alanı kaç π'dir?",
+  options: ["3π", "6π", "9π", "12π"],
+  correctAnswer: "9π"
+},
+{
+  id: 256,
+  category: "matematik",
+  question: "Bir çemberin yarıçapı 5 ise çevresi kaç π'dir?",
+  options: ["5π", "10π", "15π", "25π"],
+  correctAnswer: "10π"
+},
+{
+  id: 257,
+  category: "matematik",
+  question: "Bir küpün bir ayrıtı 4 ise hacmi kaçtır?",
+  options: ["16", "32", "64", "96"],
+  correctAnswer: "64"
+},
+{
+  id: 258,
+  category: "matematik",
+  question: "Bir dikdörtgenler prizmasının ayrıtları 2, 3 ve 5 ise hacmi kaçtır?",
+  options: ["10", "20", "30", "40"],
+  correctAnswer: "30"
+},
+{
+  id: 259,
+  category: "matematik",
+  question: "Bir doğru açı kaç derecedir?",
+  options: ["90", "120", "180", "360"],
+  correctAnswer: "180"
+},
+{
+  id: 260,
+  category: "matematik",
+  question: "Tam açı kaç derecedir?",
+  options: ["90", "180", "270", "360"],
+  correctAnswer: "360"
+},
+{
+  id: 261,
+  category: "matematik",
+  question: "Tümler iki açıdan biri 35 derece ise diğeri kaç derecedir?",
+  options: ["45", "50", "55", "65"],
+  correctAnswer: "55"
+},
+{
+  id: 262,
+  category: "matematik",
+  question: "Bütünler iki açıdan biri 110 derece ise diğeri kaç derecedir?",
+  options: ["50", "60", "70", "80"],
+  correctAnswer: "70"
+},
+{
+  id: 263,
+  category: "matematik",
+  question: "Beşgenin iç açılarının toplamı kaç derecedir?",
+  options: ["360", "480", "540", "720"],
+  correctAnswer: "540"
+},
+{
+  id: 264,
+  category: "matematik",
+  question: "Altıgenin iç açılarının toplamı kaç derecedir?",
+  options: ["540", "600", "720", "900"],
+  correctAnswer: "720"
+},
+{
+  id: 265,
+  category: "matematik",
+  question: "Düzgün altıgenin bir iç açısı kaç derecedir?",
+  options: ["90", "108", "120", "135"],
+  correctAnswer: "120"
+},
+{
+  id: 266,
+  category: "matematik",
+  question: "Düzgün beşgenin bir iç açısı kaç derecedir?",
+  options: ["90", "100", "108", "120"],
+  correctAnswer: "108"
+},
+{
+  id: 267,
+  category: "matematik",
+  question: "Koordinat düzleminde x ekseni üzerindeki noktaların hangi koordinatı sıfırdır?",
+  options: ["x", "y", "Her ikisi", "Hiçbiri"],
+  correctAnswer: "y"
+},
+{
+  id: 268,
+  category: "matematik",
+  question: "Koordinat düzleminde y ekseni üzerindeki noktaların hangi koordinatı sıfırdır?",
+  options: ["x", "y", "Her ikisi", "Hiçbiri"],
+  correctAnswer: "x"
+},
+{
+  id: 269,
+  category: "matematik",
+  question: "Orijin noktasının koordinatları hangisidir?",
+  options: ["(-1,0)", "(0,0)", "(0,1)", "(1,1)"],
+  correctAnswer: "(0,0)"
+},
+{
+  id: 270,
+  category: "matematik",
+  question: "x + 7 = 15 denkleminin çözümü kaçtır?",
+  options: ["6", "7", "8", "9"],
+  correctAnswer: "8"
+},
+{
+  id: 271,
+  category: "matematik",
+  question: "2x - 4 = 10 denkleminin çözümü kaçtır?",
+  options: ["5", "6", "7", "8"],
+  correctAnswer: "7"
+},
+{
+  id: 272,
+  category: "matematik",
+  question: "3x + 6 = 21 denkleminin çözümü kaçtır?",
+  options: ["3", "4", "5", "6"],
+  correctAnswer: "5"
+},
+{
+  id: 273,
+  category: "matematik",
+  question: "5x = 45 denkleminin çözümü kaçtır?",
+  options: ["7", "8", "9", "10"],
+  correctAnswer: "9"
+},
+{
+  id: 274,
+  category: "matematik",
+  question: "x/4 = 6 ise x kaçtır?",
+  options: ["18", "20", "24", "28"],
+  correctAnswer: "24"
+},
+{
+  id: 275,
+  category: "matematik",
+  question: "2x + 3 = 17 ise x kaçtır?",
+  options: ["5", "6", "7", "8"],
+  correctAnswer: "7"
+},
+{
+  id: 276,
+  category: "matematik",
+  question: "Bir sayının karesi 49 ise pozitif değeri kaçtır?",
+  options: ["5", "6", "7", "8"],
+  correctAnswer: "7"
+},
+{
+  id: 277,
+  category: "matematik",
+  question: "√81 kaçtır?",
+  options: ["7", "8", "9", "10"],
+  correctAnswer: "9"
+},
+{
+  id: 278,
+  category: "matematik",
+  question: "√225 kaçtır?",
+  options: ["12", "13", "14", "15"],
+  correctAnswer: "15"
+},
+{
+  id: 279,
+  category: "matematik",
+  question: "√169 kaçtır?",
+  options: ["11", "12", "13", "14"],
+  correctAnswer: "13"
+},
+{
+  id: 280,
+  category: "matematik",
+  question: "√196 kaçtır?",
+  options: ["12", "13", "14", "15"],
+  correctAnswer: "14"
+},
+{
+  id: 281,
+  category: "matematik",
+  question: "10² kaçtır?",
+  options: ["10", "20", "100", "1000"],
+  correctAnswer: "100"
+},
+{
+  id: 282,
+  category: "matematik",
+  question: "10³ kaçtır?",
+  options: ["100", "500", "1000", "10000"],
+  correctAnswer: "1000"
+},
+{
+  id: 283,
+  category: "matematik",
+  question: "10 tabanına göre logaritma 1000 (log 1000) kaçtır?",
+  options: ["1", "2", "3", "10"],
+  correctAnswer: "3"
+},
+{
+  id: 284,
+  category: "matematik",
+  question: "10 tabanına göre logaritma 10 (log 10) kaçtır?",
+  options: ["0", "1", "2", "10"],
+  correctAnswer: "1"
+},
+{
+  id: 285,
+  category: "matematik",
+  question: "10 tabanına göre logaritma 1 (log 1) kaçtır?",
+  options: ["0", "1", "10", "Tanımsız"],
+  correctAnswer: "0"
+},
+{
+  id: 286,
+  category: "matematik",
+  question: "2 tabanına göre logaritma 8 kaçtır?",
+  options: ["2", "3", "4", "8"],
+  correctAnswer: "3"
+},
+{
+  id: 287,
+  category: "matematik",
+  question: "2 tabanına göre logaritma 16 kaçtır?",
+  options: ["2", "3", "4", "5"],
+  correctAnswer: "4"
+},
+{
+  id: 288,
+  category: "matematik",
+  question: "3 tabanına göre logaritma 27 kaçtır?",
+  options: ["2", "3", "4", "9"],
+  correctAnswer: "3"
+},
+{
+  id: 289,
+  category: "matematik",
+  question: "Bir madeni para atıldığında yazı gelme olasılığı nedir?",
+  options: ["1/4", "1/3", "1/2", "1"],
+  correctAnswer: "1/2"
+},
+{
+  id: 290,
+  category: "matematik",
+  question: "Bir zar atıldığında 6 gelme olasılığı nedir?",
+  options: ["1/6", "1/3", "1/2", "1"],
+  correctAnswer: "1/6"
+},
+{
+  id: 291,
+  category: "matematik",
+  question: "Bir zar atıldığında 3'ten büyük sayı gelme olasılığı nedir?",
+  options: ["1/6", "1/3", "1/2", "2/3"],
+  correctAnswer: "1/2"
+},
+{
+  id: 292,
+  category: "matematik",
+  question: "Bir torbada 3 kırmızı, 2 mavi top varsa rastgele çekilen topun mavi olma olasılığı nedir?",
+  options: ["1/5", "2/5", "3/5", "4/5"],
+  correctAnswer: "2/5"
+},
+{
+  id: 293,
+  category: "matematik",
+  question: "5! kaçtır?",
+  options: ["20", "60", "120", "240"],
+  correctAnswer: "120"
+},
+{
+  id: 294,
+  category: "matematik",
+  question: "4! kaçtır?",
+  options: ["12", "16", "20", "24"],
+  correctAnswer: "24"
+},
+{
+  id: 295,
+  category: "matematik",
+  question: "3! + 4! toplamı kaçtır?",
+  options: ["24", "28", "30", "32"],
+  correctAnswer: "30"
+},
+{
+  id: 296,
+  category: "matematik",
+  question: "6 kişiden 2 kişi kaç farklı şekilde seçilir?",
+  options: ["10", "12", "15", "18"],
+  correctAnswer: "15"
+},
+{
+  id: 297,
+  category: "matematik",
+  question: "5 kişilik bir grup yan yana kaç farklı şekilde sıralanır?",
+  options: ["60", "100", "120", "240"],
+  correctAnswer: "120"
+},
+{
+  id: 298,
+  category: "matematik",
+  question: "Aritmetik ortalama nasıl bulunur?",
+  options: ["Sayılar toplanıp adet sayısına bölünür", "En büyük sayı seçilir", "En küçük sayı seçilir", "Sayılar çarpılıp ikiye bölünür"],
+  correctAnswer: "Sayılar toplanıp adet sayısına bölünür"
+},
+{
+  id: 299,
+  category: "matematik",
+  question: "4, 6, 8, 10 sayılarının aritmetik ortalaması kaçtır?",
+  options: ["6", "7", "8", "9"],
+  correctAnswer: "7"
+},
+{
+  id: 300,
+  category: "matematik",
+  question: "2, 3, 5, 10 sayılarının aritmetik ortalaması kaçtır?",
+  options: ["4", "5", "6", "7"],
+  correctAnswer: "5"
+}
 ];

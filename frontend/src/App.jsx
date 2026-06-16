@@ -58,6 +58,9 @@ function App() {
       const onRoomUpdated = (updatedRoom) => {
         setRoom(updatedRoom);
         setIsInRoom(true);
+        if (updatedRoom.activeGame) {
+          setActiveGameFlow(updatedRoom.activeGame);
+        }
       };
 
       const onConnectError = () => {

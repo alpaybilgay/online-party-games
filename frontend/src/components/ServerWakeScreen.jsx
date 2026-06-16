@@ -18,7 +18,7 @@ function ServerWakeScreen({ errorCount }) {
         </div>
 
         <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-          MiniParty
+          AlpayParty
         </h1>
         <p className="mt-3 text-sm text-zinc-400 font-medium">Oyun Platformu</p>
 

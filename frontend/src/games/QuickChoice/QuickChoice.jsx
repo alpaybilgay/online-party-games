@@ -7,6 +7,7 @@ const getCategoryLabel = (catKey) => {
     all: "Hepsi",
     bilim: "Bilim",
     sanat: "Sanat",
+    matematik: "Matematik",
     kpss: "KPSS Hepsi",
     kpss_tarih: "KPSS Tarih",
     kpss_cografya: "KPSS Coğrafya",
@@ -208,6 +209,7 @@ function QuickChoice({
       { key: "all", label: "Hepsi" },
       { key: "bilim", label: "Bilim" },
       { key: "sanat", label: "Sanat" },
+      { key: "matematik", label: "Matematik" },
       { key: "kpss", label: "KPSS Hepsi" },
       { key: "kpss_tarih", label: "KPSS Tarih" },
       { key: "kpss_cografya", label: "KPSS Coğrafya" }

@@ -140,7 +140,7 @@ io.on('connection', (socket) => {
             : (gameName === "Ortak Cevabı Bul"
               ? { status: "preparing", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, teams: { A: [], B: [] }, teamScores: { A: 0, B: 0 } }
               : (gameName === "Bomba Kategori"
-                ? { status: "preparing", category: "", durationRange: "15-50", secretDuration: 0, timer: 0, activePlayerId: null, loserId: null, turnOrder: [] }
+                ? { status: "preparing", category: "", durationRange: "15-45", secretDuration: 0, timer: 0, activePlayerId: null, loserId: null, turnOrder: [] }
                 : (gameName === "Kim Daha Yakın" 
                   ? { status: "preparing", mode: "ready-made", category: "nufus", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, winnerId: null, results: [] }
                   : { status: "preparing", winnerId: null }))))
@@ -308,6 +308,7 @@ io.on('connection', (socket) => {
 
     markQuestionAsAsked(room, "Kim Daha Yakın", selectedQuestion?.id);
 
+    room.activeGame = "Kim Daha Yakın";
     room.gameState = {
       status: "playing",
       mode: "ready-made",
@@ -330,6 +331,7 @@ io.on('connection', (socket) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
 
+    room.activeGame = "Kim Daha Yakın";
     room.gameState = {
       status: "playing",
       mode: "custom",
@@ -425,15 +427,16 @@ io.on('connection', (socket) => {
 
     markQuestionAsAsked(room, "Bomba Kategori", category);
 
-    let min = 15, max = 50;
-    if (durationRange === "5-50") { min = 5; max = 50; }
-    else if (durationRange === "20-60") { min = 20; max = 60; }
+    let min = 15, max = 45;
+    if (durationRange === "10-30") { min = 10; max = 30; }
+    else if (durationRange === "20-50") { min = 20; max = 50; }
     
     const secretDuration = Math.floor(Math.random() * (max - min + 1)) + min;
 
     const playersList = room.players;
     if (playersList.length === 0) return;
 
+    room.activeGame = "Bomba Kategori";
     room.gameState = {
       status: "countdown",
       category: category,
@@ -477,7 +480,7 @@ io.on('connection', (socket) => {
     room.gameState = {
       status: "preparing",
       category: room.gameState.category || "",
-      durationRange: room.gameState.durationRange || "15-50",
+      durationRange: room.gameState.durationRange || "15-45",
       pool: room.gameState.pool || "genel",
       secretDuration: 0,
       timer: 0,
@@ -513,6 +516,7 @@ io.on('connection', (socket) => {
 
     markQuestionAsAsked(room, "Ortak Cevabı Bul", question?.id);
 
+    room.activeGame = "Ortak Cevabı Bul";
     room.gameState.status = "playing";
     room.gameState.currentQuestion = question;
     room.gameState.answers = {};
@@ -576,6 +580,7 @@ io.on('connection', (socket) => {
 
     markQuestionAsAsked(room, "Hızlı Şık", question?.id);
 
+    room.activeGame = "Hızlı Şık";
     room.gameState.status = "playing";
     room.gameState.currentQuestion = question;
     room.gameState.answers = {};
@@ -638,6 +643,8 @@ io.on('connection', (socket) => {
 
     const playersList = room.players;
     const selectedMode = mode || "ffa";
+
+    room.activeGame = "Kim Daha İyi Tanıyor?";
 
     if (selectedMode === "team") {
       if (playersList.length !== 4) return;
@@ -983,7 +990,7 @@ function handleUserLeaving(socket) {
       room.gameState = {
         status: "preparing",
         category: "",
-        durationRange: "15-50",
+        durationRange: "15-45",
         secretDuration: 0,
         timer: 0,
         activePlayerId: null,

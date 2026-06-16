@@ -12,7 +12,7 @@ function BombCategory({
   setActiveError,
   handleJoinGame
 }) {
-  const [durationRange, setDurationRange] = useState("15-50");
+  const [durationRange, setDurationRange] = useState("15-45");
   const [selectedPool, setSelectedPool] = useState("genel");
   
   // Local state to keep track of sound effects triggers
@@ -71,6 +71,12 @@ function BombCategory({
       if (ctx.state === "suspended") {
         ctx.resume();
       }
+      // Play a short silent buffer to unlock AudioContext on iOS Safari
+      const buffer = ctx.createBuffer(1, 1, 22050);
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(ctx.destination);
+      source.start(0);
       return ctx;
     } catch (e) {
       console.warn("AudioContext init error:", e);
@@ -128,7 +134,7 @@ function BombCategory({
 
   const renderVolumeWidget = () => {
     return (
-      <div className="fixed bottom-4 right-4 z-50 flex items-center select-none">
+      <div className="fixed bottom-20 right-4 z-50 flex items-center select-none">
         {showSlider && (
           <div 
             className="h-10 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center px-3 mr-2 shadow-2xl space-x-2 animate-fade-in"
@@ -522,7 +528,10 @@ function BombCategory({
 
             {/* Enter Game Button */}
             <button
-              onClick={() => handleJoinGame("Bomba Kategori")}
+              onClick={() => {
+                initAudio();
+                handleJoinGame("Bomba Kategori");
+              }}
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-xs font-bold text-white shadow-lg transition-all duration-250 cursor-pointer"
             >
               Oyuna Giriş Yap
@@ -652,9 +661,9 @@ function BombCategory({
                   <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">Süre Aralığı (Gizli)</label>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { key: "5-50", label: "5 - 50 Saniye" },
-                      { key: "15-50", label: "15 - 50 Saniye" },
-                      { key: "20-60", label: "20 - 60 Saniye" }
+                      { key: "10-30", label: "10 - 30 Saniye" },
+                      { key: "15-45", label: "15 - 45 Saniye" },
+                      { key: "20-50", label: "20 - 50 Saniye" }
                     ].map((range) => (
                       <button
                         key={range.key}
@@ -677,7 +686,10 @@ function BombCategory({
 
                 {/* Start Button */}
                 <button
-                  onClick={handleStartGame}
+                  onClick={() => {
+                    initAudio();
+                    handleStartGame();
+                  }}
                   className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-xs font-bold text-white shadow-lg shadow-red-500/10 transition-all cursor-pointer"
                 >
                   Oyunu & Turu Başlat
@@ -715,12 +727,27 @@ function BombCategory({
   // 3. Countdown Stage (3, 2, 1)
   if (gameState.status === "countdown") {
     return (
-      <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col items-center justify-center font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-hidden">
         <div className="absolute inset-0 bg-radial-at-c from-red-950/10 via-transparent to-transparent pointer-events-none" />
 
-        <div className="relative z-10 text-center max-w-md w-full px-6 space-y-8 animate-fade-in">
+        <header className="relative z-10 border-b border-zinc-900/50 bg-[#09090b]/60 backdrop-blur-md">
+          <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+              <span className="text-xs font-bold text-zinc-400">Bomba Arenası (Hazırlık)</span>
+            </div>
+            <button
+              onClick={onLeave}
+              className="px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-800 text-[10px] font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
+            >
+              Oyundan Çık
+            </button>
+          </div>
+        </header>
+
+        <div className="relative z-10 flex-grow flex flex-col items-center justify-center max-w-md w-full mx-auto px-6 space-y-8 animate-fade-in my-auto">
           {/* Header */}
-          <div className="space-y-1">
+          <div className="space-y-1 text-center">
             <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest block">HAZIRLANIN</span>
             <div className="text-[11px] font-bold text-red-500/80 uppercase tracking-wider bg-red-950/15 border border-red-950/40 rounded-full px-4 py-1.5 inline-block">
               Kategori: {gameState.category}
@@ -735,7 +762,7 @@ function BombCategory({
           </div>
 
           {/* Subtext info */}
-          <div className="space-y-2">
+          <div className="space-y-2 text-center">
             <p className="text-xs text-zinc-400">Sırayla kelimeleri söylemeye hazır olun!</p>
             <div className="inline-flex items-center space-x-2 bg-zinc-900 border border-zinc-800 px-4 py-2 rounded-xl">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
@@ -763,12 +790,18 @@ function BombCategory({
               <span className="text-xs font-bold text-zinc-400">Bomba Arenası</span>
             </div>
             
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               {myInfo && (
                 <span className="text-[10px] font-bold bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full text-zinc-350">
                   Sen: <span className="text-red-400">{myInfo.name}</span> ({myScore} P)
                 </span>
               )}
+              <button
+                onClick={onLeave}
+                className="px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-800 text-[10px] font-semibold text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >
+                Oyundan Çık
+              </button>
             </div>
           </div>
         </header>
@@ -908,7 +941,10 @@ function BombCategory({
                     {room.players.map((player) => (
                       <button
                         key={player.id}
-                        onClick={() => handleSelectLoser(player.id)}
+                        onClick={() => {
+                          initAudio();
+                          handleSelectLoser(player.id);
+                        }}
                         className="py-3 px-4 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-red-500/55 hover:bg-red-950/10 text-xs font-bold text-zinc-200 hover:text-white transition-all cursor-pointer truncate"
                       >
                         {player.name}
@@ -1007,7 +1043,10 @@ function BombCategory({
             {gameState.loserId !== null && (
               isMeHost ? (
                 <button
-                  onClick={handleNewRound}
+                  onClick={() => {
+                    initAudio();
+                    handleNewRound();
+                  }}
                   className="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-xs font-bold text-white shadow-lg shadow-red-500/10 transition-all cursor-pointer"
                 >
                   Yeni Tur (Ayarlara Dön)
