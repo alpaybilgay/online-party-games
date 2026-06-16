@@ -2,6 +2,19 @@ import React, { useState, useEffect } from "react";
 import { socket } from "../../socket/socket";
 import { quickChoiceQuestions } from "../../data/quickChoiceQuestions";
 
+const getCategoryLabel = (catKey) => {
+  const labels = {
+    all: "Hepsi",
+    bilim: "Bilim",
+    sanat: "Sanat",
+    kpss: "KPSS Hepsi",
+    kpss_tarih: "KPSS Tarih",
+    kpss_cografya: "KPSS Coğrafya",
+    cografya: "Coğrafya"
+  };
+  return labels[catKey] || catKey;
+};
+
 function QuickChoice({
   room,
   isInRoom,
@@ -64,7 +77,11 @@ function QuickChoice({
     // Filter questions by category
     let categoryQuestions = quickChoiceQuestions;
     if (selectedCategory !== "all") {
-      categoryQuestions = quickChoiceQuestions.filter(q => q.category === selectedCategory);
+      if (selectedCategory === "kpss") {
+        categoryQuestions = quickChoiceQuestions.filter(q => q.category === "kpss" || q.category === "kpss_tarih" || q.category === "kpss_cografya");
+      } else {
+        categoryQuestions = quickChoiceQuestions.filter(q => q.category === selectedCategory);
+      }
     }
 
     if (categoryQuestions.length === 0) {
@@ -191,8 +208,9 @@ function QuickChoice({
       { key: "all", label: "Hepsi" },
       { key: "bilim", label: "Bilim" },
       { key: "sanat", label: "Sanat" },
-      { key: "cografya", label: "Coğrafya" },
-      { key: "kpss", label: "KPSS" }
+      { key: "kpss", label: "KPSS Hepsi" },
+      { key: "kpss_tarih", label: "KPSS Tarih" },
+      { key: "kpss_cografya", label: "KPSS Coğrafya" }
     ];
 
     return (
@@ -371,7 +389,7 @@ function QuickChoice({
           {q && (
             <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-6 md:p-8 text-center shadow-xl relative overflow-hidden">
               <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">
-                KATEGORİ: {q.category.toUpperCase()}
+                KATEGORİ: {getCategoryLabel(q.category).toUpperCase()}
               </span>
               <h2 className="text-lg md:text-xl font-extrabold text-zinc-100 leading-relaxed max-w-xl mx-auto">
                 {q.question}

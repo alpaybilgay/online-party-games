@@ -13,3 +13,7 @@ body,
 html {
   height: -webkit-fill-available;
 }
+
+.animate-bounce-once {
+  animation: bounce 1s ease-out 1;
+}

@@ -639,7 +639,7 @@ function CommonAnswer({
           {(isMatch2P || isMatchA || isMatchB) ? (
             <div className="max-w-md w-full mx-auto mb-6 space-y-2">
               {isMatch2P && (
-                <div className="px-4 py-3 bg-emerald-500/10 border border-emerald-500/25 rounded-2xl text-center text-xs font-bold text-emerald-400 animate-bounce">
+                <div className="px-4 py-3 bg-emerald-500/10 border border-emerald-500/25 rounded-2xl text-center text-xs font-bold text-emerald-400 animate-bounce-once">
                   🎉 HARİKA! İki oyuncu da aynı cevabı seçti ve +1 puan kazandı!
                 </div>
               )}
@@ -738,6 +738,30 @@ function CommonAnswer({
             </div>
           </div>
 
+          {/* Next Round Control (Admin Only) or waiting status */}
+          {isMeHost ? (
+            <div className="max-w-xs w-full mx-auto mb-6 space-y-2">
+              <button
+                onClick={handleStartQuestion}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-xs font-bold text-white shadow-lg transition-all cursor-pointer"
+              >
+                Sonraki Soruya Geç
+              </button>
+              <button
+                onClick={handleNextRound}
+                className="w-full py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-xs font-bold text-zinc-400 hover:text-white transition-all cursor-pointer"
+              >
+                Oyun Ayarlarına Dön
+              </button>
+            </div>
+          ) : (
+            <div className="text-center py-2 animate-pulse mb-6">
+              <p className="text-xs font-semibold text-zinc-500">
+                Yöneticinin (Admin) yeni soruyu başlatması bekleniyor...
+              </p>
+            </div>
+          )}
+
           {/* Current Leaderboard Scoreboard */}
           <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-5 max-w-lg w-full mx-auto space-y-4">
             
@@ -772,30 +796,6 @@ function CommonAnswer({
                     </span>
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* Next Round Control (Admin Only) */}
-            {isMeHost ? (
-              <div className="max-w-xs mx-auto pt-2 space-y-2">
-                <button
-                  onClick={handleStartQuestion}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-xs font-bold text-white shadow-lg transition-all cursor-pointer"
-                >
-                  Sonraki Soruya Geç
-                </button>
-                <button
-                  onClick={handleNextRound}
-                  className="w-full py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-xs font-bold text-zinc-400 hover:text-white transition-all cursor-pointer"
-                >
-                  Oyun Ayarlarına Dön
-                </button>
-              </div>
-            ) : (
-              <div className="text-center py-2 animate-pulse mt-2">
-                <p className="text-xs font-semibold text-zinc-500">
-                  Yöneticinin (Admin) yeni soruyu başlatması bekleniyor...
-                </p>
               </div>
             )}
 

@@ -33,6 +33,22 @@ const getGenitiveSuffix = (name) => {
   return `${name}'${suffix}`;
 };
 
+const normalizeString = (str) => {
+  if (!str) return '';
+  let normalized = str.toString().trim();
+  const map = {
+    'Ç': 'c', 'ç': 'c',
+    'Ğ': 'g', 'ğ': 'g',
+    'I': 'i', 'ı': 'i',
+    'İ': 'i', 'i': 'i',
+    'Ö': 'o', 'ö': 'o',
+    'Ş': 's', 'ş': 's',
+    'Ü': 'u', 'ü': 'u'
+  };
+  normalized = normalized.replace(/[ÇçĞğIıİiÖöŞşÜü]/g, (match) => map[match]);
+  return normalized.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 function KnowFriend({
   room,
   isInRoom,
@@ -97,8 +113,23 @@ function KnowFriend({
         setVerificationSubmitted(false);
         setSelectedWinners([]);
       } else if (gameState.status === "evaluating") {
-        setVerificationSubmitted(false);
-        setSelectedWinners([]);
+        const myId = socket?.id;
+        const alreadyVerified = gameState.verifications && gameState.verifications[myId] !== undefined;
+        setVerificationSubmitted(alreadyVerified);
+        
+        if (!isTeamMode && isMeTarget) {
+          const targetAns = gameState.targetAnswer;
+          const preSelected = room.players
+            .filter(p => p.id !== gameState.targetId)
+            .filter(p => {
+              const playerAns = gameState.answers?.[p.id];
+              return playerAns && targetAns && normalizeString(playerAns) === normalizeString(targetAns);
+            })
+            .map(p => p.id);
+          setSelectedWinners(preSelected);
+        } else {
+          setSelectedWinners([]);
+        }
       }
     }
   }, [gameState?.status, gameState?.currentQuestion, lastQuestionId]);
@@ -1033,15 +1064,15 @@ function KnowFriend({
     const isMeTargetResult = gameState.targetId === socket?.id;
     const isMyGuessCorrect = !isMeTargetResult && (isQuestionOpenEnded 
       ? (gameState.winners && gameState.winners.includes(socket.id))
-      : (answers[socket.id] === targetAnswer));
+      : (answers[socket.id] !== undefined && targetAnswer !== undefined && normalizeString(answers[socket.id]) === normalizeString(targetAnswer)));
 
     // For Team Mode
     const isTeamAMatched = isTeamMode && (isQuestionOpenEnded
       ? (gameState.verifications && gameState.verifications[gameState.targetAId] === true)
-      : (answers[gameState.askerAId] === answers[gameState.targetAId]));
+      : (answers[gameState.askerAId] !== undefined && answers[gameState.targetAId] !== undefined && normalizeString(answers[gameState.askerAId]) === normalizeString(answers[gameState.targetAId])));
     const isTeamBMatched = isTeamMode && (isQuestionOpenEnded
       ? (gameState.verifications && gameState.verifications[gameState.targetBId] === true)
-      : (answers[gameState.askerBId] === answers[gameState.targetBId]));
+      : (answers[gameState.askerBId] !== undefined && answers[gameState.targetBId] !== undefined && normalizeString(answers[gameState.askerBId]) === normalizeString(answers[gameState.targetBId])));
 
     return (
       <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
@@ -1174,7 +1205,7 @@ function KnowFriend({
                     const guess = answers[p.id];
                     const isCorrect = isQuestionOpenEnded 
                       ? (gameState.winners && gameState.winners.includes(p.id))
-                      : (guess === targetAnswer);
+                      : (guess !== undefined && targetAnswer !== undefined && normalizeString(guess) === normalizeString(targetAnswer));
 
                     return (
                       <div

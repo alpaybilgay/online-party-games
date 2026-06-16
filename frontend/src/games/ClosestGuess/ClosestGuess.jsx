@@ -194,7 +194,7 @@ function ClosestGuess({
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
                 placeholder="Örn: Kuzey"
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50 text-sm transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50 text-base md:text-sm transition-colors"
                 autoFocus
               />
             </div>
@@ -394,7 +394,7 @@ function ClosestGuess({
                         value={kdyCustomQuestion}
                         onChange={(e) => setKdyCustomQuestion(e.target.value)}
                         placeholder="Örn: Eyfel Kulesi'nin yüksekliği kaç metredir?"
-                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50"
+                        className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-base md:text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50"
                       />
                     </div>
 
@@ -408,7 +408,7 @@ function ClosestGuess({
                           value={kdyCustomAnswer}
                           onChange={(e) => setKdyCustomAnswer(e.target.value)}
                           placeholder="Örn: 330"
-                          className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-base md:text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                       </div>
                       <div>
@@ -419,7 +419,7 @@ function ClosestGuess({
                           value={kdyCustomUnit}
                           onChange={(e) => setKdyCustomUnit(e.target.value)}
                           placeholder="Örn: metre"
-                          className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50"
+                          className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-900 text-base md:text-xs text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50"
                         />
                       </div>
                     </div>
@@ -517,7 +517,7 @@ function ClosestGuess({
         </header>
 
         {/* Core Panel */}
-        <main className="relative z-10 flex-grow max-w-3xl w-full mx-auto px-6 py-8 flex flex-col justify-between my-auto">
+        <main className="relative z-10 flex-grow max-w-3xl w-full mx-auto px-4 sm:px-6 py-8 flex flex-col justify-between my-auto">
           
           {/* Top Panel Count Indicator */}
           <div className="flex justify-between items-center mb-6">
@@ -529,7 +529,7 @@ function ClosestGuess({
 
           {/* Question Card */}
           {gameState.currentQuestion && (
-            <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-6 md:p-8 text-center shadow-xl mb-8 relative">
+            <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-5 sm:p-6 md:p-8 text-center shadow-xl mb-8 relative">
               <div className="absolute top-3 right-3 text-xs opacity-20 select-none">❔</div>
               <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest block mb-2">
                 {gameState.mode === "ready-made" ? `Kategori: ${gameState.category.toUpperCase()}` : "Özel Soru"}
@@ -541,7 +541,7 @@ function ClosestGuess({
           )}
 
           {/* Answer Input Panel */}
-          <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-6 backdrop-blur-sm max-w-md w-full mx-auto mb-8">
+          <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-4 sm:p-6 backdrop-blur-sm max-w-md w-full mx-auto mb-8">
             {/* Timer countdown right above answer area */}
             <div className="flex flex-col items-center mb-4 pb-3 border-b border-zinc-900/40">
               <span className={`text-3xl font-mono font-black tracking-tight ${
@@ -566,19 +566,19 @@ function ClosestGuess({
                       <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 text-center">
                         Tahmin Sayınızı Girin
                       </label>
-                      <div className="flex space-x-2">
+                      <div className="flex space-x-2 w-full max-w-xs sm:max-w-sm mx-auto">
                         <input
                           type="number"
                           inputMode="numeric"
                           value={kdyGuessInput}
                           onChange={(e) => setKdyGuessInput(e.target.value)}
                           placeholder="Tahmininiz..."
-                          className="flex-grow px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-850 text-xs font-bold text-zinc-100 focus:outline-none focus:border-violet-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="flex-grow min-w-0 w-full px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-850 text-base md:text-xs font-bold text-zinc-100 focus:outline-none focus:border-violet-500/50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           autoFocus
                         />
                         <button
                           type="submit"
-                          className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-xs font-bold text-white shadow-lg transition-all cursor-pointer"
+                          className="flex-shrink-0 px-5 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-xs font-bold text-white shadow-lg transition-all cursor-pointer"
                         >
                           Gönder
                         </button>

@@ -1,89 +1,53 @@
 export const quickChoiceQuestions = [
   {
-    id: 101,
-    category: "cografya",
-    question: "Türkiye'nin başkenti neresidir?",
-    options: ["İstanbul", "Ankara", "İzmir", "Bursa"],
-    correctAnswer: "Ankara"
-  },
-  {
-    id: 102,
-    category: "bilim",
-    question: "Suyun kimyasal formülü nedir?",
-    options: ["H2O", "CO2", "O2", "NaCl"],
-    correctAnswer: "H2O"
-  },
-  {
-    id: 103,
-    category: "sanat",
-    question: "Mona Lisa tablosunu kim çizmiştir?",
-    options: ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"],
-    correctAnswer: "Leonardo da Vinci"
-  },
-  {
-    id: 105,
-    category: "kpss",
-    question: "TBMM hangi tarihte açılmıştır?",
-    options: ["29 Ekim 1923", "23 Nisan 1920", "19 Mayıs 1919", "30 Ağustos 1922"],
-    correctAnswer: "23 Nisan 1920"
-  },
-  {
-    id: 106,
-    category: "bilim",
-    question: "Güneş sistemindeki en büyük gezegen hangisidir?",
-    options: ["Dünya", "Mars", "Jüpiter", "Satürn"],
-    correctAnswer: "Jüpiter"
-  },
- 
-  {
     id: 1,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "TBMM hangi tarihte açılmıştır?",
     options: ["19 Mayıs 1919", "23 Nisan 1920", "29 Ekim 1923", "30 Ağustos 1922"],
     correctAnswer: "23 Nisan 1920"
   },
   {
     id: 2,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Cumhuriyet hangi tarihte ilan edilmiştir?",
-    options: ["23 Nisan 1920", "29 Ekim 1923", "30 Ağustos 1922", "10 Kasım 1938"],
+    options: ["23 Nisan 1920", "30 Ağustos 1922", "10 Kasım 1938", "29 Ekim 1923"],
     correctAnswer: "29 Ekim 1923"
   },
   {
     id: 3,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Mustafa Kemal Atatürk'ün Samsun'a çıktığı tarih hangisidir?",
-    options: ["19 Mayıs 1919", "23 Nisan 1920", "29 Ekim 1923", "30 Ağustos 1922"],
+    options: ["19 Mayıs 1919", "23 Nisan 1920", "29 Ekim 1923", "1 Kasım 1922"],
     correctAnswer: "19 Mayıs 1919"
   },
   {
     id: 4,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Kurtuluş Savaşı'nın askeri safhasını sona erdiren antlaşma hangisidir?",
-    options: ["Lozan Antlaşması", "Mudanya Ateşkes Antlaşması", "Sevr Antlaşması", "Ankara Antlaşması"],
+    options: ["Lozan Antlaşması", "Sevr Antlaşması", "Mudanya Ateşkes Antlaşması", "Gümrü Antlaşması"],
     correctAnswer: "Mudanya Ateşkes Antlaşması"
   },
   {
     id: 5,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Türkiye Cumhuriyeti'nin tapu senedi olarak kabul edilen antlaşma hangisidir?",
-    options: ["Sevr Antlaşması", "Lozan Antlaşması", "Mondros Ateşkes Antlaşması", "Gümrü Antlaşması"],
+    options: ["Sevr Antlaşması", "Mondros Ateşkes Antlaşması", "Ankara Antlaşması", "Lozan Antlaşması"],
     correctAnswer: "Lozan Antlaşması"
   },
   {
     id: 6,
-    category: "kpss",
-    question: "İlk TBMM'nin açılmasından sonra kurulan hükümet sistemi hangisidir?",
-    options: ["Kabine sistemi", "Meclis hükümeti sistemi", "Başkanlık sistemi", "Parlamenter sistem"],
+    category: "kpss_tarih",
+    question: "İlk TBMM'nin açılmasından sonra uygulanan hükümet sistemi hangisidir?",
+    options: ["Kabine sistemi", "Başkanlık sistemi", "Meclis hükümeti sistemi", "Parlamenter sistem"],
     correctAnswer: "Meclis hükümeti sistemi"
   },
   {
     id: 7,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Amasya Genelgesi'nin en önemli özelliği nedir?",
     options: [
-      "Milli mücadelenin gerekçe, amaç ve yöntemini açıklaması",
       "Cumhuriyetin ilan edilmesi",
+      "Milli mücadelenin gerekçe, amaç ve yöntemini açıklaması",
       "Saltanatın kaldırılması",
       "Halifeliğin kaldırılması"
     ],
@@ -91,19 +55,19 @@ export const quickChoiceQuestions = [
   },
   {
     id: 8,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Erzurum Kongresi hangi yönüyle önemlidir?",
     options: [
-      "Bölgesel toplanıp ulusal kararlar alması",
-      "Cumhuriyetin ilan edilmesi",
       "TBMM'nin açılması",
-      "Lozan'ın imzalanması"
+      "Lozan'ın imzalanması",
+      "Cumhuriyetin ilan edilmesi",
+      "Bölgesel toplanıp ulusal kararlar alması"
     ],
     correctAnswer: "Bölgesel toplanıp ulusal kararlar alması"
   },
   {
     id: 9,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Sivas Kongresi'nin en önemli sonucu hangisidir?",
     options: [
       "Tüm cemiyetlerin Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti adıyla birleştirilmesi",
@@ -115,189 +79,379 @@ export const quickChoiceQuestions = [
   },
   {
     id: 10,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Misak-ı Milli kararları hangi mecliste kabul edilmiştir?",
-    options: ["Son Osmanlı Mebusan Meclisi", "İlk TBMM", "Amasya Genelgesi", "Sivas Kongresi"],
+    options: ["İlk TBMM", "Amasya Genelgesi", "Son Osmanlı Mebusan Meclisi", "Sivas Kongresi"],
     correctAnswer: "Son Osmanlı Mebusan Meclisi"
   },
   {
     id: 11,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Saltanat hangi tarihte kaldırılmıştır?",
-    options: ["1 Kasım 1922", "29 Ekim 1923", "3 Mart 1924", "23 Nisan 1920"],
+    options: ["29 Ekim 1923", "1 Kasım 1922", "3 Mart 1924", "23 Nisan 1920"],
     correctAnswer: "1 Kasım 1922"
   },
   {
     id: 12,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Halifelik hangi tarihte kaldırılmıştır?",
-    options: ["1 Kasım 1922", "3 Mart 1924", "29 Ekim 1923", "23 Nisan 1920"],
+    options: ["1 Kasım 1922", "29 Ekim 1923", "23 Nisan 1920", "3 Mart 1924"],
     correctAnswer: "3 Mart 1924"
   },
   {
     id: 13,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Tekke, zaviye ve türbelerin kapatılması hangi inkılap alanına girer?",
-    options: ["Hukuk", "Eğitim", "Toplumsal", "Ekonomi"],
+    options: ["Toplumsal", "Eğitim", "Hukuk", "Ekonomi"],
     correctAnswer: "Toplumsal"
   },
   {
     id: 14,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Tevhid-i Tedrisat Kanunu hangi alanla ilgilidir?",
-    options: ["Eğitim", "Hukuk", "Ekonomi", "Askerlik"],
+    options: ["Hukuk", "Ekonomi", "Eğitim", "Askerlik"],
     correctAnswer: "Eğitim"
   },
   {
     id: 15,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Medeni Kanun hangi ülkeden örnek alınarak hazırlanmıştır?",
-    options: ["İsviçre", "Fransa", "Almanya", "İtalya"],
+    options: ["Fransa", "Almanya", "İtalya", "İsviçre"],
     correctAnswer: "İsviçre"
   },
   {
     id: 16,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Kabotaj Kanunu hangi alanla ilgilidir?",
-    options: ["Denizcilik", "Eğitim", "Tarım", "Sanayi"],
+    options: ["Tarım", "Denizcilik", "Eğitim", "Sanayi"],
     correctAnswer: "Denizcilik"
   },
   {
     id: 17,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Harf İnkılabı hangi tarihte yapılmıştır?",
     options: ["1923", "1924", "1928", "1934"],
     correctAnswer: "1928"
   },
   {
     id: 18,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Kadınlara milletvekili seçme ve seçilme hakkı hangi yıl verilmiştir?",
-    options: ["1926", "1930", "1934", "1938"],
+    options: ["1934", "1926", "1930", "1938"],
     correctAnswer: "1934"
   },
   {
     id: 19,
-    category: "kpss",
-    question: "Atatürk'ün 'Yurtta sulh, cihanda sulh' sözü hangi ilkeyle ilişkilidir?",
-    options: ["Milliyetçilik", "Halkçılık", "Barışçılık", "Devletçilik"],
+    category: "kpss_tarih",
+    question: "Atatürk'ün 'Yurtta sulh, cihanda sulh' sözü hangi anlayışla ilişkilidir?",
+    options: ["Milliyetçilik", "Halkçılık", "Devletçilik", "Barışçılık"],
     correctAnswer: "Barışçılık"
   },
   {
     id: 20,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Atatürk ilkelerinden hangisi halkın yönetime katılmasını esas alır?",
-    options: ["Cumhuriyetçilik", "Laiklik", "Devletçilik", "İnkılapçılık"],
+    options: ["Laiklik", "Cumhuriyetçilik", "Devletçilik", "İnkılapçılık"],
     correctAnswer: "Cumhuriyetçilik"
   },
   {
     id: 21,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Atatürk ilkelerinden hangisi din ve devlet işlerinin ayrılmasını ifade eder?",
-    options: ["Milliyetçilik", "Laiklik", "Halkçılık", "Devletçilik"],
+    options: ["Milliyetçilik", "Halkçılık", "Laiklik", "Devletçilik"],
     correctAnswer: "Laiklik"
   },
   {
     id: 22,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Atatürk ilkelerinden hangisi sosyal sınıf ayrımını reddeder?",
-    options: ["Halkçılık", "Laiklik", "Devletçilik", "Milliyetçilik"],
+    options: ["Laiklik", "Devletçilik", "Milliyetçilik", "Halkçılık"],
     correctAnswer: "Halkçılık"
   },
   {
     id: 23,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Atatürk ilkelerinden hangisi milli birlik ve beraberliği esas alır?",
     options: ["Milliyetçilik", "Laiklik", "Devletçilik", "Cumhuriyetçilik"],
     correctAnswer: "Milliyetçilik"
   },
   {
     id: 24,
-    category: "kpss",
+    category: "kpss_tarih",
     question: "Atatürk ilkelerinden hangisi çağın gereklerine uyum sağlamayı ifade eder?",
-    options: ["İnkılapçılık", "Devletçilik", "Halkçılık", "Laiklik"],
+    options: ["Devletçilik", "Halkçılık", "İnkılapçılık", "Laiklik"],
     correctAnswer: "İnkılapçılık"
   },
   {
     id: 25,
-    category: "kpss",
-    question: "Türkiye'nin en büyük gölü hangisidir?",
-    options: ["Tuz Gölü", "Van Gölü", "Beyşehir Gölü", "Eğirdir Gölü"],
-    correctAnswer: "Van Gölü"
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti hangi yılda kurulmuştur?",
+    options: ["1071", "1453", "1299", "1517"],
+    correctAnswer: "1299"
   },
   {
     id: 26,
-    category: "kpss",
-    question: "Türkiye'nin en uzun nehri hangisidir?",
-    options: ["Kızılırmak", "Fırat", "Dicle", "Sakarya"],
-    correctAnswer: "Kızılırmak"
+    category: "kpss_tarih",
+    question: "İstanbul hangi padişah döneminde fethedilmiştir?",
+    options: ["Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "II. Abdülhamit", "Fatih Sultan Mehmet"],
+    correctAnswer: "Fatih Sultan Mehmet"
   },
   {
     id: 27,
-    category: "kpss",
-    question: "Türkiye'nin en yüksek dağı hangisidir?",
-    options: ["Erciyes Dağı", "Ağrı Dağı", "Kaçkar Dağı", "Süphan Dağı"],
-    correctAnswer: "Ağrı Dağı"
+    category: "kpss_tarih",
+    question: "İstanbul'un fethedildiği yıl hangisidir?",
+    options: ["1453", "1071", "1299", "1517"],
+    correctAnswer: "1453"
   },
   {
     id: 28,
-    category: "kpss",
-    question: "Türkiye'de en fazla yağış alan bölge hangisidir?",
-    options: ["Karadeniz Bölgesi", "İç Anadolu Bölgesi", "Ege Bölgesi", "Güneydoğu Anadolu Bölgesi"],
-    correctAnswer: "Karadeniz Bölgesi"
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nin ilk başkenti neresidir?",
+    options: ["Söğüt", "Edirne", "Bursa", "İstanbul"],
+    correctAnswer: "Bursa"
   },
   {
     id: 29,
-    category: "kpss",
-    question: "Türkiye'de bozkır bitki örtüsü en yaygın hangi bölgede görülür?",
-    options: ["Karadeniz", "İç Anadolu", "Marmara", "Akdeniz"],
-    correctAnswer: "İç Anadolu"
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk anayasa hangisidir?",
+    options: ["Teşkilat-ı Esasiye", "Mecelle", "Islahat Fermanı", "Kanun-ı Esasi"],
+    correctAnswer: "Kanun-ı Esasi"
   },
   {
     id: 30,
-    category: "kpss",
-    question: "Pamukkale travertenleri hangi ilimizdedir?",
-    options: ["Denizli", "Muğla", "Aydın", "Antalya"],
-    correctAnswer: "Denizli"
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk anayasa hangi yıl ilan edilmiştir?",
+    options: ["1839", "1876", "1856", "1908"],
+    correctAnswer: "1876"
   },
   {
     id: 31,
-    category: "kpss",
-    question: "Peribacaları hangi bölgemizde yer alır?",
-    options: ["Kapadokya", "Çukurova", "Trakya", "Doğu Karadeniz"],
-    correctAnswer: "Kapadokya"
+    category: "kpss_tarih",
+    question: "Tanzimat Fermanı hangi yıl ilan edilmiştir?",
+    options: ["1856", "1876", "1839", "1908"],
+    correctAnswer: "1839"
   },
   {
     id: 32,
-    category: "kpss",
-    question: "Türkiye'de yaz kuraklığının en belirgin olduğu iklim tipi hangisidir?",
-    options: ["Karadeniz iklimi", "Akdeniz iklimi", "Sert karasal iklim", "Step iklimi"],
-    correctAnswer: "Akdeniz iklimi"
+    category: "kpss_tarih",
+    question: "Islahat Fermanı hangi yıl ilan edilmiştir?",
+    options: ["1839", "1876", "1908", "1856"],
+    correctAnswer: "1856"
   },
   {
     id: 33,
-    category: "kpss",
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk kağıt para hangi padişah döneminde basılmıştır?",
+    options: ["Abdülmecid", "Fatih Sultan Mehmet", "Yavuz Sultan Selim", "II. Mahmut"],
+    correctAnswer: "Abdülmecid"
+  },
+  {
+    id: 34,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Yeniçeri Ocağı hangi padişah döneminde kaldırılmıştır?",
+    options: ["Abdülmecid", "III. Selim", "II. Mahmut", "Kanuni Sultan Süleyman"],
+    correctAnswer: "II. Mahmut"
+  },
+  {
+    id: 35,
+    category: "kpss_tarih",
+    question: "Malazgirt Savaşı hangi yıl yapılmıştır?",
+    options: ["1040", "1176", "1243", "1071"],
+    correctAnswer: "1071"
+  },
+  {
+    id: 36,
+    category: "kpss_tarih",
+    question: "Malazgirt Savaşı hangi hükümdar döneminde kazanılmıştır?",
+    options: ["Melikşah", "Alp Arslan", "Tuğrul Bey", "Sultan Sencer"],
+    correctAnswer: "Alp Arslan"
+  },
+  {
+    id: 37,
+    category: "kpss_tarih",
+    question: "Anadolu'nun kapılarını Türklere açan savaş hangisidir?",
+    options: ["Miryokefalon Savaşı", "Kösedağ Savaşı", "Malazgirt Savaşı", "Pasinler Savaşı"],
+    correctAnswer: "Malazgirt Savaşı"
+  },
+  {
+    id: 38,
+    category: "kpss_tarih",
+    question: "Anadolu'nun Türk yurdu olduğunu kesinleştiren savaş hangisidir?",
+    options: ["Malazgirt Savaşı", "Kösedağ Savaşı", "Ankara Savaşı", "Miryokefalon Savaşı"],
+    correctAnswer: "Miryokefalon Savaşı"
+  },
+  {
+    id: 39,
+    category: "kpss_tarih",
+    question: "Kösedağ Savaşı hangi yıl yapılmıştır?",
+    options: ["1243", "1071", "1176", "1402"],
+    correctAnswer: "1243"
+  },
+  {
+    id: 40,
+    category: "kpss_tarih",
+    question: "Kösedağ Savaşı sonucunda Anadolu'da hangi devletin etkisi artmıştır?",
+    options: ["Bizans", "Haçlılar", "Memlükler", "Moğollar"],
+    correctAnswer: "Moğollar"
+  },
+  {
+    id: 41,
+    category: "kpss_tarih",
+    question: "İlk Türk devletlerinde hükümdara verilen unvanlardan biri hangisidir?",
+    options: ["Şah", "Kağan", "Kral", "İmparator"],
+    correctAnswer: "Kağan"
+  },
+  {
+    id: 42,
+    category: "kpss_tarih",
+    question: "İlk Türk devletlerinde ülkenin hanedan üyelerinin ortak malı sayılması hangi anlayıştır?",
+    options: ["Tımar sistemi", "Devşirme sistemi", "Veraset sistemi", "İltizam sistemi"],
+    correctAnswer: "Veraset sistemi"
+  },
+  {
+    id: 43,
+    category: "kpss_tarih",
+    question: "İslamiyet'i kabul eden ilk Türk devleti hangisidir?",
+    options: ["Gazneliler", "Büyük Selçuklu", "Uygurlar", "Karahanlılar"],
+    correctAnswer: "Karahanlılar"
+  },
+  {
+    id: 44,
+    category: "kpss_tarih",
+    question: "Türk-İslam edebiyatının ilk eserlerinden Kutadgu Bilig'in yazarı kimdir?",
+    options: ["Yusuf Has Hacip", "Kaşgarlı Mahmut", "Ahmet Yesevi", "Ali Şir Nevai"],
+    correctAnswer: "Yusuf Has Hacip"
+  },
+  {
+    id: 45,
+    category: "kpss_tarih",
+    question: "Divanü Lügati't-Türk adlı eserin yazarı kimdir?",
+    options: ["Yusuf Has Hacip", "Ahmet Yesevi", "Kaşgarlı Mahmut", "Farabi"],
+    correctAnswer: "Kaşgarlı Mahmut"
+  },
+  {
+    id: 46,
+    category: "kpss_tarih",
+    question: "Atabetü'l Hakayık adlı eserin yazarı kimdir?",
+    options: ["Yusuf Has Hacip", "Kaşgarlı Mahmut", "Ahmet Yesevi", "Edip Ahmet Yükneki"],
+    correctAnswer: "Edip Ahmet Yükneki"
+  },
+  {
+    id: 47,
+    category: "kpss_tarih",
+    question: "Divan-ı Hikmet adlı eser kime aittir?",
+    options: ["Ahmet Yesevi", "Kaşgarlı Mahmut", "Yusuf Has Hacip", "Ali Kuşçu"],
+    correctAnswer: "Ahmet Yesevi"
+  },
+  {
+    id: 48,
+    category: "kpss_tarih",
+    question: "Ankara hangi tarihte başkent olmuştur?",
+    options: ["29 Ekim 1923", "23 Nisan 1920", "13 Ekim 1923", "3 Mart 1924"],
+    correctAnswer: "13 Ekim 1923"
+  },
+  {
+    id: 49,
+    category: "kpss_tarih",
+    question: "İstiklal Marşı hangi yıl kabul edilmiştir?",
+    options: ["1919", "1920", "1923", "1921"],
+    correctAnswer: "1921"
+  },
+  {
+    id: 50,
+    category: "kpss_tarih",
+    question: "İstiklal Marşı'nın yazarı kimdir?",
+    options: ["Namık Kemal", "Mehmet Akif Ersoy", "Ziya Gökalp", "Tevfik Fikret"],
+    correctAnswer: "Mehmet Akif Ersoy"
+  },
+
+  {
+    id: 51,
+    category: "kpss_cografya",
+    question: "Türkiye'nin başkenti neresidir?",
+    options: ["İstanbul", "Ankara", "İzmir", "Bursa"],
+    correctAnswer: "Ankara"
+  },
+  {
+    id: 52,
+    category: "kpss_cografya",
+    question: "Türkiye'nin en büyük gölü hangisidir?",
+    options: ["Tuz Gölü", "Beyşehir Gölü", "Eğirdir Gölü", "Van Gölü"],
+    correctAnswer: "Van Gölü"
+  },
+  {
+    id: 53,
+    category: "kpss_cografya",
+    question: "Türkiye'nin en uzun nehri hangisidir?",
+    options: ["Fırat", "Kızılırmak", "Dicle", "Sakarya"],
+    correctAnswer: "Kızılırmak"
+  },
+  {
+    id: 54,
+    category: "kpss_cografya",
+    question: "Türkiye'nin en yüksek dağı hangisidir?",
+    options: ["Erciyes Dağı", "Kaçkar Dağı", "Ağrı Dağı", "Süphan Dağı"],
+    correctAnswer: "Ağrı Dağı"
+  },
+  {
+    id: 55,
+    category: "kpss_cografya",
+    question: "Türkiye'de en fazla yağış alan bölge hangisidir?",
+    options: ["İç Anadolu Bölgesi", "Ege Bölgesi", "Güneydoğu Anadolu Bölgesi", "Karadeniz Bölgesi"],
+    correctAnswer: "Karadeniz Bölgesi"
+  },
+  {
+    id: 56,
+    category: "kpss_cografya",
+    question: "Türkiye'de bozkır bitki örtüsü en yaygın hangi bölgede görülür?",
+    options: ["İç Anadolu", "Karadeniz", "Marmara", "Akdeniz"],
+    correctAnswer: "İç Anadolu"
+  },
+  {
+    id: 57,
+    category: "kpss_cografya",
+    question: "Pamukkale travertenleri hangi ilimizdedir?",
+    options: ["Muğla", "Denizli", "Aydın", "Antalya"],
+    correctAnswer: "Denizli"
+  },
+  {
+    id: 58,
+    category: "kpss_cografya",
+    question: "Peribacaları hangi bölgemizde yer alır?",
+    options: ["Çukurova", "Trakya", "Kapadokya", "Doğu Karadeniz"],
+    correctAnswer: "Kapadokya"
+  },
+  {
+    id: 59,
+    category: "kpss_cografya",
+    question: "Türkiye'de yaz kuraklığının en belirgin olduğu iklim tipi hangisidir?",
+    options: ["Karadeniz iklimi", "Sert karasal iklim", "Step iklimi", "Akdeniz iklimi"],
+    correctAnswer: "Akdeniz iklimi"
+  },
+  {
+    id: 60,
+    category: "kpss_cografya",
     question: "Çukurova hangi akarsuların taşıdığı alüvyonlarla oluşmuştur?",
     options: ["Seyhan ve Ceyhan", "Kızılırmak ve Yeşilırmak", "Fırat ve Dicle", "Gediz ve Büyük Menderes"],
     correctAnswer: "Seyhan ve Ceyhan"
   },
   {
-    id: 34,
-    category: "kpss",
+    id: 61,
+    category: "kpss_cografya",
     question: "Türkiye'nin üç tarafının denizlerle çevrili olması aşağıdakilerden hangisini artırır?",
-    options: ["Kıyı uzunluğunu", "Yükseltiyi", "Karasallığı", "Deprem riskini"],
+    options: ["Yükseltiyi", "Kıyı uzunluğunu", "Karasallığı", "Deprem riskini"],
     correctAnswer: "Kıyı uzunluğunu"
   },
   {
-    id: 35,
-    category: "kpss",
+    id: 62,
+    category: "kpss_cografya",
     question: "Türkiye hangi yarım kürede yer alır?",
-    options: ["Kuzey Yarım Küre", "Güney Yarım Küre", "Batı Yarım Küre", "Doğu Yarım Küre'nin tamamı"],
+    options: ["Güney Yarım Küre", "Batı Yarım Küre", "Doğu Yarım Küre'nin tamamı", "Kuzey Yarım Küre"],
     correctAnswer: "Kuzey Yarım Küre"
   },
   {
-    id: 36,
-    category: "kpss",
+    id: 63,
+    category: "kpss_cografya",
     question: "Türkiye'nin matematik konumu aşağıdakilerden hangisidir?",
     options: [
       "36°-42° Kuzey paralelleri, 26°-45° Doğu meridyenleri",
@@ -308,457 +462,963 @@ export const quickChoiceQuestions = [
     correctAnswer: "36°-42° Kuzey paralelleri, 26°-45° Doğu meridyenleri"
   },
   {
-    id: 37,
-    category: "kpss",
+    id: 64,
+    category: "kpss_cografya",
     question: "Türkiye'de yerel saat farkının temel nedeni nedir?",
-    options: ["Enlem farkı", "Boylam farkı", "Yükselti farkı", "İklim farkı"],
+    options: ["Enlem farkı", "Yükselti farkı", "Boylam farkı", "İklim farkı"],
     correctAnswer: "Boylam farkı"
   },
   {
-    id: 38,
-    category: "kpss",
+    id: 65,
+    category: "kpss_cografya",
     question: "Türkiye'de sıcaklığın batıdan doğuya doğru genel olarak azalmasının temel nedeni nedir?",
-    options: ["Yükseltinin artması", "Denizlerin etkisi", "Bitki örtüsü", "Nüfus yoğunluğu"],
+    options: ["Denizlerin etkisi", "Bitki örtüsü", "Nüfus yoğunluğu", "Yükseltinin artması"],
     correctAnswer: "Yükseltinin artması"
   },
   {
-    id: 39,
-    category: "kpss",
+    id: 66,
+    category: "kpss_cografya",
     question: "Türkiye'nin en fazla nüfusa sahip ili hangisidir?",
-    options: ["Ankara", "İzmir", "İstanbul", "Bursa"],
+    options: ["İstanbul", "Ankara", "İzmir", "Bursa"],
     correctAnswer: "İstanbul"
   },
   {
-    id: 40,
-    category: "kpss",
+    id: 67,
+    category: "kpss_cografya",
     question: "Türkiye'de nüfusun en seyrek olduğu yerlerden biri hangisidir?",
-    options: ["Tuz Gölü çevresi", "Marmara kıyıları", "Çukurova", "Ege kıyıları"],
+    options: ["Marmara kıyıları", "Çukurova", "Tuz Gölü çevresi", "Ege kıyıları"],
     correctAnswer: "Tuz Gölü çevresi"
   },
   {
-    id: 41,
-    category: "kpss",
+    id: 68,
+    category: "kpss_cografya",
     question: "Türkiye'de fındık üretiminin en yaygın olduğu bölge hangisidir?",
-    options: ["Karadeniz Bölgesi", "Akdeniz Bölgesi", "İç Anadolu Bölgesi", "Güneydoğu Anadolu Bölgesi"],
+    options: ["Akdeniz Bölgesi", "İç Anadolu Bölgesi", "Güneydoğu Anadolu Bölgesi", "Karadeniz Bölgesi"],
     correctAnswer: "Karadeniz Bölgesi"
   },
   {
-    id: 42,
-    category: "kpss",
+    id: 69,
+    category: "kpss_cografya",
     question: "Türkiye'de pamuk tarımı en çok hangi bölgelerde yapılır?",
     options: ["Karadeniz ve Marmara", "Akdeniz ve Güneydoğu Anadolu", "Doğu Anadolu ve Karadeniz", "İç Anadolu ve Marmara"],
     correctAnswer: "Akdeniz ve Güneydoğu Anadolu"
   },
   {
-    id: 43,
-    category: "kpss",
+    id: 70,
+    category: "kpss_cografya",
     question: "Türkiye'de çay tarımı en çok hangi il çevresinde yapılır?",
-    options: ["Rize", "Konya", "Adana", "Edirne"],
+    options: ["Konya", "Adana", "Rize", "Edirne"],
     correctAnswer: "Rize"
   },
   {
-    id: 44,
-    category: "kpss",
+    id: 71,
+    category: "kpss_cografya",
     question: "Türkiye'de zeytin üretimi en çok hangi kıyı bölgelerinde görülür?",
-    options: ["Ege ve Marmara", "Karadeniz ve Doğu Anadolu", "İç Anadolu ve Güneydoğu", "Doğu Anadolu ve İç Anadolu"],
+    options: ["Karadeniz ve Doğu Anadolu", "İç Anadolu ve Güneydoğu", "Ege ve Marmara", "Doğu Anadolu ve İç Anadolu"],
     correctAnswer: "Ege ve Marmara"
   },
   {
-    id: 45,
-    category: "kpss",
-    question: "Anayasa'nın ilk üç maddesiyle ilgili doğru ifade hangisidir?",
-    options: [
-      "Değiştirilebilir",
-      "Değiştirilmesi teklif edilemez",
-      "Sadece Cumhurbaşkanı değiştirebilir",
-      "Sadece mahkemeler değiştirebilir"
-    ],
-    correctAnswer: "Değiştirilmesi teklif edilemez"
-  },
-  {
-    id: 46,
-    category: "kpss",
-    question: "Türkiye Cumhuriyeti Anayasası'na göre egemenlik kime aittir?",
-    options: ["Millete", "Cumhurbaşkanına", "TBMM Başkanına", "Bakanlar Kuruluna"],
-    correctAnswer: "Millete"
-  },
-  {
-    id: 47,
-    category: "kpss",
-    question: "Yasama yetkisi hangi organa aittir?",
-    options: ["TBMM", "Cumhurbaşkanı", "Anayasa Mahkemesi", "Danıştay"],
-    correctAnswer: "TBMM"
-  },
-  {
-    id: 48,
-    category: "kpss",
-    question: "Yürütme yetkisi ve görevi kime aittir?",
-    options: ["Cumhurbaşkanı", "TBMM", "Yargıtay", "Sayıştay"],
-    correctAnswer: "Cumhurbaşkanı"
-  },
-  {
-    id: 49,
-    category: "kpss",
-    question: "Yargı yetkisi kim tarafından kullanılır?",
-    options: ["Bağımsız ve tarafsız mahkemeler", "TBMM", "Cumhurbaşkanı", "Valiler"],
-    correctAnswer: "Bağımsız ve tarafsız mahkemeler"
-  },
-  {
-    id: 50,
-    category: "kpss",
-    question: "Türkiye'de milletvekili genel seçimleri kaç yılda bir yapılır?",
-    options: ["3", "4", "5", "7"],
-    correctAnswer: "5"
-  },
-  {
-    id: 51,
-    category: "kpss",
-    question: "Milletvekili seçilebilmek için gereken yaş şartı kaçtır?",
-    options: ["18", "21", "25", "30"],
-    correctAnswer: "18"
-  },
-  {
-    id: 52,
-    category: "kpss",
-    question: "Anayasa Mahkemesi kaç üyeden oluşur?",
-    options: ["11", "13", "15", "17"],
-    correctAnswer: "15"
-  },
-  {
-    id: 53,
-    category: "kpss",
-    question: "Hakimler ve Savcılar Kurulu kaç üyeden oluşur?",
-    options: ["7", "11", "13", "15"],
-    correctAnswer: "13"
-  },
-  {
-    id: 54,
-    category: "kpss",
-    question: "Kanunları yayımlama görevi kime aittir?",
-    options: ["Cumhurbaşkanı", "TBMM Başkanı", "Anayasa Mahkemesi Başkanı", "Yargıtay Başkanı"],
-    correctAnswer: "Cumhurbaşkanı"
-  },
-  {
-    id: 55,
-    category: "kpss",
-    question: "Türkiye'de mahalli idareler seçimleri kaç yılda bir yapılır?",
-    options: ["3", "4", "5", "6"],
-    correctAnswer: "5"
-  },
-  {
-    id: 56,
-    category: "kpss",
-    question: "İl genel yönetiminin başında kim bulunur?",
-    options: ["Vali", "Belediye başkanı", "Kaymakam", "Muhtar"],
-    correctAnswer: "Vali"
-  },
-  {
-    id: 57,
-    category: "kpss",
-    question: "İlçe genel yönetiminin başında kim bulunur?",
-    options: ["Kaymakam", "Vali", "Belediye başkanı", "Muhtar"],
-    correctAnswer: "Kaymakam"
-  },
-  {
-    id: 58,
-    category: "kpss",
-    question: "Köy yönetiminin başında kim bulunur?",
-    options: ["Muhtar", "Vali", "Kaymakam", "Belediye başkanı"],
-    correctAnswer: "Muhtar"
-  },
-  {
-    id: 59,
-    category: "kpss",
-    question: "Büyükşehir belediye başkanı hangi yöntemle göreve gelir?",
-    options: ["Seçimle", "Atamayla", "Miras yoluyla", "Mahkeme kararıyla"],
-    correctAnswer: "Seçimle"
-  },
-  {
-    id: 60,
-    category: "kpss",
-    question: "Kamu Denetçiliği Kurumu'nun diğer adı nedir?",
-    options: ["Ombudsmanlık", "Sayıştay", "Danıştay", "Yargıtay"],
-    correctAnswer: "Ombudsmanlık"
-  },
-  {
-    id: 61,
-    category: "kpss",
-    question: "Osmanlı Devleti hangi yılda kurulmuştur?",
-    options: ["1071", "1299", "1453", "1517"],
-    correctAnswer: "1299"
-  },
-  {
-    id: 62,
-    category: "kpss",
-    question: "İstanbul hangi padişah döneminde fethedilmiştir?",
-    options: ["Fatih Sultan Mehmet", "Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "II. Abdülhamit"],
-    correctAnswer: "Fatih Sultan Mehmet"
-  },
-  {
-    id: 63,
-    category: "kpss",
-    question: "İstanbul'un fethedildiği yıl hangisidir?",
-    options: ["1071", "1299", "1453", "1517"],
-    correctAnswer: "1453"
-  },
-  {
-    id: 64,
-    category: "kpss",
-    question: "Osmanlı Devleti'nin ilk başkenti neresidir?",
-    options: ["Söğüt", "Bursa", "Edirne", "İstanbul"],
-    correctAnswer: "Bursa"
-  },
-  {
-    id: 65,
-    category: "kpss",
-    question: "Osmanlı Devleti'nde ilk anayasa hangisidir?",
-    options: ["Kanun-ı Esasi", "Teşkilat-ı Esasiye", "Mecelle", "Islahat Fermanı"],
-    correctAnswer: "Kanun-ı Esasi"
-  },
-  {
-    id: 66,
-    category: "kpss",
-    question: "Osmanlı Devleti'nde ilk anayasa hangi yıl ilan edilmiştir?",
-    options: ["1839", "1856", "1876", "1908"],
-    correctAnswer: "1876"
-  },
-  {
-    id: 67,
-    category: "kpss",
-    question: "Tanzimat Fermanı hangi yıl ilan edilmiştir?",
-    options: ["1839", "1856", "1876", "1908"],
-    correctAnswer: "1839"
-  },
-  {
-    id: 68,
-    category: "kpss",
-    question: "Islahat Fermanı hangi yıl ilan edilmiştir?",
-    options: ["1839", "1856", "1876", "1908"],
-    correctAnswer: "1856"
-  },
-  {
-    id: 69,
-    category: "kpss",
-    question: "Osmanlı Devleti'nde ilk kağıt para hangi padişah döneminde basılmıştır?",
-    options: ["Abdülmecid", "Fatih Sultan Mehmet", "Yavuz Sultan Selim", "II. Mahmut"],
-    correctAnswer: "Abdülmecid"
-  },
-  {
-    id: 70,
-    category: "kpss",
-    question: "Osmanlı Devleti'nde Yeniçeri Ocağı hangi padişah döneminde kaldırılmıştır?",
-    options: ["II. Mahmut", "Abdülmecid", "III. Selim", "Kanuni Sultan Süleyman"],
-    correctAnswer: "II. Mahmut"
-  },
-  {
-    id: 71,
-    category: "kpss",
-    question: "Malazgirt Savaşı hangi yıl yapılmıştır?",
-    options: ["1040", "1071", "1176", "1243"],
-    correctAnswer: "1071"
-  },
-  {
     id: 72,
-    category: "kpss",
-    question: "Malazgirt Savaşı hangi hükümdar döneminde kazanılmıştır?",
-    options: ["Alp Arslan", "Melikşah", "Tuğrul Bey", "Sultan Sencer"],
-    correctAnswer: "Alp Arslan"
+    category: "kpss_cografya",
+    question: "Türkiye'nin en doğusunda yer alan il hangisidir?",
+    options: ["Hakkari", "Van", "Kars", "Iğdır"],
+    correctAnswer: "Iğdır"
   },
   {
     id: 73,
-    category: "kpss",
-    question: "Anadolu'nun kapılarını Türklere açan savaş hangisidir?",
-    options: ["Malazgirt Savaşı", "Miryokefalon Savaşı", "Kösedağ Savaşı", "Pasinler Savaşı"],
-    correctAnswer: "Malazgirt Savaşı"
+    category: "kpss_cografya",
+    question: "Türkiye'nin en batısında yer alan il hangisidir?",
+    options: ["Çanakkale", "Edirne", "İzmir", "Tekirdağ"],
+    correctAnswer: "Çanakkale"
   },
   {
     id: 74,
-    category: "kpss",
-    question: "Anadolu'nun Türk yurdu olduğunu kesinleştiren savaş hangisidir?",
-    options: ["Miryokefalon Savaşı", "Malazgirt Savaşı", "Kösedağ Savaşı", "Ankara Savaşı"],
-    correctAnswer: "Miryokefalon Savaşı"
+    category: "kpss_cografya",
+    question: "Türkiye'nin en kuzeyinde yer alan il hangisidir?",
+    options: ["Samsun", "Sinop", "Artvin", "Kırklareli"],
+    correctAnswer: "Sinop"
   },
   {
     id: 75,
-    category: "kpss",
-    question: "Kösedağ Savaşı hangi yıl yapılmıştır?",
-    options: ["1071", "1176", "1243", "1402"],
-    correctAnswer: "1243"
+    category: "kpss_cografya",
+    question: "Türkiye'nin en güneyinde yer alan il hangisidir?",
+    options: ["Mersin", "Şanlıurfa", "Antalya", "Hatay"],
+    correctAnswer: "Hatay"
   },
   {
     id: 76,
-    category: "kpss",
-    question: "Kösedağ Savaşı sonucunda Anadolu'da hangi devletin etkisi artmıştır?",
-    options: ["Moğollar", "Bizans", "Haçlılar", "Memlükler"],
-    correctAnswer: "Moğollar"
+    category: "kpss_cografya",
+    question: "Türkiye'de karstik şekiller en yaygın hangi bölgede görülür?",
+    options: ["Akdeniz Bölgesi", "Karadeniz Bölgesi", "İç Anadolu Bölgesi", "Marmara Bölgesi"],
+    correctAnswer: "Akdeniz Bölgesi"
   },
   {
     id: 77,
-    category: "kpss",
-    question: "İlk Türk devletlerinde hükümdara verilen unvanlardan biri hangisidir?",
-    options: ["Kağan", "Şah", "Kral", "İmparator"],
-    correctAnswer: "Kağan"
+    category: "kpss_cografya",
+    question: "Türkiye'de maki bitki örtüsü en çok hangi iklim bölgesinde görülür?",
+    options: ["Karadeniz iklimi", "Akdeniz iklimi", "Sert karasal iklim", "Step iklimi"],
+    correctAnswer: "Akdeniz iklimi"
   },
   {
     id: 78,
-    category: "kpss",
-    question: "İlk Türk devletlerinde ülke hanedan üyelerinin ortak malı sayılırdı. Bu anlayışa ne ad verilir?",
-    options: ["Veraset sistemi", "Tımar sistemi", "Devşirme sistemi", "İltizam sistemi"],
-    correctAnswer: "Veraset sistemi"
+    category: "kpss_cografya",
+    question: "Türkiye'de delta ovalarının oluşmasında en etkili faktör hangisidir?",
+    options: ["Buzullaşma", "Volkanizma", "Akarsuların taşıdığı alüvyonlar", "Rüzgar aşındırması"],
+    correctAnswer: "Akarsuların taşıdığı alüvyonlar"
   },
   {
     id: 79,
-    category: "kpss",
-    question: "İslamiyet'i kabul eden ilk Türk devleti hangisidir?",
-    options: ["Karahanlılar", "Gazneliler", "Büyük Selçuklu", "Uygurlar"],
-    correctAnswer: "Karahanlılar"
+    category: "kpss_cografya",
+    question: "Bafra Deltası hangi akarsuyun taşıdığı alüvyonlarla oluşmuştur?",
+    options: ["Yeşilırmak", "Kızılırmak", "Sakarya", "Gediz"],
+    correctAnswer: "Kızılırmak"
   },
   {
     id: 80,
-    category: "kpss",
-    question: "Türk-İslam edebiyatının ilk eserlerinden Kutadgu Bilig'in yazarı kimdir?",
-    options: ["Yusuf Has Hacip", "Kaşgarlı Mahmut", "Ahmet Yesevi", "Ali Şir Nevai"],
-    correctAnswer: "Yusuf Has Hacip"
+    category: "kpss_cografya",
+    question: "Çarşamba Deltası hangi akarsuyun taşıdığı alüvyonlarla oluşmuştur?",
+    options: ["Kızılırmak", "Sakarya", "Gediz", "Yeşilırmak"],
+    correctAnswer: "Yeşilırmak"
   },
   {
     id: 81,
-    category: "kpss",
-    question: "Divanü Lügati't-Türk adlı eserin yazarı kimdir?",
-    options: ["Kaşgarlı Mahmut", "Yusuf Has Hacip", "Ahmet Yesevi", "Farabi"],
-    correctAnswer: "Kaşgarlı Mahmut"
+    category: "kpss_cografya",
+    question: "Türkiye'de taş kömürü en çok hangi yörede çıkarılır?",
+    options: ["Zonguldak", "Soma", "Elbistan", "Batman"],
+    correctAnswer: "Zonguldak"
   },
   {
     id: 82,
-    category: "kpss",
-    question: "Atabetü'l Hakayık adlı eserin yazarı kimdir?",
-    options: ["Edip Ahmet Yükneki", "Yusuf Has Hacip", "Kaşgarlı Mahmut", "Ahmet Yesevi"],
-    correctAnswer: "Edip Ahmet Yükneki"
+    category: "kpss_cografya",
+    question: "Türkiye'de linyit yatakları bakımından öne çıkan yerlerden biri hangisidir?",
+    options: ["Rize", "Soma", "Edirne", "Mardin"],
+    correctAnswer: "Soma"
   },
   {
     id: 83,
-    category: "kpss",
-    question: "Divan-ı Hikmet adlı eser kime aittir?",
-    options: ["Ahmet Yesevi", "Kaşgarlı Mahmut", "Yusuf Has Hacip", "Ali Kuşçu"],
-    correctAnswer: "Ahmet Yesevi"
+    category: "kpss_cografya",
+    question: "Türkiye'de petrol çıkarılan yerlerden biri hangisidir?",
+    options: ["Konya", "Trabzon", "Batman", "Aydın"],
+    correctAnswer: "Batman"
   },
   {
     id: 84,
-    category: "kpss",
-    question: "Türkiye'nin başkenti neresidir?",
-    options: ["İstanbul", "Ankara", "İzmir", "Bursa"],
-    correctAnswer: "Ankara"
+    category: "kpss_cografya",
+    question: "Türkiye'de bor madeni bakımından öne çıkan illerden biri hangisidir?",
+    options: ["Balıkesir", "Rize", "Sinop", "Hakkari"],
+    correctAnswer: "Balıkesir"
   },
   {
     id: 85,
-    category: "kpss",
-    question: "Ankara hangi tarihte başkent olmuştur?",
-    options: ["13 Ekim 1923", "29 Ekim 1923", "23 Nisan 1920", "3 Mart 1924"],
-    correctAnswer: "13 Ekim 1923"
+    category: "kpss_cografya",
+    question: "GAP projesi ağırlıklı olarak hangi bölgemizde uygulanmaktadır?",
+    options: ["İç Anadolu", "Güneydoğu Anadolu", "Marmara", "Karadeniz"],
+    correctAnswer: "Güneydoğu Anadolu"
   },
   {
     id: 86,
-    category: "kpss",
-    question: "İstiklal Marşı hangi yıl kabul edilmiştir?",
-    options: ["1919", "1920", "1921", "1923"],
-    correctAnswer: "1921"
+    category: "kpss_cografya",
+    question: "Türkiye'de en fazla buğday üretimi hangi bölgede yapılır?",
+    options: ["Akdeniz", "Karadeniz", "İç Anadolu", "Ege"],
+    correctAnswer: "İç Anadolu"
   },
   {
     id: 87,
-    category: "kpss",
-    question: "İstiklal Marşı'nın yazarı kimdir?",
-    options: ["Mehmet Akif Ersoy", "Namık Kemal", "Ziya Gökalp", "Tevfik Fikret"],
-    correctAnswer: "Mehmet Akif Ersoy"
+    category: "kpss_cografya",
+    question: "Türkiye'de turunçgil üretimi en çok hangi bölgede yapılır?",
+    options: ["Karadeniz", "Marmara", "Doğu Anadolu", "Akdeniz"],
+    correctAnswer: "Akdeniz"
   },
   {
     id: 88,
-    category: "kpss",
-    question: "İstiklal Marşı'nın bestecisi kimdir?",
-    options: ["Osman Zeki Üngör", "Cemal Reşit Rey", "Adnan Saygun", "Ulvi Cemal Erkin"],
-    correctAnswer: "Osman Zeki Üngör"
+    category: "kpss_cografya",
+    question: "Türkiye'de muz üretiminin en çok yapıldığı yörelerden biri hangisidir?",
+    options: ["Anamur", "Erzurum", "Kars", "Sivas"],
+    correctAnswer: "Anamur"
   },
   {
     id: 89,
-    category: "kpss",
-    question: "I. İnönü Savaşı'ndan sonra imzalanan antlaşma hangisidir?",
-    options: ["Moskova Antlaşması", "Lozan Antlaşması", "Sevr Antlaşması", "Mudanya Ateşkes Antlaşması"],
-    correctAnswer: "Moskova Antlaşması"
+    category: "kpss_cografya",
+    question: "Türkiye'de ipek böcekçiliğiyle özdeşleşen illerden biri hangisidir?",
+    options: ["Konya", "Bursa", "Van", "Trabzon"],
+    correctAnswer: "Bursa"
   },
   {
     id: 90,
-    category: "kpss",
-    question: "TBMM'nin siyasi alandaki ilk başarısı kabul edilen antlaşma hangisidir?",
-    options: ["Gümrü Antlaşması", "Lozan Antlaşması", "Ankara Antlaşması", "Moskova Antlaşması"],
-    correctAnswer: "Gümrü Antlaşması"
+    category: "kpss_cografya",
+    question: "Türkiye'de arıcılık faaliyetleri için uygun koşullara sahip bölgelerden biri hangisidir?",
+    options: ["Doğu Anadolu", "Tuz Gölü çevresi", "Ergene Havzası", "Çatalca-Kocaeli Bölümü"],
+    correctAnswer: "Doğu Anadolu"
   },
   {
     id: 91,
-    category: "kpss",
-    question: "Sakarya Meydan Muharebesi'nin sonucu olarak Mustafa Kemal'e hangi unvan verilmiştir?",
-    options: ["Mareşal ve Gazi", "Başkomutan", "Cumhurbaşkanı", "Halife"],
-    correctAnswer: "Mareşal ve Gazi"
+    category: "kpss_cografya",
+    question: "Türkiye'de nüfus yoğunluğunun fazla olduğu bölgelerden biri hangisidir?",
+    options: ["Doğu Anadolu", "Marmara", "Tuz Gölü çevresi", "Hakkari yöresi"],
+    correctAnswer: "Marmara"
   },
   {
     id: 92,
-    category: "kpss",
-    question: "Başkomutanlık Meydan Muharebesi hangi tarihte kazanılmıştır?",
-    options: ["30 Ağustos 1922", "23 Nisan 1920", "19 Mayıs 1919", "29 Ekim 1923"],
-    correctAnswer: "30 Ağustos 1922"
+    category: "kpss_cografya",
+    question: "Türkiye'de sanayinin en gelişmiş olduğu bölge hangisidir?",
+    options: ["Karadeniz", "Doğu Anadolu", "Marmara", "Güneydoğu Anadolu"],
+    correctAnswer: "Marmara"
   },
   {
     id: 93,
-    category: "kpss",
-    question: "Kurtuluş Savaşı'nda Batı Cephesi'nde hangi devletle savaşılmıştır?",
-    options: ["Yunanistan", "Ermenistan", "İtalya", "Rusya"],
-    correctAnswer: "Yunanistan"
+    category: "kpss_cografya",
+    question: "Türkiye'de en fazla orman varlığına sahip bölgelerden biri hangisidir?",
+    options: ["İç Anadolu", "Güneydoğu Anadolu", "Doğu Anadolu", "Karadeniz"],
+    correctAnswer: "Karadeniz"
   },
   {
     id: 94,
-    category: "kpss",
-    question: "Kurtuluş Savaşı'nda Doğu Cephesi'nde hangi devletle savaşılmıştır?",
+    category: "kpss_cografya",
+    question: "Türkiye'de yaz turizminin en gelişmiş olduğu bölgelerden biri hangisidir?",
+    options: ["Akdeniz", "Doğu Anadolu", "İç Anadolu", "Karadeniz"],
+    correctAnswer: "Akdeniz"
+  },
+  {
+    id: 95,
+    category: "kpss_cografya",
+    question: "Türkiye'de kış turizmiyle öne çıkan merkezlerden biri hangisidir?",
+    options: ["Alanya", "Bodrum", "Uludağ", "Çeşme"],
+    correctAnswer: "Uludağ"
+  },
+  {
+    id: 96,
+    category: "kpss_cografya",
+    question: "Türkiye'de demir yolu ulaşımının daha zor geliştiği bölge hangisidir?",
+    options: ["Marmara", "Ege", "Karadeniz", "İç Anadolu"],
+    correctAnswer: "Karadeniz"
+  },
+  {
+    id: 97,
+    category: "kpss_cografya",
+    question: "Türkiye'nin Asya ve Avrupa kıtaları arasında köprü konumunda olmasını sağlayan özellik hangisidir?",
+    options: ["Matematik konumu", "Özel konumu", "Yükseltisi", "Bitki örtüsü"],
+    correctAnswer: "Özel konumu"
+  },
+  {
+    id: 98,
+    category: "kpss_cografya",
+    question: "Türkiye'de deprem riskinin yüksek olmasının temel nedeni nedir?",
+    options: ["Genç oluşumlu arazide yer alması", "Üç tarafının denizlerle çevrili olması", "Orta kuşakta yer alması", "Nüfusunun fazla olması"],
+    correctAnswer: "Genç oluşumlu arazide yer alması"
+  },
+  {
+    id: 99,
+    category: "kpss_cografya",
+    question: "Türkiye'de buzul şekillerine daha çok hangi alanlarda rastlanır?",
+    options: ["Delta ovalarında", "Yüksek dağlarda", "Kıyı ovalarında", "Platolarda"],
+    correctAnswer: "Yüksek dağlarda"
+  },
+  {
+    id: 100,
+    category: "kpss_cografya",
+    question: "Türkiye'de karasal iklimin en belirgin özelliklerinden biri hangisidir?",
+    options: ["Yazların serin geçmesi", "Her mevsim yağışlı olması", "Yıllık sıcaklık farkının fazla olması", "Kışların ılık geçmesi"],
+    correctAnswer: "Yıllık sıcaklık farkının fazla olması"
+  },
+  { 
+    id: 101,
+    category: "kpss_cografya",
+    question: "Türkiye'de en fazla yağış alan bölüm hangisidir?",
+    options: ["Doğu Karadeniz", "Ergene", "Konya", "Orta Fırat"],
+    correctAnswer: "Doğu Karadeniz"
+  },
+  {
+    id: 102,
+    category: "kpss_cografya",
+    question: "Türkiye'de yıllık sıcaklık farkının en fazla olduğu bölge hangisidir?",
+    options: ["Marmara", "Ege", "Doğu Anadolu", "Akdeniz"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 103,
+    category: "kpss_cografya",
+    question: "Türkiye'de yükseltinin en fazla olduğu bölge hangisidir?",
+    options: ["İç Anadolu", "Doğu Anadolu", "Karadeniz", "Güneydoğu Anadolu"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 104,
+    category: "kpss_cografya",
+    question: "Türkiye'de gerçek alan ile izdüşüm alan arasındaki farkın en fazla olduğu bölge hangisidir?",
+    options: ["Marmara", "Güneydoğu Anadolu", "Doğu Anadolu", "Ege"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 105,
+    category: "kpss_cografya",
+    question: "Türkiye'de gerçek alan ile izdüşüm alan arasındaki farkın en az olduğu bölge hangisidir?",
+    options: ["Doğu Anadolu", "Karadeniz", "Marmara", "Akdeniz"],
+    correctAnswer: "Marmara"
+  },
+  {
+    id: 106,
+    category: "kpss_cografya",
+    question: "Türkiye'de nüfus yoğunluğunun en fazla olduğu bölge hangisidir?",
+    options: ["Marmara", "İç Anadolu", "Akdeniz", "Karadeniz"],
+    correctAnswer: "Marmara"
+  },
+  {
+    id: 107,
+    category: "kpss_cografya",
+    question: "Türkiye'de nüfus yoğunluğunun en az olduğu bölge hangisidir?",
+    options: ["Ege", "Doğu Anadolu", "Marmara", "Akdeniz"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 108,
+    category: "kpss_cografya",
+    question: "Türkiye'de tarımda sulama ihtiyacının en fazla olduğu bölgelerden biri hangisidir?",
+    options: ["Karadeniz", "Marmara", "Güneydoğu Anadolu", "Doğu Karadeniz"],
+    correctAnswer: "Güneydoğu Anadolu"
+  },
+  {
+    id: 109,
+    category: "kpss_cografya",
+    question: "Türkiye'de pamuk üretiminde öne çıkan ovalardan biri hangisidir?",
+    options: ["Çukurova", "Bafra Ovası", "Ergene Ovası", "Çarşamba Ovası"],
+    correctAnswer: "Çukurova"
+  },
+  {
+    id: 110,
+    category: "kpss_cografya",
+    question: "Türkiye'de ayçiçeği üretiminin en yaygın olduğu yöre hangisidir?",
+    options: ["Doğu Karadeniz", "Ergene Havzası", "Hakkari Yöresi", "Teke Yöresi"],
+    correctAnswer: "Ergene Havzası"
+  },
+  {
+    id: 111,
+    category: "kpss_cografya",
+    question: "Türkiye'de pirinç üretiminde öne çıkan yörelerden biri hangisidir?",
+    options: ["Tuz Gölü çevresi", "Meriç Havzası", "Taşeli Platosu", "Hakkari Yöresi"],
+    correctAnswer: "Meriç Havzası"
+  },
+  {
+    id: 112,
+    category: "kpss_cografya",
+    question: "Türkiye'de incir üretiminde öne çıkan il hangisidir?",
+    options: ["Aydın", "Rize", "Erzurum", "Sivas"],
+    correctAnswer: "Aydın"
+  },
+  {
+    id: 113,
+    category: "kpss_cografya",
+    question: "Türkiye'de üzüm üretiminde öne çıkan bölgelerden biri hangisidir?",
+    options: ["Karadeniz", "Ege", "Doğu Anadolu", "Marmara'nın kuzeyi"],
+    correctAnswer: "Ege"
+  },
+  {
+    id: 114,
+    category: "kpss_cografya",
+    question: "Türkiye'de kayısı üretimiyle öne çıkan il hangisidir?",
+    options: ["Malatya", "Bursa", "Rize", "Muğla"],
+    correctAnswer: "Malatya"
+  },
+  {
+    id: 115,
+    category: "kpss_cografya",
+    question: "Türkiye'de Antep fıstığı üretiminde öne çıkan il hangisidir?",
+    options: ["Trabzon", "Gaziantep", "Edirne", "Çanakkale"],
+    correctAnswer: "Gaziantep"
+  },
+  {
+    id: 116,
+    category: "kpss_cografya",
+    question: "Türkiye'de fındık üretiminde öne çıkan illerden biri hangisidir?",
+    options: ["Ordu", "Konya", "Adana", "Kars"],
+    correctAnswer: "Ordu"
+  },
+  {
+    id: 117,
+    category: "kpss_cografya",
+    question: "Türkiye'de büyükbaş hayvancılığın daha yaygın olduğu bölgelerden biri hangisidir?",
+    options: ["Ege", "Marmara", "Doğu Anadolu", "Akdeniz"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 118,
+    category: "kpss_cografya",
+    question: "Türkiye'de küçükbaş hayvancılığın yaygın olduğu bölgelerden biri hangisidir?",
+    options: ["İç Anadolu", "Doğu Karadeniz", "Marmara kıyıları", "Çukurova"],
+    correctAnswer: "İç Anadolu"
+  },
+  {
+    id: 119,
+    category: "kpss_cografya",
+    question: "Türkiye'de balıkçılığın en gelişmiş olduğu bölge hangisidir?",
+    options: ["Akdeniz", "Karadeniz", "İç Anadolu", "Doğu Anadolu"],
+    correctAnswer: "Karadeniz"
+  },
+  {
+    id: 120,
+    category: "kpss_cografya",
+    question: "Türkiye'de hidroelektrik enerji potansiyelinin fazla olmasının temel nedeni nedir?",
+    options: ["Yükselti ve eğimin fazla olması", "Nüfusun fazla olması", "Kıyı uzunluğunun fazla olması", "Bitki örtüsünün gür olması"],
+    correctAnswer: "Yükselti ve eğimin fazla olması"
+  },
+  {
+    id: 121,
+    category: "kpss_cografya",
+    question: "Türkiye'de jeotermal enerji potansiyelinin fazla olduğu bölge hangisidir?",
+    options: ["Ege", "Doğu Karadeniz", "İç Anadolu'nun doğusu", "Güneydoğu Anadolu"],
+    correctAnswer: "Ege"
+  },
+  {
+    id: 122,
+    category: "kpss_cografya",
+    question: "Türkiye'de rüzgar enerjisi potansiyelinin yüksek olduğu bölgelerden biri hangisidir?",
+    options: ["Hakkari Yöresi", "Ege kıyıları", "Tuz Gölü çevresi", "Erzurum-Kars Platosu"],
+    correctAnswer: "Ege kıyıları"
+  },
+  {
+    id: 123,
+    category: "kpss_cografya",
+    question: "Türkiye'de güneş enerjisi potansiyelinin yüksek olduğu bölgelerden biri hangisidir?",
+    options: ["Doğu Karadeniz", "Güneydoğu Anadolu", "Marmara", "Batı Karadeniz"],
+    correctAnswer: "Güneydoğu Anadolu"
+  },
+  {
+    id: 124,
+    category: "kpss_cografya",
+    question: "Türkiye'nin en büyük delta ovalarından biri hangisidir?",
+    options: ["Çukurova", "Erzurum Ovası", "Konya Ovası", "Malatya Ovası"],
+    correctAnswer: "Çukurova"
+  },
+  {
+    id: 125,
+    category: "kpss_cografya",
+    question: "Türkiye'de kapalı havzaya örnek olarak hangisi verilebilir?",
+    options: ["Tuz Gölü Havzası", "Sakarya Havzası", "Kızılırmak Havzası", "Yeşilırmak Havzası"],
+    correctAnswer: "Tuz Gölü Havzası"
+  },
+  {
+    id: 126,
+    category: "kpss_cografya",
+    question: "Türkiye'de rejimi en düzenli olan akarsular daha çok hangi bölgede görülür?",
+    options: ["Karadeniz", "İç Anadolu", "Güneydoğu Anadolu", "Doğu Anadolu"],
+    correctAnswer: "Karadeniz"
+  },
+  {
+    id: 127,
+    category: "kpss_cografya",
+    question: "Türkiye'de akarsuların rejimlerinin düzensiz olmasının temel nedeni nedir?",
+    options: ["Yağış rejiminin düzensiz olması", "Dağların kıyıya paralel uzanması", "Nüfusun fazla olması", "Kıyı uzunluğunun fazla olması"],
+    correctAnswer: "Yağış rejiminin düzensiz olması"
+  },
+  {
+    id: 128,
+    category: "kpss_cografya",
+    question: "Türkiye'de dağların kuzey ve güney kıyılarda denize paralel uzanması hangi sonucu doğurur?",
+    options: ["İç kesimlere deniz etkisinin az ulaşması", "Akarsuların boylarının uzaması", "Delta oluşumunun engellenmesi", "Yerel saat farkının artması"],
+    correctAnswer: "İç kesimlere deniz etkisinin az ulaşması"
+  },
+  {
+    id: 129,
+    category: "kpss_cografya",
+    question: "Ege kıyılarının girintili çıkıntılı olmasının temel nedeni nedir?",
+    options: ["Dağların denize dik uzanması", "Yükseltinin fazla olması", "Buzullaşmanın yaygın olması", "Karstik şekillerin bulunması"],
+    correctAnswer: "Dağların denize dik uzanması"
+  },
+  {
+    id: 130,
+    category: "kpss_cografya",
+    question: "Türkiye'de falezlerin yaygın olduğu kıyılardan biri hangisidir?",
+    options: ["Antalya kıyıları", "Çukurova kıyıları", "Bafra kıyıları", "Çarşamba kıyıları"],
+    correctAnswer: "Antalya kıyıları"
+  },
+  {
+    id: 131,
+    category: "kpss_cografya",
+    question: "Türkiye'de lagün göllerine örnek olarak hangisi verilebilir?",
+    options: ["Küçükçekmece Gölü", "Van Gölü", "Tuz Gölü", "Beyşehir Gölü"],
+    correctAnswer: "Küçükçekmece Gölü"
+  },
+  {
+    id: 132,
+    category: "kpss_cografya",
+    question: "Türkiye'de volkanik göllere örnek olarak hangisi verilebilir?",
+    options: ["Meke Gölü", "Manyas Gölü", "Eğirdir Gölü", "Sapanca Gölü"],
+    correctAnswer: "Meke Gölü"
+  },
+  {
+    id: 133,
+    category: "kpss_cografya",
+    question: "Türkiye'de tektonik göllere örnek olarak hangisi verilebilir?",
+    options: ["Sapanca Gölü", "Meke Gölü", "Tortum Gölü", "Küçükçekmece Gölü"],
+    correctAnswer: "Sapanca Gölü"
+  },
+  {
+    id: 134,
+    category: "kpss_cografya",
+    question: "Türkiye'de heyelan set göllerine örnek olarak hangisi verilebilir?",
+    options: ["Tortum Gölü", "Tuz Gölü", "Van Gölü", "Eğirdir Gölü"],
+    correctAnswer: "Tortum Gölü"
+  },
+  {
+    id: 135,
+    category: "kpss_cografya",
+    question: "Türkiye'de en büyük yüz ölçümüne sahip bölge hangisidir?",
+    options: ["Doğu Anadolu", "İç Anadolu", "Karadeniz", "Akdeniz"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 136,
+    category: "kpss_cografya",
+    question: "Türkiye'de en küçük yüz ölçümüne sahip bölge hangisidir?",
+    options: ["Marmara", "Ege", "Güneydoğu Anadolu", "Karadeniz"],
+    correctAnswer: "Güneydoğu Anadolu"
+  },
+  {
+    id: 137,
+    category: "kpss_cografya",
+    question: "Türkiye'de endüstrinin gelişmesinde en etkili faktörlerden biri hangisidir?",
+    options: ["Ulaşım ve pazar imkanları", "Yükseltinin fazla olması", "Karasal iklim", "Dağların uzanışı"],
+    correctAnswer: "Ulaşım ve pazar imkanları"
+  },
+  {
+    id: 138,
+    category: "kpss_cografya",
+    question: "Türkiye'de seracılığın en gelişmiş olduğu bölge hangisidir?",
+    options: ["Akdeniz", "Doğu Anadolu", "Karadeniz", "İç Anadolu"],
+    correctAnswer: "Akdeniz"
+  },
+  {
+    id: 139,
+    category: "kpss_cografya",
+    question: "Türkiye'de en fazla göç alan bölgelerden biri hangisidir?",
+    options: ["Marmara", "Doğu Anadolu", "Güneydoğu Anadolu", "Karadeniz"],
+    correctAnswer: "Marmara"
+  },
+  {
+    id: 140,
+    category: "kpss_cografya",
+    question: "Türkiye'de mevsimlik işçi göçünün görüldüğü faaliyetlerden biri hangisidir?",
+    options: ["Tarım", "Madencilik", "Sanayi", "Turizm dışı ulaşım"],
+    correctAnswer: "Tarım"
+  },
+  {
+    id: 141,
+    category: "kpss_cografya",
+    question: "Türkiye'de iç göçlerin temel nedenlerinden biri hangisidir?",
+    options: ["İş imkanlarının farklılık göstermesi", "Yerel saat farkı", "Mutlak konum", "Kıyı uzunluğu"],
+    correctAnswer: "İş imkanlarının farklılık göstermesi"
+  },
+  {
+    id: 142,
+    category: "kpss_cografya",
+    question: "Türkiye'de kırsal nüfusun azalmasının temel nedenlerinden biri hangisidir?",
+    options: ["Kentlere göç", "Yağışın artması", "Dağların uzanışı", "Enlem etkisi"],
+    correctAnswer: "Kentlere göç"
+  },
+  {
+    id: 143,
+    category: "kpss_cografya",
+    question: "Türkiye'de kıyı turizmi için en uygun bölgelerden biri hangisidir?",
+    options: ["Akdeniz", "Doğu Anadolu", "İç Anadolu", "Erzurum-Kars"],
+    correctAnswer: "Akdeniz"
+  },
+  {
+    id: 144,
+    category: "kpss_cografya",
+    question: "Türkiye'de termal turizmin gelişmesinde etkili olan faktör hangisidir?",
+    options: ["Fay hatlarının yaygın olması", "Kıyı uzunluğu", "Ormanların azlığı", "Matematik konum"],
+    correctAnswer: "Fay hatlarının yaygın olması"
+  },
+  {
+    id: 145,
+    category: "kpss_cografya",
+    question: "Türkiye'de yaylacılık faaliyetlerinin yaygın olduğu bölgelerden biri hangisidir?",
+    options: ["Karadeniz", "Güneydoğu Anadolu", "Marmara'nın güneyi", "Tuz Gölü çevresi"],
+    correctAnswer: "Karadeniz"
+  },
+  {
+    id: 146,
+    category: "kpss_cografya",
+    question: "Türkiye'de orman yangınlarının en çok görüldüğü bölgelerden biri hangisidir?",
+    options: ["Akdeniz", "Doğu Karadeniz", "Kuzeydoğu Anadolu", "İç Anadolu'nun doğusu"],
+    correctAnswer: "Akdeniz"
+  },
+  {
+    id: 147,
+    category: "kpss_cografya",
+    question: "Türkiye'de heyelan olaylarının en fazla görüldüğü bölge hangisidir?",
+    options: ["Karadeniz", "Ege", "Marmara", "Güneydoğu Anadolu"],
+    correctAnswer: "Karadeniz"
+  },
+  {
+    id: 148,
+    category: "kpss_cografya",
+    question: "Türkiye'de çığ olaylarının daha çok görüldüğü bölge hangisidir?",
+    options: ["Doğu Anadolu", "Ege", "Marmara", "Akdeniz"],
+    correctAnswer: "Doğu Anadolu"
+  },
+  {
+    id: 149,
+    category: "kpss_cografya",
+    question: "Türkiye'de erozyonun yaygın olmasında etkili olan faktörlerden biri hangisidir?",
+    options: ["Bitki örtüsünün zayıf olması", "Kıyı uzunluğunun fazla olması", "Deniz etkisinin fazla olması", "Yağışın düzenli olması"],
+    correctAnswer: "Bitki örtüsünün zayıf olması"
+  },
+  {
+    id: 150,
+    category: "kpss_cografya",
+    question: "Türkiye'de karstik arazilerin yaygın olduğu yörelerden biri hangisidir?",
+    options: ["Teke Yöresi", "Ergene Havzası", "Çarşamba Ovası", "Bafra Ovası"],
+    correctAnswer: "Teke Yöresi"
+  },
+
+  {
+    id: 151,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nin kurucusu kimdir?",
+    options: ["Orhan Bey", "Osman Bey", "I. Murat", "Yıldırım Bayezid"],
+    correctAnswer: "Osman Bey"
+  },
+  {
+    id: 152,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk düzenli ordu hangi padişah döneminde kurulmuştur?",
+    options: ["Osman Bey", "Fatih Sultan Mehmet", "Orhan Bey", "II. Mahmut"],
+    correctAnswer: "Orhan Bey"
+  },
+  {
+    id: 153,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Rumeli'ye ilk geçiş hangi padişah döneminde olmuştur?",
+    options: ["Orhan Bey", "Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "II. Abdülhamit"],
+    correctAnswer: "Orhan Bey"
+  },
+  {
+    id: 154,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk kez sultan unvanını kullanan padişah kimdir?",
+    options: ["Osman Bey", "I. Murat", "Orhan Bey", "II. Mehmet"],
+    correctAnswer: "I. Murat"
+  },
+  {
+    id: 155,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Yeniçeri Ocağı hangi padişah döneminde kurulmuştur?",
+    options: ["I. Murat", "Osman Bey", "Fatih Sultan Mehmet", "III. Selim"],
+    correctAnswer: "I. Murat"
+  },
+  {
+    id: 156,
+    category: "kpss_tarih",
+    question: "Ankara Savaşı hangi yıl yapılmıştır?",
+    options: ["1071", "1176", "1402", "1453"],
+    correctAnswer: "1402"
+  },
+  {
+    id: 157,
+    category: "kpss_tarih",
+    question: "Ankara Savaşı sonucunda Osmanlı Devleti'nde başlayan dönem hangisidir?",
+    options: ["Fetret Devri", "Lale Devri", "Tanzimat Devri", "Meşrutiyet Devri"],
+    correctAnswer: "Fetret Devri"
+  },
+  {
+    id: 158,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Fetret Devri'ne son veren padişah kimdir?",
+    options: ["Yıldırım Bayezid", "I. Mehmet", "II. Murat", "Fatih Sultan Mehmet"],
+    correctAnswer: "I. Mehmet"
+  },
+  {
+    id: 159,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk deniz savaşı hangi beylikle yapılmıştır?",
+    options: ["Karesioğulları", "Aydınoğulları", "Venedikliler", "Çaka Beyliği"],
+    correctAnswer: "Venedikliler"
+  },
+  {
+    id: 160,
+    category: "kpss_tarih",
+    question: "İstanbul'un fethinden sonra Osmanlı Devleti'nin başkenti nereye taşınmıştır?",
+    options: ["Bursa", "Edirne", "İstanbul", "Ankara"],
+    correctAnswer: "İstanbul"
+  },
+  {
+    id: 161,
+    category: "kpss_tarih",
+    question: "Fatih Sultan Mehmet döneminde açılan ünlü eğitim kurumu hangisidir?",
+    options: ["Sahn-ı Seman Medresesi", "Enderun", "Darülfünun", "Mekteb-i Harbiye"],
+    correctAnswer: "Sahn-ı Seman Medresesi"
+  },
+  {
+    id: 162,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk kapitülasyonlar hangi padişah döneminde Fransa'ya verilmiştir?",
+    options: ["Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "Fatih Sultan Mehmet", "II. Mahmut"],
+    correctAnswer: "Kanuni Sultan Süleyman"
+  },
+  {
+    id: 163,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Mısır hangi padişah döneminde alınmıştır?",
+    options: ["Yavuz Sultan Selim", "Fatih Sultan Mehmet", "Kanuni Sultan Süleyman", "II. Bayezid"],
+    correctAnswer: "Yavuz Sultan Selim"
+  },
+  {
+    id: 164,
+    category: "kpss_tarih",
+    question: "Halifelik Osmanlı Devleti'ne hangi padişah döneminde geçmiştir?",
+    options: ["Fatih Sultan Mehmet", "Yavuz Sultan Selim", "Kanuni Sultan Süleyman", "III. Selim"],
+    correctAnswer: "Yavuz Sultan Selim"
+  },
+  {
+    id: 165,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nin doğuda en geniş sınırlara ulaştığı antlaşma hangisidir?",
+    options: ["Amasya Antlaşması", "Ferhat Paşa Antlaşması", "Kasr-ı Şirin Antlaşması", "Zitvatorok Antlaşması"],
+    correctAnswer: "Ferhat Paşa Antlaşması"
+  },
+  {
+    id: 166,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti ile İran arasında günümüz Türkiye-İran sınırına büyük ölçüde temel oluşturan antlaşma hangisidir?",
+    options: ["Kasr-ı Şirin Antlaşması", "Amasya Antlaşması", "Bucaş Antlaşması", "Prut Antlaşması"],
+    correctAnswer: "Kasr-ı Şirin Antlaşması"
+  },
+  {
+    id: 167,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nin batıda en geniş sınırlara ulaştığı antlaşma hangisidir?",
+    options: ["Karlofça Antlaşması", "Bucaş Antlaşması", "Pasarofça Antlaşması", "Zitvatorok Antlaşması"],
+    correctAnswer: "Bucaş Antlaşması"
+  },
+  {
+    id: 168,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nin ilk büyük toprak kaybı yaşadığı antlaşma hangisidir?",
+    options: ["Karlofça Antlaşması", "Pasarofça Antlaşması", "Küçük Kaynarca Antlaşması", "Yaş Antlaşması"],
+    correctAnswer: "Karlofça Antlaşması"
+  },
+  {
+    id: 169,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Lale Devri hangi padişah döneminde yaşanmıştır?",
+    options: ["III. Ahmet", "III. Selim", "II. Mahmut", "Abdülmecid"],
+    correctAnswer: "III. Ahmet"
+  },
+  {
+    id: 170,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk Türk matbaası hangi dönemde açılmıştır?",
+    options: ["Lale Devri", "Tanzimat Devri", "Meşrutiyet Devri", "Fetret Devri"],
+    correctAnswer: "Lale Devri"
+  },
+  {
+    id: 171,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde ilk Türk matbaasını kuran kişilerden biri kimdir?",
+    options: ["İbrahim Müteferrika", "Namık Kemal", "Ziya Paşa", "Mithat Paşa"],
+    correctAnswer: "İbrahim Müteferrika"
+  },
+  {
+    id: 172,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Nizam-ı Cedit ordusu hangi padişah döneminde kurulmuştur?",
+    options: ["III. Selim", "II. Mahmut", "Abdülmecid", "II. Abdülhamit"],
+    correctAnswer: "III. Selim"
+  },
+  {
+    id: 173,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Sekban-ı Cedit ordusu hangi padişah döneminde kurulmuştur?",
+    options: ["II. Mahmut", "III. Selim", "I. Abdülhamit", "Abdülaziz"],
+    correctAnswer: "II. Mahmut"
+  },
+  {
+    id: 174,
+    category: "kpss_tarih",
+    question: "Yeniçeri Ocağı'nın kaldırılması olayı hangi adla bilinir?",
+    options: ["Vaka-i Hayriye", "Bab-ı Ali Baskını", "31 Mart Vakası", "Patrona Halil İsyanı"],
+    correctAnswer: "Vaka-i Hayriye"
+  },
+  {
+    id: 175,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Sened-i İttifak hangi padişah döneminde imzalanmıştır?",
+    options: ["II. Mahmut", "III. Selim", "Abdülmecid", "II. Abdülhamit"],
+    correctAnswer: "II. Mahmut"
+  },
+  {
+    id: 176,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Tanzimat Fermanı hangi padişah döneminde ilan edilmiştir?",
+    options: ["Abdülmecid", "II. Mahmut", "Abdülaziz", "V. Murat"],
+    correctAnswer: "Abdülmecid"
+  },
+  {
+    id: 177,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Islahat Fermanı hangi padişah döneminde ilan edilmiştir?",
+    options: ["Abdülmecid", "II. Abdülhamit", "III. Selim", "II. Mahmut"],
+    correctAnswer: "Abdülmecid"
+  },
+  {
+    id: 178,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde I. Meşrutiyet hangi padişah döneminde ilan edilmiştir?",
+    options: ["II. Abdülhamit", "Abdülmecid", "Abdülaziz", "V. Mehmet"],
+    correctAnswer: "II. Abdülhamit"
+  },
+  {
+    id: 179,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde Kanun-ı Esasi'nin hazırlanmasında etkili olan devlet adamı kimdir?",
+    options: ["Mithat Paşa", "İbrahim Müteferrika", "Sokullu Mehmet Paşa", "Köprülü Mehmet Paşa"],
+    correctAnswer: "Mithat Paşa"
+  },
+  {
+    id: 180,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde II. Meşrutiyet hangi yıl ilan edilmiştir?",
+    options: ["1839", "1856", "1876", "1908"],
+    correctAnswer: "1908"
+  },
+  {
+    id: 181,
+    category: "kpss_tarih",
+    question: "Osmanlı Devleti'nde 31 Mart Vakası hangi dönemde yaşanmıştır?",
+    options: ["II. Meşrutiyet", "Lale Devri", "Tanzimat Devri", "Fetret Devri"],
+    correctAnswer: "II. Meşrutiyet"
+  },
+  {
+    id: 182,
+    category: "kpss_tarih",
+    question: "Trablusgarp Savaşı hangi devletle yapılmıştır?",
+    options: ["İtalya", "Yunanistan", "Rusya", "Fransa"],
+    correctAnswer: "İtalya"
+  },
+  {
+    id: 183,
+    category: "kpss_tarih",
+    question: "Trablusgarp Savaşı'nı bitiren antlaşma hangisidir?",
+    options: ["Uşi Antlaşması", "Londra Antlaşması", "Bükreş Antlaşması", "Mondros Ateşkesi"],
+    correctAnswer: "Uşi Antlaşması"
+  },
+  {
+    id: 184,
+    category: "kpss_tarih",
+    question: "I. Balkan Savaşı'nı bitiren antlaşma hangisidir?",
+    options: ["Londra Antlaşması", "Bükreş Antlaşması", "Atina Antlaşması", "İstanbul Antlaşması"],
+    correctAnswer: "Londra Antlaşması"
+  },
+  {
+    id: 185,
+    category: "kpss_tarih",
+    question: "II. Balkan Savaşı'nı bitiren antlaşmalardan biri hangisidir?",
+    options: ["Bükreş Antlaşması", "Sevr Antlaşması", "Karlofça Antlaşması", "Uşi Antlaşması"],
+    correctAnswer: "Bükreş Antlaşması"
+  },
+  {
+    id: 186,
+    category: "kpss_tarih",
+    question: "Mondros Ateşkes Antlaşması hangi yıl imzalanmıştır?",
+    options: ["1918", "1919", "1920", "1923"],
+    correctAnswer: "1918"
+  },
+  {
+    id: 187,
+    category: "kpss_tarih",
+    question: "Mondros Ateşkes Antlaşması hangi zırhlıda imzalanmıştır?",
+    options: ["Agamemnon", "Hamidiye", "Yavuz", "Nusret"],
+    correctAnswer: "Agamemnon"
+  },
+  {
+    id: 188,
+    category: "kpss_tarih",
+    question: "İzmir'in işgali hangi tarihte gerçekleşmiştir?",
+    options: ["15 Mayıs 1919", "19 Mayıs 1919", "23 Nisan 1920", "30 Ağustos 1922"],
+    correctAnswer: "15 Mayıs 1919"
+  },
+  {
+    id: 189,
+    category: "kpss_tarih",
+    question: "Amasya Genelgesi hangi yıl yayımlanmıştır?",
+    options: ["1919", "1920", "1921", "1923"],
+    correctAnswer: "1919"
+  },
+  {
+    id: 190,
+    category: "kpss_tarih",
+    question: "Erzurum Kongresi hangi yıl toplanmıştır?",
+    options: ["1918", "1919", "1920", "1921"],
+    correctAnswer: "1919"
+  },
+  {
+    id: 191,
+    category: "kpss_tarih",
+    question: "Sivas Kongresi hangi yıl toplanmıştır?",
+    options: ["1919", "1920", "1921", "1922"],
+    correctAnswer: "1919"
+  },
+  {
+    id: 192,
+    category: "kpss_tarih",
+    question: "Temsil Heyeti'nin tüm yurdu temsil eder hale gelmesi hangi gelişmeyle olmuştur?",
+    options: ["Sivas Kongresi", "Amasya Genelgesi", "Lozan Antlaşması", "Mudanya Ateşkesi"],
+    correctAnswer: "Sivas Kongresi"
+  },
+  {
+    id: 193,
+    category: "kpss_tarih",
+    question: "Son Osmanlı Mebusan Meclisi'nin kabul ettiği kararlar bütünü hangisidir?",
+    options: ["Misak-ı Milli", "Tevhid-i Tedrisat", "Takrir-i Sükun", "Medeni Kanun"],
+    correctAnswer: "Misak-ı Milli"
+  },
+  {
+    id: 194,
+    category: "kpss_tarih",
+    question: "TBMM'nin açılmasından sonra kabul edilen ilk anayasa hangisidir?",
+    options: ["Teşkilat-ı Esasiye", "Kanun-ı Esasi", "1924 Anayasası", "1961 Anayasası"],
+    correctAnswer: "Teşkilat-ı Esasiye"
+  },
+  {
+    id: 195,
+    category: "kpss_tarih",
+    question: "TBMM'nin ilk askeri başarısı hangi cephede kazanılmıştır?",
+    options: ["Doğu Cephesi", "Batı Cephesi", "Güney Cephesi", "Kafkas Cephesi"],
+    correctAnswer: "Doğu Cephesi"
+  },
+  {
+    id: 196,
+    category: "kpss_tarih",
+    question: "Gümrü Antlaşması hangi devletle imzalanmıştır?",
     options: ["Ermenistan", "Yunanistan", "Fransa", "İtalya"],
     correctAnswer: "Ermenistan"
   },
   {
-    id: 95,
-    category: "kpss",
-    question: "Kurtuluş Savaşı'nda Güney Cephesi'nde ağırlıklı olarak hangi devletle mücadele edilmiştir?",
-    options: ["Fransa", "Yunanistan", "Rusya", "Almanya"],
+    id: 197,
+    category: "kpss_tarih",
+    question: "Moskova Antlaşması hangi devletle imzalanmıştır?",
+    options: ["Sovyet Rusya", "Fransa", "İngiltere", "Yunanistan"],
+    correctAnswer: "Sovyet Rusya"
+  },
+  {
+    id: 198,
+    category: "kpss_tarih",
+    question: "Ankara Antlaşması ile Güney Cephesi hangi devletle kapanmıştır?",
+    options: ["Fransa", "İtalya", "Yunanistan", "İngiltere"],
     correctAnswer: "Fransa"
   },
   {
-    id: 96,
-    category: "kpss",
-    question: "Fransa ile imzalanarak Güney Cephesi'nin kapanmasını sağlayan antlaşma hangisidir?",
-    options: ["Ankara Antlaşması", "Gümrü Antlaşması", "Moskova Antlaşması", "Lozan Antlaşması"],
-    correctAnswer: "Ankara Antlaşması"
+    id: 199,
+    category: "kpss_tarih",
+    question: "Sakarya Meydan Muharebesi hangi yıl yapılmıştır?",
+    options: ["1920", "1921", "1922", "1923"],
+    correctAnswer: "1921"
   },
   {
-    id: 97,
-    category: "kpss",
-    question: "Türkiye'nin en doğusunda yer alan il hangisidir?",
-    options: ["Iğdır", "Hakkari", "Van", "Kars"],
-    correctAnswer: "Iğdır"
-  },
-  {
-    id: 98,
-    category: "kpss",
-    question: "Türkiye'nin en batısında yer alan il hangisidir?",
-    options: ["Edirne", "Çanakkale", "İzmir", "Tekirdağ"],
-    correctAnswer: "Çanakkale"
-  },
-  {
-    id: 99,
-    category: "kpss",
-    question: "Türkiye'nin en kuzeyinde yer alan il hangisidir?",
-    options: ["Sinop", "Samsun", "Artvin", "Kırklareli"],
-    correctAnswer: "Sinop"
-  },
-  {
-    id: 100,
-    category: "kpss",
-    question: "Türkiye'nin en güneyinde yer alan il hangisidir?",
-    options: ["Hatay", "Mersin", "Şanlıurfa", "Antalya"],
-    correctAnswer: "Hatay"
+    id: 200,
+    category: "kpss_tarih",
+    question: "Başkomutanlık Meydan Muharebesi hangi yıl yapılmıştır?",
+    options: ["1920", "1921", "1922", "1923"],
+    correctAnswer: "1922"
   }
 ];
-

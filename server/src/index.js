@@ -36,6 +36,23 @@ const GLOBAL_ROOM_CODE = "MAIN_ROOM";
 const rooms = {};
 const roomIntervals = {};
 
+// Normalize strings for case & Turkish-accent insensitive comparisons
+const normalizeString = (str) => {
+  if (!str) return '';
+  let normalized = str.toString().trim();
+  const map = {
+    'Ç': 'c', 'ç': 'c',
+    'Ğ': 'g', 'ğ': 'g',
+    'I': 'i', 'ı': 'i',
+    'İ': 'i', 'i': 'i',
+    'Ö': 'o', 'ö': 'o',
+    'Ş': 's', 'ş': 's',
+    'Ü': 'u', 'ü': 'u'
+  };
+  normalized = normalized.replace(/[ÇçĞğIıİiÖöŞşÜü]/g, (match) => map[match]);
+  return normalized.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 // Presets Questions Database for Kim Daha Yakın
 const presetQuestions = {
   nufus: [
@@ -729,14 +746,14 @@ io.on('connection', (socket) => {
           const guessB = gameState.answers[gameState.askerBId];
           const ansB = gameState.answers[gameState.targetBId];
 
-          if (guessA === ansA && guessA !== undefined) {
+          if (guessA !== undefined && ansA !== undefined && normalizeString(guessA) === normalizeString(ansA)) {
             const askerAPlayer = room.players.find(p => p.id === gameState.askerAId);
             const targetAPlayer = room.players.find(p => p.id === gameState.targetAId);
             if (askerAPlayer) askerAPlayer.score += 1;
             if (targetAPlayer) targetAPlayer.score += 1;
             gameState.teamScores[askerAPlayer ? askerAPlayer.team : "A"] += 1;
           }
-          if (guessB === ansB && guessB !== undefined) {
+          if (guessB !== undefined && ansB !== undefined && normalizeString(guessB) === normalizeString(ansB)) {
             const askerBPlayer = room.players.find(p => p.id === gameState.askerBId);
             const targetBPlayer = room.players.find(p => p.id === gameState.targetBId);
             if (askerBPlayer) askerBPlayer.score += 1;
@@ -745,7 +762,39 @@ io.on('connection', (socket) => {
           }
           gameState.status = "result";
         } else {
-          gameState.status = "evaluating";
+          // Open-ended: Auto-verify if the team answers match case and accent insensitively
+          gameState.verifications = {};
+          
+          const guessA = gameState.answers[gameState.askerAId];
+          const ansA = gameState.answers[gameState.targetAId];
+          if (guessA !== undefined && ansA !== undefined && normalizeString(guessA) === normalizeString(ansA)) {
+            gameState.verifications[gameState.targetAId] = true;
+            const askerAPlayer = room.players.find(p => p.id === gameState.askerAId);
+            const targetAPlayer = room.players.find(p => p.id === gameState.targetAId);
+            if (askerAPlayer) askerAPlayer.score += 1;
+            if (targetAPlayer) targetAPlayer.score += 1;
+            gameState.teamScores[askerAPlayer ? askerAPlayer.team : "A"] += 1;
+          }
+
+          const guessB = gameState.answers[gameState.askerBId];
+          const ansB = gameState.answers[gameState.targetBId];
+          if (guessB !== undefined && ansB !== undefined && normalizeString(guessB) === normalizeString(ansB)) {
+            gameState.verifications[gameState.targetBId] = true;
+            const askerBPlayer = room.players.find(p => p.id === gameState.askerBId);
+            const targetBPlayer = room.players.find(p => p.id === gameState.targetBId);
+            if (askerBPlayer) askerBPlayer.score += 1;
+            if (targetBPlayer) targetBPlayer.score += 1;
+            gameState.teamScores[askerBPlayer ? askerBPlayer.team : "B"] += 1;
+          }
+
+          const requiredTargets = [gameState.targetAId, gameState.targetBId].filter(id => id);
+          const allVerified = requiredTargets.every(id => gameState.verifications[id] !== undefined);
+
+          if (allVerified) {
+            gameState.status = "result";
+          } else {
+            gameState.status = "evaluating";
+          }
         }
       }
     } else {
@@ -758,7 +807,7 @@ io.on('connection', (socket) => {
 
           const guessers = room.players.filter(p => p.id !== gameState.targetId);
           guessers.forEach(g => {
-            if (gameState.answers[g.id] === targetAnswer) {
+            if (gameState.answers[g.id] !== undefined && targetAnswer !== undefined && normalizeString(gameState.answers[g.id]) === normalizeString(targetAnswer)) {
               g.score += 1;
             }
           });

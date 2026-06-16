@@ -12,7 +12,6 @@ function BombCategory({
   setActiveError,
   handleJoinGame
 }) {
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [durationRange, setDurationRange] = useState("15-50");
   const [selectedPool, setSelectedPool] = useState("genel");
   
@@ -182,17 +181,20 @@ function BombCategory({
               longPressTimerRef.current = null;
             }
           }}
-          onTouchStart={() => {
+          onTouchStart={(e) => {
+            e.preventDefault();
+            initAudio();
             longPressTimerRef.current = setTimeout(() => {
               setShowSlider(true);
             }, 300);
           }}
-          onTouchEnd={() => {
+          onTouchEnd={(e) => {
+            e.preventDefault();
             if (longPressTimerRef.current) {
               clearTimeout(longPressTimerRef.current);
               longPressTimerRef.current = null;
               if (!showSlider) {
-                setIsMuted(!isMuted);
+                setIsMuted(prev => !prev);
               }
             }
           }}
@@ -224,20 +226,11 @@ function BombCategory({
       const currentSyncPool = gameState.pool || "genel";
       setSelectedPool(currentSyncPool);
       
-      const syncPrompts = currentSyncPool === "hepsi"
-        ? [...(bombCategories.genel || []), ...(bombCategories.kpss || [])]
-        : (currentSyncPool === "kpss" ? (bombCategories.kpss || []) : (bombCategories.genel || []));
-
-      if (gameState.category) {
-        setSelectedCategory(gameState.category);
-      } else if (!selectedCategory && syncPrompts.length > 0) {
-        setSelectedCategory(syncPrompts[0]);
-      }
       if (gameState.durationRange) {
         setDurationRange(gameState.durationRange);
       }
     }
-  }, [gameState?.status, gameState?.category, gameState?.durationRange, gameState?.pool]);
+  }, [gameState?.status, gameState?.durationRange, gameState?.pool]);
 
   // Handle playing sound effects based on game state changes
   useEffect(() => {
@@ -323,8 +316,10 @@ function BombCategory({
       const ctx = initAudio();
       if (!ctx) return;
       
-      // 1. Noise Node for debris explosion sound
-      const bufferSize = ctx.sampleRate * 2.0; // 2 seconds
+      const now = ctx.currentTime;
+
+      // 1. Lowpass filtered noise for rumble (gür patlama gürültüsü)
+      const bufferSize = ctx.sampleRate * 2.5; // 2.5 seconds
       const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < bufferSize; i++) {
@@ -334,38 +329,59 @@ function BombCategory({
       const noise = ctx.createBufferSource();
       noise.buffer = buffer;
       
-      const filter = ctx.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.setValueAtTime(900, ctx.currentTime);
-      filter.frequency.exponentialRampToValueAtTime(15, ctx.currentTime + 1.6);
+      const lpFilter = ctx.createBiquadFilter();
+      lpFilter.type = "lowpass";
+      lpFilter.frequency.setValueAtTime(1000, now);
+      lpFilter.frequency.exponentialRampToValueAtTime(10, now + 2.0);
       
-      const gain = ctx.createGain();
-      gain.gain.setValueAtTime(0.6 * volumeRef.current, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.8);
+      const noiseGain = ctx.createGain();
+      // Increase gain to 1.0 for a gür sound
+      noiseGain.gain.setValueAtTime(1.0 * volumeRef.current, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
       
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(ctx.destination);
+      noise.connect(lpFilter);
+      lpFilter.connect(noiseGain);
+      noiseGain.connect(ctx.destination);
       noise.start();
       
-      // 2. Oscillator Node for deep sub-bass boom
-      const osc = ctx.createOscillator();
-      const oscGain = ctx.createGain();
+      // 2. Sub-bass boom (sweeping oscillator)
+      const subOsc = ctx.createOscillator();
+      const subGain = ctx.createGain();
       
-      osc.type = "sawtooth";
-      osc.frequency.setValueAtTime(140, ctx.currentTime);
-      osc.frequency.linearRampToValueAtTime(20, ctx.currentTime + 1.3);
+      subOsc.type = "triangle";
+      subOsc.frequency.setValueAtTime(120, now);
+      subOsc.frequency.linearRampToValueAtTime(10, now + 1.5);
       
-      oscGain.gain.setValueAtTime(0.5 * volumeRef.current, ctx.currentTime);
-      oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.3);
+      subGain.gain.setValueAtTime(0.9 * volumeRef.current, now);
+      subGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
       
-      osc.connect(oscGain);
-      oscGain.connect(ctx.destination);
+      subOsc.connect(subGain);
+      subGain.connect(ctx.destination);
       
-      osc.start();
-      osc.stop(ctx.currentTime + 1.4);
+      subOsc.start();
+      subOsc.stop(now + 1.7);
+
+      // 3. High-frequency crackle/debris for texture
+      const crackle = ctx.createBufferSource();
+      crackle.buffer = buffer;
+
+      const bpFilter = ctx.createBiquadFilter();
+      bpFilter.type = "bandpass";
+      bpFilter.frequency.setValueAtTime(2000, now);
+      bpFilter.frequency.exponentialRampToValueAtTime(200, now + 0.8);
+      bpFilter.Q.setValueAtTime(2, now);
+
+      const crackleGain = ctx.createGain();
+      crackleGain.gain.setValueAtTime(0.4 * volumeRef.current, now);
+      crackleGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.9);
+
+      crackle.connect(bpFilter);
+      bpFilter.connect(crackleGain);
+      crackleGain.connect(ctx.destination);
+      crackle.start();
+
     } catch (e) {
-      console.warn("Audio error:", e);
+      console.warn("Explosion audio error:", e);
     }
   };
 
@@ -378,25 +394,33 @@ function BombCategory({
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(isTock ? 400 : 650, ctx.currentTime);
-      gain.gain.setValueAtTime(0.03 * volumeRef.current, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+      const filter = ctx.createBiquadFilter();
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(isTock ? 1200 : 1600, ctx.currentTime);
+      filter.Q.setValueAtTime(3, ctx.currentTime);
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(isTock ? 800 : 1100, ctx.currentTime);
       
-      osc.connect(gain);
+      // Much louder (0.2 * master volume) and very fast decay
+      gain.gain.setValueAtTime(0.2 * volumeRef.current, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.03);
+      
+      osc.connect(filter);
+      filter.connect(gain);
       gain.connect(ctx.destination);
       osc.start();
-      osc.stop(ctx.currentTime + 0.06);
+      osc.stop(ctx.currentTime + 0.04);
     } catch (e) {
       console.warn("Tick audio error:", e);
     }
   };
 
   // Admin Actions
-  const handleUpdateSettings = (updatedCat, updatedRange, updatedPool) => {
+  const handleUpdateSettings = (updatedRange, updatedPool) => {
     if (socket && room && isMeHost) {
       socket.emit("bomba-kategori-update-settings", {
-        category: updatedCat,
+        category: "",
         durationRange: updatedRange,
         pool: updatedPool || currentPool
       });
@@ -404,35 +428,8 @@ function BombCategory({
   };
 
   const handlePoolChange = (pool) => {
-    const prompts = pool === "hepsi"
-      ? [...(bombCategories.genel || []), ...(bombCategories.kpss || [])]
-      : (pool === "kpss" ? (bombCategories.kpss || []) : (bombCategories.genel || []));
-    const firstCat = prompts.length > 0 ? prompts[0] : "";
     setSelectedPool(pool);
-    setSelectedCategory(firstCat);
-    handleUpdateSettings(firstCat, durationRange, pool);
-  };
-
-  const handleRandomCategory = () => {
-    if (activePrompts.length > 0) {
-      const askedIds = room.askedQuestionIds?.["Bomba Kategori"] || [];
-      let eligibleCategories = activePrompts.filter(cat => !askedIds.includes(cat));
-      if (eligibleCategories.length === 0) {
-        eligibleCategories = activePrompts;
-      }
-
-      let randomCat = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)];
-      // Loop to avoid picking the same category consecutively if possible
-      if (randomCat === selectedCategory && eligibleCategories.length > 1) {
-        let attempts = 0;
-        while (randomCat === selectedCategory && attempts < 10) {
-          randomCat = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)];
-          attempts++;
-        }
-      }
-      setSelectedCategory(randomCat);
-      handleUpdateSettings(randomCat, durationRange, currentPool);
-    }
+    handleUpdateSettings(durationRange, pool);
   };
 
   const handleStartGame = () => {
@@ -443,8 +440,15 @@ function BombCategory({
     setActiveError("");
 
     if (socket && room && isMeHost) {
+      const askedIds = room.askedQuestionIds?.["Bomba Kategori"] || [];
+      let eligibleCategories = activePrompts.filter(cat => !askedIds.includes(cat));
+      if (eligibleCategories.length === 0) {
+        eligibleCategories = activePrompts;
+      }
+      const randomCat = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)];
+
       socket.emit("bomba-kategori-start", {
-        category: selectedCategory || activePrompts[0],
+        category: randomCat,
         durationRange: durationRange,
         pool: currentPool
       });
@@ -643,34 +647,6 @@ function BombCategory({
                   </div>
                 </div>
 
-                {/* Category selector */}
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">Kategori Seçimi</label>
-                    <button
-                      onClick={handleRandomCategory}
-                      className="px-2.5 py-1 bg-red-600/10 border border-red-500/20 text-red-400 hover:bg-red-600 hover:text-white text-[10px] font-bold rounded-lg transition-all cursor-pointer"
-                    >
-                      🎲 Rastgele Kategori
-                    </button>
-                  </div>
-
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => {
-                      setSelectedCategory(e.target.value);
-                      handleUpdateSettings(e.target.value, durationRange, currentPool);
-                    }}
-                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-900 text-xs font-medium text-zinc-200 focus:outline-none focus:border-red-500/50 cursor-pointer"
-                  >
-                    {activePrompts.map((cat, index) => (
-                      <option key={index} value={cat}>
-                        {cat}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
                 {/* Duration Range Selector */}
                 <div className="space-y-3">
                   <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">Süre Aralığı (Gizli)</label>
@@ -685,7 +661,7 @@ function BombCategory({
                         type="button"
                         onClick={() => {
                           setDurationRange(range.key);
-                          handleUpdateSettings(selectedCategory, range.key);
+                          handleUpdateSettings(range.key, currentPool);
                         }}
                         className={`py-2 px-3 text-[11px] font-semibold rounded-xl border transition-all cursor-pointer ${
                           durationRange === range.key
@@ -713,24 +689,20 @@ function BombCategory({
                   💣
                 </div>
                 <h3 className="text-sm font-bold text-zinc-200">Ayarlar Bekleniyor...</h3>
-                <p className="text-xs text-zinc-500 max-w-xs mx-auto mt-2 leading-relaxed">
+                <p className="text-xs text-zinc-550 max-w-xs mx-auto mt-2 leading-relaxed">
                   Yöneticinin (Admin) kategori ve süre aralığını belirleyip oyunu başlatması bekleniyor. Lütfen bekleyin...
                 </p>
 
-                {/* Synchronized lobby values show for players */}
-                {selectedCategory && (
-                  <div className="mt-6 p-4 rounded-xl border border-zinc-900 bg-zinc-950/50 max-w-xs w-full space-y-2.5">
-                    <div className="flex justify-between items-center text-[10px] text-zinc-500 pb-1.5 border-b border-zinc-900">
-                      <span className="font-bold uppercase tracking-wider">Soru Havuzu:</span>
-                      <span className="font-extrabold text-red-400 uppercase tracking-widest">{currentPool === "hepsi" ? "Hepsi" : (currentPool === "kpss" ? "KPSS" : "Genel")}</span>
-                    </div>
-                    <div className="text-[10px] text-zinc-500 font-bold uppercase">Seçilen Kategori:</div>
-                    <div className="text-xs font-bold text-zinc-200">{selectedCategory}</div>
-                    <div className="text-[10px] text-zinc-550 pt-2 border-t border-zinc-900 mt-2">
-                      Süre Limit Aralığı: <span className="font-mono text-zinc-300 font-bold">{durationRange}s</span>
-                    </div>
+                <div className="mt-6 p-4 rounded-xl border border-zinc-900 bg-zinc-950/50 max-w-xs w-full space-y-2.5">
+                  <div className="flex justify-between items-center text-[10px] text-zinc-500 pb-1.5 border-b border-zinc-900">
+                    <span className="font-bold uppercase tracking-wider">Soru Havuzu:</span>
+                    <span className="font-extrabold text-red-400 uppercase tracking-widest">{currentPool === "hepsi" ? "Hepsi" : (currentPool === "kpss" ? "KPSS" : "Genel")}</span>
                   </div>
-                )}
+                  <div className="flex justify-between items-center text-[10px] text-zinc-550 pt-2 border-t border-zinc-900">
+                    <span>Süre Limit Aralığı:</span>
+                    <span className="font-mono text-zinc-350 font-bold">{durationRange}s</span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -801,38 +773,38 @@ function BombCategory({
           </div>
         </header>
 
-        <main className="relative z-10 flex-grow max-w-2xl w-full mx-auto px-6 py-6 flex flex-col justify-between my-auto space-y-8">
+        <main className="relative z-10 flex-grow max-w-lg w-full mx-auto px-6 py-6 flex flex-col justify-center items-center my-auto space-y-6">
           
-          {/* Category Board */}
-          <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-5 md:p-6 text-center shadow-xl relative overflow-hidden">
+          {/* Merged Bomb & Category Card */}
+          <div className="w-full max-w-sm rounded-3xl p-8 text-center border bg-gradient-to-b from-[#180d0d] to-[#0e0e11]/80 border-red-950/20 shadow-[0_0_50px_-5px_rgba(239,68,68,0.15)] relative overflow-hidden mx-auto space-y-6">
             <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-red-600 via-amber-500 to-red-600" />
-            <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest block mb-1">
-              KATEGORİ
-            </span>
-            <h2 className="text-lg md:text-xl font-black text-white tracking-wide max-w-md mx-auto">
-              {gameState.category}
-            </h2>
-          </div>
-
-          {/* Bomb Display Card */}
-          <div className="w-full max-w-sm rounded-3xl p-8 text-center border bg-gradient-to-b from-[#180d0d] to-[#0e0e11]/80 border-red-950/20 shadow-[0_0_50px_-5px_rgba(239,68,68,0.15)] relative overflow-hidden mx-auto">
             <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-500/5 rounded-full blur-2xl animate-pulse" />
             
+            {/* Category / Question Header */}
+            <div className="space-y-1 pb-2 border-b border-zinc-900/60">
+              <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest block">
+                KATEGORİ
+              </span>
+              <h2 className="text-xl md:text-2xl font-black text-white tracking-wide leading-tight">
+                {gameState.category}
+              </h2>
+            </div>
+
             {/* Bomb Emoji with scale-up-down breathing animation */}
-            <div className="relative text-7xl my-6 select-none animate-[pulse_1s_infinite]">
+            <div className="relative text-7xl my-4 select-none animate-[pulse_1s_infinite]">
               💣
             </div>
 
-            <h1 className="text-2xl font-extrabold tracking-tight text-red-500 animate-pulse">
+            <h1 className="text-xl font-extrabold tracking-tight text-red-500 animate-pulse">
               BOMBA AKTİF!
             </h1>
 
-            <p className="mt-3 text-xs text-zinc-400 leading-relaxed">
-              Kelimenizi hızlıca sözlü olarak söyleyin ve sıranızı arkadaşınıza geçirin!
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Kelimenizi hızlıca söyleyin ve sırayı arkadaşınıza geçirin!
             </p>
 
             {/* Fuse animation indicator */}
-            <div className="mt-6 max-w-[150px] mx-auto flex items-center justify-center space-x-2.5">
+            <div className="pt-2 max-w-[150px] mx-auto flex items-center justify-center space-x-2.5">
               <span className="text-xs text-zinc-500">Süre Gizli</span>
               <div className="w-16 h-1 bg-zinc-800 rounded-full overflow-hidden relative">
                 <div className="absolute top-0 right-0 h-full w-full bg-gradient-to-r from-amber-500 to-red-500 rounded-full animate-[pulse_1.5s_infinite]" />
