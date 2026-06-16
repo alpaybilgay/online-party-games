@@ -46,10 +46,34 @@ function ClosestGuess({
     }
   }, [room, lastQuestion]);
 
+  const getCategoryQuestions = (category) => {
+    if (category === "hepsi") {
+      return [
+        ...(presetQuestions.nufus || []),
+        ...(presetQuestions.yil || []),
+        ...(presetQuestions.kilometre || []),
+        ...(presetQuestions.yas || []),
+        ...(presetQuestions.rekor || [])
+      ];
+    } else if (category === "kpss_hepsi") {
+      return [
+        ...(presetQuestions.kpss_tarih || []),
+        ...(presetQuestions.kpss_cografya || [])
+      ];
+    } else {
+      return presetQuestions[category] || presetQuestions.nufus;
+    }
+  };
+
   const handleStartKdyPreset = () => {
     if (socket && room) {
-      const categoryQuestions = presetQuestions[kdyCategory] || presetQuestions.nufus;
-      const randomQuestion = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
+      const categoryQuestions = getCategoryQuestions(kdyCategory);
+      const askedIds = room.askedQuestionIds?.["Kim Daha Yakın"] || [];
+      let eligibleQuestions = categoryQuestions.filter(q => !askedIds.includes(q.id));
+      if (eligibleQuestions.length === 0) {
+        eligibleQuestions = categoryQuestions;
+      }
+      const randomQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
       
       socket.emit("kim-daha-yakin-start-preset", {
         category: kdyCategory,
@@ -101,8 +125,13 @@ function ClosestGuess({
       if (gameState && gameState.status === "result" && gameState.mode === "ready-made") {
         const activeCategory = gameState.category || kdyCategory || "nufus";
         const activeDuration = gameState.duration || kdyDuration || 15;
-        const categoryQuestions = presetQuestions[activeCategory] || presetQuestions.nufus;
-        const randomQuestion = categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
+        const categoryQuestions = getCategoryQuestions(activeCategory);
+        const askedIds = room.askedQuestionIds?.["Kim Daha Yakın"] || [];
+        let eligibleQuestions = categoryQuestions.filter(q => !askedIds.includes(q.id));
+        if (eligibleQuestions.length === 0) {
+          eligibleQuestions = categoryQuestions;
+        }
+        const randomQuestion = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
         
         socket.emit("kim-daha-yakin-start-preset", {
           category: activeCategory,
@@ -299,11 +328,13 @@ function ClosestGuess({
                       <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-3">KATEGORİ SEÇİN</label>
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {[
+                          { key: "hepsi", label: "Hepsi" },
                           { key: "nufus", label: "Nüfus" },
                           { key: "yil", label: "Yıl" },
                           { key: "kilometre", label: "Kilometre" },
                           { key: "yas", label: "Yaş" },
                           { key: "rekor", label: "Rekor" },
+                          { key: "kpss_hepsi", label: "KPSS Hepsi" },
                           { key: "kpss_tarih", label: "KPSS Tarih" },
                           { key: "kpss_cografya", label: "KPSS Coğrafya" }
                         ].map((cat) => (

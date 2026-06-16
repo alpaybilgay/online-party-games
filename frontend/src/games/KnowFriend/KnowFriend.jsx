@@ -52,13 +52,27 @@ function KnowFriend({
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [lastQuestionId, setLastQuestionId] = useState(null);
 
+  // New States for Team Mode and Open-ended questions
+  const [selectedMode, setSelectedMode] = useState("ffa"); // "ffa" | "team"
+  const [teams, setTeams] = useState({ A: [], B: [] });
+  const [typedChoice, setTypedChoice] = useState("");
+  const [selectedWinners, setSelectedWinners] = useState([]); // Array of player IDs (for FFA open-ended evaluation)
+  const [verificationSubmitted, setVerificationSubmitted] = useState(false);
+
   const gameState = room?.gameState;
   const isMeHost = room?.hostId === socket?.id;
   const myInfo = room?.players.find((p) => p.id === socket?.id);
   const myScore = myInfo ? myInfo.score : 0;
 
-  const isMeAsker = gameState?.askerId === socket?.id;
-  const isMeTarget = gameState?.targetId === socket?.id;
+  const isTeamMode = gameState?.mode === "team";
+  
+  const isMeAskerA = isTeamMode && gameState?.askerAId === socket?.id;
+  const isMeTargetA = isTeamMode && gameState?.targetAId === socket?.id;
+  const isMeAskerB = isTeamMode && gameState?.askerBId === socket?.id;
+  const isMeTargetB = isTeamMode && gameState?.targetBId === socket?.id;
+
+  const isMeAsker = isTeamMode ? (isMeAskerA || isMeAskerB) : (gameState?.askerId === socket?.id);
+  const isMeTarget = isTeamMode ? (isMeTargetA || isMeTargetB) : (gameState?.targetId === socket?.id);
 
   // Reset local submissions when a new question starts
   useEffect(() => {
@@ -68,49 +82,94 @@ function KnowFriend({
         if (qId !== lastQuestionId) {
           setMyChoice("");
           setHasSubmitted(false);
+          setTypedChoice("");
           setLastQuestionId(qId);
         }
       } else if (gameState.status === "selecting_target") {
         setMyChoice("");
         setHasSubmitted(false);
+        setTypedChoice("");
         setLastQuestionId(null);
         setSelectedTargetId("");
         setQuestionMode("choose");
         setCustomQuestion("");
         setCustomOptions(["", "", "", ""]);
+        setVerificationSubmitted(false);
+        setSelectedWinners([]);
+      } else if (gameState.status === "evaluating") {
+        setVerificationSubmitted(false);
+        setSelectedWinners([]);
       }
     }
   }, [gameState?.status, gameState?.currentQuestion, lastQuestionId]);
 
   // Admin Actions
-  const handleStartGame = () => {
-    if (room.players.length < 2) {
-      setActiveError("Oyunu başlatmak için en az 2 oyuncu gereklidir.");
-      return;
+  const handleAssignTeam = (playerId, teamName) => {
+    const nextTeams = {
+      A: [...(teams.A || [])],
+      B: [...(teams.B || [])]
+    };
+    nextTeams.A = nextTeams.A.filter(id => id !== playerId);
+    nextTeams.B = nextTeams.B.filter(id => id !== playerId);
+    if (teamName === "A") {
+      nextTeams.A.push(playerId);
+    } else if (teamName === "B") {
+      nextTeams.B.push(playerId);
     }
-    setActiveError("");
-    socket.emit("know-friend-start-game");
+    setTeams(nextTeams);
+  };
+
+  const handleStartGame = () => {
+    if (selectedMode === "team") {
+      if (room.players.length !== 4) {
+        setActiveError("Takımlı mod en fazla ve en az 4 oyuncuyla oynanabilir.");
+        return;
+      }
+      const allAssigned = room.players.every(p => teams.A.includes(p.id) || teams.B.includes(p.id));
+      if (!allAssigned) {
+        setActiveError("Lütfen tüm oyuncuları bir takıma dağıtın.");
+        return;
+      }
+      if (teams.A.length !== 2 || teams.B.length !== 2) {
+        setActiveError("Her takımda tam olarak 2 oyuncu olmalıdır.");
+        return;
+      }
+      setActiveError("");
+      socket.emit("know-friend-start-game", { mode: "team", teams });
+    } else {
+      if (room.players.length < 2) {
+        setActiveError("Oyunu başlatmak için en az 2 oyuncu gereklidir.");
+        return;
+      }
+      setActiveError("");
+      socket.emit("know-friend-start-game", { mode: "ffa" });
+    }
   };
 
   // Asker Selects Target & Question
   const handleSelectTargetPreset = (targetId) => {
-    if (!targetId) {
+    if (!isTeamMode && !targetId) {
       setActiveError("Lütfen soru soracağınız kişiyi seçin.");
       return;
     }
     setActiveError("");
 
     if (knowFriendQuestions.length > 0) {
-      const randomQ = knowFriendQuestions[Math.floor(Math.random() * knowFriendQuestions.length)];
+      const askedIds = room.askedQuestionIds?.["Kim Daha İyi Tanıyor?"] || [];
+      let eligibleQuestions = knowFriendQuestions.filter(q => !askedIds.includes(q.id));
+      if (eligibleQuestions.length === 0) {
+        eligibleQuestions = knowFriendQuestions;
+      }
+      const randomQ = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
       socket.emit("know-friend-select-target", {
-        targetId,
+        targetId: isTeamMode ? null : targetId,
         question: randomQ
       });
     }
   };
 
   const handleSelectTargetCustom = (targetId) => {
-    if (!targetId) {
+    if (!isTeamMode && !targetId) {
       setActiveError("Lütfen soru soracağınız kişiyi seçin.");
       return;
     }
@@ -118,9 +177,15 @@ function KnowFriend({
       setActiveError("Lütfen soru metnini yazın.");
       return;
     }
-    const emptyOptionIndex = customOptions.findIndex(opt => !opt.trim());
-    if (emptyOptionIndex !== -1) {
-      setActiveError(`Lütfen Seçenek ${emptyOptionIndex + 1} metnini doldurun.`);
+    
+    // Check if options are provided. If some are filled, all must be filled.
+    // If all are empty, it's open-ended.
+    const allEmpty = customOptions.every(opt => !opt.trim());
+    const anyFilled = customOptions.some(opt => opt.trim());
+    
+    if (anyFilled && !allEmpty) {
+      const emptyOptionIndex = customOptions.findIndex(opt => !opt.trim());
+      setActiveError(`Lütfen Seçenek ${emptyOptionIndex + 1} metnini doldurun veya tüm seçenekleri boş bırakın (açık uçlu için).`);
       return;
     }
     setActiveError("");
@@ -128,12 +193,25 @@ function KnowFriend({
     const customQ = {
       id: "custom_" + Date.now(),
       question: customQuestion.trim(),
-      options: customOptions.map(opt => opt.trim())
+      options: allEmpty ? [] : customOptions.map(opt => opt.trim())
     };
 
     socket.emit("know-friend-select-target", {
-      targetId,
+      targetId: isTeamMode ? null : targetId,
       question: customQ
+    });
+  };
+
+  // Guess Verification for Open-ended Questions
+  const handleVerifyAnswerFFA = () => {
+    socket.emit("know-friend-verify-answer", { winners: selectedWinners });
+  };
+
+  const handleVerifyAnswerTeam = (correct) => {
+    socket.emit("know-friend-verify-answer", { correct }, (res) => {
+      if (res.success) {
+        setVerificationSubmitted(true);
+      }
     });
   };
 
@@ -241,6 +319,9 @@ function KnowFriend({
   // 1. Lobby State
   if (gameState.status === "preparing") {
     const playerCount = room.players.length;
+    const teamA = teams.A || [];
+    const teamB = teams.B || [];
+
     return (
       <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
         <header className="relative z-10 border-b border-zinc-900/50 bg-[#09090b]/60 backdrop-blur-md">
@@ -274,27 +355,135 @@ function KnowFriend({
               </div>
             )}
 
-            {/* Players list */}
-            <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
-              <div className="text-[10px] font-bold text-zinc-550 uppercase tracking-widest pb-1 border-b border-zinc-900">
-                Bağlı Oyuncular ({playerCount}/10)
-              </div>
-              {room.players.map(p => (
-                <div key={p.id} className="flex justify-between items-center p-2.5 bg-zinc-950/40 border border-zinc-900 rounded-xl text-xs font-semibold">
-                  <span className="text-zinc-200">{p.name}</span>
-                  {p.isHost && <span className="text-[8px] bg-amber-500/10 border border-amber-500/20 text-amber-500 px-1.5 py-0.5 rounded uppercase">Kurucu</span>}
+            {/* Mode selection for Admin */}
+            {isMeHost && (
+              <div className="space-y-2.5">
+                <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">
+                  Oyun Modu Seçin
+                </label>
+                <div className="flex bg-zinc-950 border border-zinc-900 rounded-xl p-1">
+                  <button
+                    type="button"
+                    onClick={() => { setSelectedMode("ffa"); setActiveError(""); }}
+                    className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                      selectedMode === "ffa" ? "bg-zinc-900 text-white" : "text-zinc-550 hover:text-zinc-350"
+                    }`}
+                  >
+                    Herkes Tek (FFA)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => { setSelectedMode("team"); setActiveError(""); }}
+                    className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                      selectedMode === "team" ? "bg-zinc-900 text-white" : "text-zinc-550 hover:text-zinc-350"
+                    }`}
+                  >
+                    Takımlı Oyna (4 Kişi)
+                  </button>
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
+
+            {/* Team Distribution UI for Admin */}
+            {isMeHost && selectedMode === "team" && (
+              <div className="space-y-4 pt-3 border-t border-zinc-900">
+                <div className="text-[10px] font-bold text-zinc-450 uppercase tracking-widest">
+                  Takım Dağıtımı (A ve B Takımları)
+                </div>
+                
+                <div className="space-y-3">
+                  {room.players.map(p => {
+                    const assignedTeam = teamA.includes(p.id) ? "A" : (teamB.includes(p.id) ? "B" : null);
+                    return (
+                      <div key={p.id} className="flex justify-between items-center p-2 bg-zinc-950/40 border border-zinc-900 rounded-xl">
+                        <span className="text-xs font-semibold text-zinc-300 pl-1">{p.name}</span>
+                        <div className="flex space-x-1">
+                          <button
+                            onClick={() => handleAssignTeam(p.id, "A")}
+                            className={`px-2 py-1 text-[9px] rounded-lg border transition-all cursor-pointer ${
+                              assignedTeam === "A"
+                                ? "bg-violet-600/20 border-violet-500 text-violet-400 font-bold"
+                                : "bg-zinc-950 border-zinc-900 text-zinc-500 hover:text-zinc-300"
+                            }`}
+                          >
+                            A Takımı
+                          </button>
+                          <button
+                            onClick={() => handleAssignTeam(p.id, "B")}
+                            className={`px-2 py-1 text-[9px] rounded-lg border transition-all cursor-pointer ${
+                              assignedTeam === "B"
+                                ? "bg-fuchsia-600/20 border-fuchsia-500 text-fuchsia-400 font-bold"
+                                : "bg-zinc-950 border-zinc-900 text-zinc-500 hover:text-zinc-300"
+                            }`}
+                          >
+                            B Takımı
+                          </button>
+                          <button
+                            onClick={() => handleAssignTeam(p.id, "none")}
+                            className={`px-1.5 py-1 text-[9px] rounded-lg border transition-all cursor-pointer bg-zinc-950 border-zinc-900 text-zinc-550 hover:text-zinc-300 ${
+                              !assignedTeam ? "opacity-30" : ""
+                            }`}
+                          >
+                            Çıkar
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 text-xs pt-1">
+                  <div className="bg-violet-950/10 border border-violet-900/30 p-3 rounded-xl space-y-1">
+                    <div className="font-bold text-violet-400 border-b border-violet-900/30 pb-1 mb-1.5">💜 A Takımı ({teamA.length}/2)</div>
+                    {teamA.length > 0 ? (
+                      teamA.map(id => {
+                        const p = room.players.find(x => x.id === id);
+                        return <div key={id} className="text-zinc-350 truncate">{p ? p.name : "..."}</div>;
+                      })
+                    ) : (
+                      <div className="text-[10px] text-zinc-600 italic">Boş</div>
+                    )}
+                  </div>
+                  <div className="bg-fuchsia-950/10 border border-fuchsia-900/30 p-3 rounded-xl space-y-1">
+                    <div className="font-bold text-fuchsia-400 border-b border-fuchsia-900/30 pb-1 mb-1.5">💖 B Takımı ({teamB.length}/2)</div>
+                    {teamB.length > 0 ? (
+                      teamB.map(id => {
+                        const p = room.players.find(x => x.id === id);
+                        return <div key={id} className="text-zinc-350 truncate">{p ? p.name : "..."}</div>;
+                      })
+                    ) : (
+                      <div className="text-[10px] text-zinc-600 italic">Boş</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Players list */}
+            {(!isMeHost || selectedMode !== "team") && (
+              <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
+                <div className="text-[10px] font-bold text-zinc-550 uppercase tracking-widest pb-1 border-b border-zinc-900">
+                  Bağlı Oyuncular ({playerCount}/10)
+                </div>
+                {room.players.map(p => (
+                  <div key={p.id} className="flex justify-between items-center p-2.5 bg-zinc-950/40 border border-zinc-900 rounded-xl text-xs font-semibold">
+                    <span className="text-zinc-200">{p.name}</span>
+                    {p.isHost && <span className="text-[8px] bg-amber-500/10 border border-amber-500/20 text-amber-500 px-1.5 py-0.5 rounded uppercase">Kurucu</span>}
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Start Button */}
             {isMeHost ? (
               <button
                 onClick={handleStartGame}
-                disabled={playerCount < 2}
+                disabled={selectedMode === "team" ? (playerCount !== 4) : (playerCount < 2)}
                 className="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 disabled:from-zinc-800 disabled:to-zinc-800 disabled:text-zinc-650 text-xs font-bold text-white shadow-lg transition-all cursor-pointer disabled:cursor-not-allowed"
               >
-                {playerCount >= 2 ? "Oyunu Başlat" : "En Az 2 Oyuncu Gerekli"}
+                {selectedMode === "team"
+                  ? (playerCount === 4 ? "Oyunu Başlat (Takımlı)" : "Takımlı Mod İçin Tam 4 Kişi Gerekli")
+                  : (playerCount >= 2 ? "Oyunu Başlat" : "En Az 2 Oyuncu Gerekli")}
               </button>
             ) : (
               <div className="text-center py-3 rounded-xl bg-zinc-950/40 border border-zinc-900/60 animate-pulse">
@@ -346,38 +535,40 @@ function KnowFriend({
                 </div>
               )}
 
-              {/* Step 1: Select Target Player */}
-              <div className="space-y-3">
-                <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">
-                  1. Soru Sorulacak Kişiyi (Hedef) Seç
-                </label>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {otherPlayers.map((player) => (
-                    <button
-                      key={player.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedTargetId(player.id);
-                        setActiveError("");
-                      }}
-                      className={`py-2 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer truncate ${
-                        selectedTargetId === player.id
-                          ? "bg-violet-600/15 border-violet-500 text-violet-400"
-                          : "bg-zinc-950/50 border-zinc-900 text-zinc-450 hover:border-zinc-800"
-                      }`}
-                    >
-                      {player.name}
-                    </button>
-                  ))}
+              {/* Step 1: Select Target Player (FFA Only) */}
+              {!isTeamMode && (
+                <div className="space-y-3">
+                  <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">
+                    1. Soru Sorulacak Kişiyi (Hedef) Seç
+                  </label>
+                  
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {otherPlayers.map((player) => (
+                      <button
+                        key={player.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedTargetId(player.id);
+                          setActiveError("");
+                        }}
+                        className={`py-2 px-3 text-xs font-bold rounded-xl border transition-all cursor-pointer truncate ${
+                          selectedTargetId === player.id
+                            ? "bg-violet-600/15 border-violet-500 text-violet-400"
+                            : "bg-zinc-950/50 border-zinc-900 text-zinc-450 hover:border-zinc-800"
+                        }`}
+                      >
+                        {player.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Step 2: Choose Question Mode */}
-              {selectedTargetId && (
+              {(isTeamMode || selectedTargetId) && (
                 <div className="space-y-4 pt-4 border-t border-zinc-900">
                   <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">
-                    2. Soru Türü Seçin
+                    {isTeamMode ? "Soru Türü Seçin" : "2. Soru Türü Seçin"}
                   </label>
 
                   <div className="flex bg-zinc-950 border border-zinc-900 rounded-xl p-1 mb-4">
@@ -407,7 +598,7 @@ function KnowFriend({
                       onClick={() => handleSelectTargetPreset(selectedTargetId)}
                       className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-xs font-bold text-white shadow-lg cursor-pointer"
                     >
-                      Rastgele Hazır Soru Gönder & Oyunu Başlat
+                      {isTeamMode ? "Rastgele Hazır Soru Gönder & Turu Başlat" : "Rastgele Hazır Soru Gönder & Oyunu Başlat"}
                     </button>
                   )}
 
@@ -426,20 +617,24 @@ function KnowFriend({
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {customOptions.map((opt, idx) => (
-                          <div key={idx}>
-                            <label className="block text-[8px] font-bold text-zinc-650 mb-1">SEÇENEK {idx + 1}</label>
-                            <input
-                              type="text"
-                              maxLength={30}
-                              value={opt}
-                              onChange={(e) => handleCustomOptionChange(idx, e.target.value)}
-                              placeholder={`Seçenek ${idx + 1}`}
-                              className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-900 text-xs text-zinc-200 placeholder-zinc-800 focus:outline-none focus:border-violet-500/40"
-                            />
-                          </div>
-                        ))}
+                      <div className="space-y-1">
+                        <label className="block text-[9px] font-bold text-zinc-500 uppercase">SEÇENEKLER (İSTEĞE BAĞLI)</label>
+                        <p className="text-[9px] text-zinc-550 mb-2 leading-none">Seçenekleri doldurmazsanız soru açık uçlu (şıksız) olarak sorulur.</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {customOptions.map((opt, idx) => (
+                            <div key={idx}>
+                              <label className="block text-[8px] font-bold text-zinc-650 mb-1">SEÇENEK {idx + 1}</label>
+                              <input
+                                type="text"
+                                maxLength={30}
+                                value={opt}
+                                onChange={(e) => handleCustomOptionChange(idx, e.target.value)}
+                                placeholder={`Boş (Açık uçlu için)`}
+                                className="w-full px-3 py-2 rounded-xl bg-zinc-950 border border-zinc-900 text-xs text-zinc-200 placeholder-zinc-850 focus:outline-none focus:border-violet-500/40"
+                              />
+                            </div>
+                          ))}
+                        </div>
                       </div>
 
                       <button
@@ -473,10 +668,8 @@ function KnowFriend({
   if (gameState.status === "playing") {
     const q = gameState.currentQuestion;
     const targetPlayer = room.players.find(p => p.id === gameState.targetId);
+    const isQuestionOpenEnded = !q?.options || q.options.length === 0 || q.options.every(o => !o);
     
-    const answeredCount = Object.keys(gameState.answers).length + (gameState.targetAnswer ? 1 : 0);
-    const totalPlayers = room.players.length;
-
     return (
       <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
         {/* Glow */}
@@ -502,16 +695,41 @@ function KnowFriend({
         <main className="relative z-10 flex-grow max-w-2xl w-full mx-auto px-6 py-6 flex flex-col justify-between my-auto space-y-6">
           
           {/* Target Title Board */}
-          <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-5 md:p-6 text-center shadow-xl relative overflow-hidden">
-            <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block mb-1">
-              HEDEF ARKADAŞIMIZ
-            </span>
-            <h1 className="text-2xl font-black text-white tracking-wide truncate px-2">
-              🎯 {targetPlayer ? targetPlayer.name : "Bilinmeyen"}
-            </h1>
-            <p className="text-[10px] text-zinc-500 mt-1 leading-none">
-              Bu soruda hedef kişinin neyi seçeceğini tahmin edin!
-            </p>
+          <div className="w-full bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-5 md:p-6 text-center shadow-xl relative overflow-hidden">
+            {isTeamMode ? (
+              <>
+                <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block mb-1">
+                  TAKIMLI MÜCADELE 👥
+                </span>
+                <div className="flex justify-center items-center space-x-4 mt-2">
+                  <div className="text-right">
+                    <span className="block text-[8px] text-zinc-500 font-bold">A TAKIMI</span>
+                    <span className="text-xs font-semibold text-zinc-300">
+                      {room.players.find(p => p.id === gameState.askerAId)?.name} ➜ {room.players.find(p => p.id === gameState.targetAId)?.name}
+                    </span>
+                  </div>
+                  <span className="text-zinc-700 text-xs font-bold">VS</span>
+                  <div className="text-left">
+                    <span className="block text-[8px] text-zinc-500 font-bold">B TAKIMI</span>
+                    <span className="text-xs font-semibold text-zinc-300">
+                      {room.players.find(p => p.id === gameState.askerBId)?.name} ➜ {room.players.find(p => p.id === gameState.targetBId)?.name}
+                    </span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block mb-1">
+                  HEDEF ARKADAŞIMIZ
+                </span>
+                <h1 className="text-2xl font-black text-white tracking-wide truncate px-2">
+                  🎯 {targetPlayer ? targetPlayer.name : "Bilinmeyen"}
+                </h1>
+                <p className="text-[10px] text-zinc-500 mt-1 leading-none">
+                  Bu soruda hedef kişinin neyi seçeceğini tahmin edin!
+                </p>
+              </>
+            )}
           </div>
 
           {/* Question Text */}
@@ -523,7 +741,7 @@ function KnowFriend({
             </div>
           )}
 
-          {/* Options Buttons selection */}
+          {/* Options Buttons or Custom input selection */}
           <div className="space-y-3">
             {activeError && (
               <div className="px-3 py-2 bg-rose-500/10 border border-rose-500/20 text-[10px] text-rose-400 rounded-lg text-center">
@@ -532,22 +750,48 @@ function KnowFriend({
             )}
 
             {!hasSubmitted ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {q?.options.map((opt, idx) => (
+              isQuestionOpenEnded ? (
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  if (typedChoice.trim()) {
+                    handleSubmitChoice(typedChoice.trim());
+                  }
+                }} className="space-y-3 max-w-sm w-full mx-auto">
+                  <input
+                    type="text"
+                    maxLength={50}
+                    value={typedChoice}
+                    onChange={(e) => setTypedChoice(e.target.value)}
+                    placeholder={isMeTarget ? "Kendi gerçek cevabınızı yazın..." : "Tahmininizi yazın..."}
+                    className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-violet-500/50 text-xs text-center"
+                    autoFocus
+                  />
                   <button
-                    key={idx}
-                    onClick={() => handleSubmitChoice(opt)}
-                    className="py-4.5 px-6 rounded-2xl bg-[#0e0e11]/60 border border-zinc-900 hover:border-violet-500/50 hover:bg-[#121216] text-xs sm:text-sm font-bold text-zinc-200 active:scale-[0.98] transition-all text-center cursor-pointer shadow-md shadow-zinc-950/20"
+                    type="submit"
+                    disabled={!typedChoice.trim()}
+                    className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-xs font-bold text-white shadow-lg cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                   >
-                    {opt}
+                    {isMeTarget ? "Cevabı Kaydet" : "Tahmini Gönder"}
                   </button>
-                ))}
-              </div>
+                </form>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {q?.options.map((opt, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleSubmitChoice(opt)}
+                      className="py-4.5 px-6 rounded-2xl bg-[#0e0e11]/60 border border-zinc-900 hover:border-violet-500/50 hover:bg-[#121216] text-xs sm:text-sm font-bold text-zinc-200 active:scale-[0.98] transition-all text-center cursor-pointer shadow-md shadow-zinc-950/20"
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              )
             ) : (
               <div className="bg-[#0e0e11]/60 border border-zinc-900 p-6 rounded-3xl text-center space-y-3 shadow-lg max-w-sm w-full mx-auto">
                 <div className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2 mx-auto text-xs">✓</div>
                 <h3 className="text-xs font-bold text-zinc-200">
-                  {isMeTarget ? "Gerçek Cevabınız İletildi!" : "Tahmininiz İletildi!"}
+                  {isMeTarget ? "Cevabınız İletildi!" : "Tahmininiz İletildi!"}
                 </h3>
                 <div className="inline-block px-3 py-1.5 rounded-xl bg-zinc-950 border border-zinc-900 text-xs font-bold text-violet-400 font-mono">
                   {myChoice}
@@ -565,26 +809,213 @@ function KnowFriend({
               KATILIMCI SEÇİM DURUMLARI
             </h3>
             
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              {room.players.map((p) => {
-                const isTarget = p.id === gameState.targetId;
-                const hasChosen = isTarget 
-                  ? (gameState.targetAnswer !== null && gameState.targetAnswer !== undefined) 
-                  : (gameState.answers[p.id] !== undefined);
-                  
-                return (
-                  <div key={p.id} className="flex items-center space-x-2 bg-zinc-950/20 px-2.5 py-1.5 rounded-lg border border-zinc-900">
-                    <span className={`w-1.5 h-1.5 rounded-full ${hasChosen ? "bg-emerald-500" : "bg-amber-500 animate-pulse"}`} />
-                    <span className="text-[11px] text-zinc-350 truncate max-w-[90px]">{p.name}</span>
-                    <span className="text-[8px] font-bold text-zinc-605 ml-auto">
-                      {isTarget ? "Hedef 🎯" : (hasChosen ? "Seçti" : "Düşünüyor")}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            {isTeamMode ? (
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {[
+                  { id: gameState.askerAId, label: "A Takımı Tahminci" },
+                  { id: gameState.targetAId, label: "A Takımı Hedef 🎯" },
+                  { id: gameState.askerBId, label: "B Takımı Tahminci" },
+                  { id: gameState.targetBId, label: "B Takımı Hedef 🎯" }
+                ].map((role) => {
+                  if (!role.id) return null;
+                  const player = room.players.find(p => p.id === role.id);
+                  const hasChosen = gameState.answers[role.id] !== undefined;
+                  return (
+                    <div key={role.id} className="flex items-center space-x-2 bg-zinc-950/20 px-2.5 py-1.5 rounded-lg border border-zinc-900">
+                      <span className={`w-1.5 h-1.5 rounded-full ${hasChosen ? "bg-emerald-500" : "bg-amber-500 animate-pulse"}`} />
+                      <span className="text-[11px] text-zinc-350 truncate max-w-[90px]">{player ? player.name : "..."}</span>
+                      <span className="text-[8px] font-bold text-zinc-550 ml-auto">
+                        {role.label}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                {room.players.map((p) => {
+                  const isTarget = p.id === gameState.targetId;
+                  const hasChosen = isTarget 
+                    ? (gameState.targetAnswer !== null && gameState.targetAnswer !== undefined) 
+                    : (gameState.answers[p.id] !== undefined);
+                    
+                  return (
+                    <div key={p.id} className="flex items-center space-x-2 bg-zinc-950/20 px-2.5 py-1.5 rounded-lg border border-zinc-900">
+                      <span className={`w-1.5 h-1.5 rounded-full ${hasChosen ? "bg-emerald-500" : "bg-amber-500 animate-pulse"}`} />
+                      <span className="text-[11px] text-zinc-350 truncate max-w-[90px]">{p.name}</span>
+                      <span className="text-[8px] font-bold text-zinc-605 ml-auto">
+                        {isTarget ? "Hedef 🎯" : (hasChosen ? "Seçti" : "Düşünüyor")}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
+        </main>
+      </div>
+    );
+  }
+
+  // 3.5 Evaluating Stage (Open-ended evaluations)
+  if (gameState.status === "evaluating") {
+    const q = gameState.currentQuestion;
+    const answers = gameState.answers || {};
+    const targetPlayer = room.players.find(p => p.id === gameState.targetId);
+
+    return (
+      <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-violet-900/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <header className="relative z-10 border-b border-zinc-900/50 bg-[#09090b]/60 backdrop-blur-md">
+          <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="text-xs font-bold text-zinc-400">Cevap Değerlendirme</span>
+            </div>
+            {myInfo && (
+              <span className="text-[10px] font-bold bg-zinc-900 border border-zinc-800 px-2.5 py-1 rounded-full text-zinc-350">
+                Sen: <span className="text-violet-400">{myInfo.name}</span> ({myScore} P)
+              </span>
+            )}
+          </div>
+        </header>
+
+        <main className="relative z-10 flex-grow max-w-lg w-full mx-auto px-6 py-6 flex flex-col justify-center items-center my-auto space-y-6">
+          {isTeamMode ? (
+            // Team Mode Evaluation
+            (isMeTargetA || isMeTargetB) ? (
+              // Targets verify
+              <div className="w-full bg-[#0e0e11]/60 border border-zinc-900 p-6 md:p-8 rounded-3xl backdrop-blur-sm space-y-6 shadow-2xl text-center">
+                <div>
+                  <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block">DEĞERLENDİRME SIRASI SENDE</span>
+                  <h2 className="text-base font-bold text-zinc-200 mt-1">Takım Arkadaşının Tahminini Değerlendir</h2>
+                </div>
+
+                <div className="bg-zinc-950/60 border border-zinc-900 p-4 rounded-2xl text-xs space-y-3 text-left">
+                  <div>
+                    <span className="text-zinc-550 block text-[9px] uppercase tracking-wider">Soru</span>
+                    <span className="text-zinc-300 font-semibold">{q.question}</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 pt-2 border-t border-zinc-900/60">
+                    <div>
+                      <span className="text-zinc-550 block text-[9px] uppercase tracking-wider">Kendi Cevabın</span>
+                      <span className="text-emerald-400 font-bold text-sm">
+                        {isMeTargetA ? answers[gameState.targetAId] : answers[gameState.targetBId]}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-550 block text-[9px] uppercase tracking-wider">Partnerinin Tahmini</span>
+                      <span className="text-violet-400 font-bold text-sm">
+                        {isMeTargetA ? answers[gameState.askerAId] : answers[gameState.askerBId]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {!verificationSubmitted ? (
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => handleVerifyAnswerTeam(true)}
+                      className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition-all cursor-pointer"
+                    >
+                      Doğru / Kabul Et
+                    </button>
+                    <button
+                      onClick={() => handleVerifyAnswerTeam(false)}
+                      className="flex-1 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-zinc-350 transition-all cursor-pointer border border-zinc-700"
+                    >
+                      Yanlış / Reddet
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-full py-2.5 rounded-xl bg-zinc-950/40 border border-zinc-900 text-xs font-bold text-emerald-400 animate-pulse text-center">
+                    Değerlendirmeniz İletildi. Diğer takım bekleniyor...
+                  </div>
+                )}
+              </div>
+            ) : (
+              // Askers wait
+              <div className="w-full text-center p-8 rounded-3xl border border-dashed border-zinc-800 bg-[#0e0e11]/20 backdrop-blur-sm space-y-4 max-w-sm">
+                <div className="w-12 h-12 rounded-full bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-center mb-2 mx-auto animate-pulse text-lg">
+                  ⚖️
+                </div>
+                <h3 className="text-sm font-bold text-zinc-200">Tahminler Değerlendiriliyor...</h3>
+                <p className="text-xs text-zinc-550 max-w-xs mx-auto">
+                  Takımlardaki hedef oyuncuların (partnerlerinizin) tahminlerinizi değerlendirmesi bekleniyor...
+                </p>
+              </div>
+            )
+          ) : (
+            // FFA Mode Evaluation
+            isMeTarget ? (
+              // Target selects winners
+              <div className="w-full bg-[#0e0e11]/60 border border-zinc-900 p-6 md:p-8 rounded-3xl backdrop-blur-sm space-y-6 shadow-2xl">
+                <div className="text-center pb-2 border-b border-zinc-900">
+                  <span className="text-[9px] font-bold text-violet-400 uppercase tracking-widest block">DEĞERLENDİRME AŞAMASI 🎯</span>
+                  <h2 className="text-base font-bold text-zinc-200 mt-1">Hangi Cevaplar Doğru?</h2>
+                  <p className="text-[10px] text-zinc-500 mt-1">Kendi yazdığın cevaba göre doğru tahmin eden arkadaşları işaretle.</p>
+                </div>
+
+                <div className="bg-zinc-950/60 border border-zinc-900 p-4 rounded-xl text-center space-y-1">
+                  <span className="text-zinc-550 block text-[9px] uppercase tracking-wider">Senin Gerçek Cevabın</span>
+                  <span className="text-emerald-400 font-bold text-base">{gameState.targetAnswer}</span>
+                </div>
+
+                <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
+                  <span className="block text-[10px] font-bold text-zinc-550 uppercase tracking-widest pb-1">Arkadaşların Cevapları</span>
+                  {room.players.map(p => {
+                    if (p.id === gameState.targetId) return null;
+                    const isSelected = selectedWinners.includes(p.id);
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => {
+                          if (isSelected) {
+                            setSelectedWinners(prev => prev.filter(id => id !== p.id));
+                          } else {
+                            setSelectedWinners(prev => [...prev, p.id]);
+                          }
+                        }}
+                        className={`w-full flex justify-between items-center p-3 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
+                          isSelected
+                            ? "bg-emerald-950/15 border-emerald-500 text-emerald-400"
+                            : "bg-zinc-950/40 border-zinc-900 text-zinc-350 hover:border-zinc-800"
+                        }`}
+                      >
+                        <span>{p.name}</span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-zinc-250 bg-zinc-900 border border-zinc-850 px-2 py-0.5 rounded text-[10px]">
+                            {answers[p.id] || "(Cevap yok)"}
+                          </span>
+                          <span className="text-sm">{isSelected ? "✔️" : "⬜"}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  onClick={handleVerifyAnswerFFA}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-xs font-bold text-white shadow-lg cursor-pointer"
+                >
+                  Değerlendirmeyi Kaydet & Sonuçları Açıkla
+                </button>
+              </div>
+            ) : (
+              // Guesser waits
+              <div className="w-full text-center p-8 rounded-3xl border border-dashed border-zinc-800 bg-[#0e0e11]/20 backdrop-blur-sm space-y-4 max-w-sm">
+                <div className="w-12 h-12 rounded-full bg-zinc-900/80 border border-zinc-800/80 flex items-center justify-center mb-2 mx-auto animate-pulse text-lg">
+                  🤔
+                </div>
+                <h3 className="text-sm font-bold text-zinc-200">Değerlendirme Bekleniyor...</h3>
+                <p className="text-xs text-zinc-550 max-w-xs mx-auto leading-relaxed">
+                  Hedef arkadaşınız <strong>{targetPlayer ? targetPlayer.name : "Bilinmeyen"}</strong>, yazdığınız tahminleri kendi cevabına göre değerlendiriyor. Lütfen bekleyin...
+                </p>
+              </div>
+            )
+          )}
         </main>
       </div>
     );
@@ -596,10 +1027,21 @@ function KnowFriend({
     const answers = gameState.answers || {};
     const targetAnswer = gameState.targetAnswer;
     const targetPlayer = room.players.find(p => p.id === gameState.targetId);
-    
-    // Check if I answered correctly
+    const isQuestionOpenEnded = !q?.options || q.options.length === 0 || q.options.every(o => !o);
+
+    // For FFA
     const isMeTargetResult = gameState.targetId === socket?.id;
-    const isMyGuessCorrect = !isMeTargetResult && answers[socket.id] === targetAnswer;
+    const isMyGuessCorrect = !isMeTargetResult && (isQuestionOpenEnded 
+      ? (gameState.winners && gameState.winners.includes(socket.id))
+      : (answers[socket.id] === targetAnswer));
+
+    // For Team Mode
+    const isTeamAMatched = isTeamMode && (isQuestionOpenEnded
+      ? (gameState.verifications && gameState.verifications[gameState.targetAId] === true)
+      : (answers[gameState.askerAId] === answers[gameState.targetAId]));
+    const isTeamBMatched = isTeamMode && (isQuestionOpenEnded
+      ? (gameState.verifications && gameState.verifications[gameState.targetBId] === true)
+      : (answers[gameState.askerBId] === answers[gameState.targetBId]));
 
     return (
       <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
@@ -637,71 +1079,140 @@ function KnowFriend({
             </div>
           )}
 
-          {/* Correct Answer Display */}
-          <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-6 text-center max-w-md w-full mx-auto shadow-xl mb-6">
-            <span className="text-[9px] font-bold text-zinc-550 tracking-widest block mb-1">
-              {targetPlayer ? `${getGenitiveSuffix(targetPlayer.name)} Cevabı` : "Hedef Kişinin Cevabı"}
-            </span>
-            <h2 className="text-3xl font-black text-emerald-400 drop-shadow-md">
-              {targetAnswer}
-            </h2>
-            
-            {/* Visual Feedback Message */}
-            {!isMeTargetResult && (
-              <p className={`mt-3 text-xs font-bold ${isMyGuessCorrect ? "text-emerald-400" : "text-zinc-500"}`}>
-                {isMyGuessCorrect ? "🎉 Doğru Tahmin! +1 Puan Kazandın!" : "❌ Yanlış Tahmin! Puan alamadın."}
-              </p>
-            )}
-          </div>
+          {isTeamMode ? (
+            // Team Mode Results Display
+            <div className="space-y-6 max-w-xl w-full mx-auto mb-6">
+              {/* Team Scores Card */}
+              <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-6 shadow-xl text-center">
+                <span className="text-[9px] font-bold text-zinc-550 tracking-widest block mb-2">TAKIM PUANLARI</span>
+                <div className="flex justify-center items-center space-x-8">
+                  <div>
+                    <span className="block text-[10px] text-violet-400 font-bold">A TAKIMI</span>
+                    <span className="text-3xl font-black text-white">{gameState.teamScores?.A || 0}</span>
+                  </div>
+                  <span className="text-zinc-650 text-xl font-bold"> - </span>
+                  <div>
+                    <span className="block text-[10px] text-fuchsia-400 font-bold">B TAKIMI</span>
+                    <span className="text-3xl font-black text-white">{gameState.teamScores?.B || 0}</span>
+                  </div>
+                </div>
+              </div>
 
-          {/* Guesses list */}
-          <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-5 md:p-6 backdrop-blur-sm max-w-lg w-full mx-auto mb-6">
-            <h3 className="text-xs font-bold text-zinc-450 uppercase tracking-widest pb-2.5 border-b border-zinc-900 mb-4">
-              OYUNCULARIN TAHMİNLERİ
-            </h3>
-
-            <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1">
-              {room.players.map(p => {
-                if (p.id === gameState.targetId) return null; // Skip showing target player guess since it's the correct answer
-
-                const guess = answers[p.id];
-                const isCorrect = guess === targetAnswer;
-
-                return (
-                  <div
-                    key={p.id}
-                    className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
-                      isCorrect 
-                        ? "bg-emerald-950/10 border-emerald-500/20" 
-                        : "bg-red-950/10 border-rose-500/10"
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2.5">
-                      <span className="text-sm">{isCorrect ? "✔️" : "❌"}</span>
-                      <span className="text-xs font-semibold text-zinc-200">
-                        {p.name}
-                      </span>
+              {/* Detailed Team Guesses */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Team A Details */}
+                <div className={`p-5 rounded-2xl border ${isTeamAMatched ? "bg-emerald-950/10 border-emerald-500/20" : "bg-red-950/5 border-rose-500/10"} space-y-3`}>
+                  <div className="flex justify-between items-center pb-2 border-b border-zinc-900">
+                    <span className="text-xs font-bold text-violet-400">💜 A Takımı</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isTeamAMatched ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"}`}>
+                      {isTeamAMatched ? "✓ Eşleşti (+1 Puan)" : "✗ Uyuşmadı"}
+                    </span>
+                  </div>
+                  <div className="text-xs space-y-1.5">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-550">Hedef ({room.players.find(x => x.id === gameState.targetAId)?.name}):</span>
+                      <span className="font-bold text-zinc-200">{answers[gameState.targetAId]}</span>
                     </div>
-
-                    <div className="flex items-center space-x-4">
-                      <div className="text-right">
-                        <span className={`text-xs font-mono font-bold ${isCorrect ? "text-emerald-400" : "text-rose-400"}`}>
-                          {guess || "Seçmedi"}
-                        </span>
-                        <span className="block text-[8px] text-zinc-650">Tahmin</span>
-                      </div>
-                      <div className="text-right w-16">
-                        <span className={`text-xs font-bold ${isCorrect ? "text-emerald-400" : "text-zinc-500"}`}>
-                          {isCorrect ? "+1 Puan" : "0 Puan"}
-                        </span>
-                        <span className="block text-[8px] text-zinc-650">Kazanılan</span>
-                      </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-550">Tahmin ({room.players.find(x => x.id === gameState.askerAId)?.name}):</span>
+                      <span className="font-bold text-zinc-200">{answers[gameState.askerAId]}</span>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+
+                {/* Team B Details */}
+                <div className={`p-5 rounded-2xl border ${isTeamBMatched ? "bg-emerald-950/10 border-emerald-500/20" : "bg-red-950/5 border-rose-500/10"} space-y-3`}>
+                  <div className="flex justify-between items-center pb-2 border-b border-zinc-900">
+                    <span className="text-xs font-bold text-fuchsia-400">💖 B Takımı</span>
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isTeamBMatched ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400"}`}>
+                      {isTeamBMatched ? "✓ Eşleşti (+1 Puan)" : "✗ Uyuşmadı"}
+                    </span>
+                  </div>
+                  <div className="text-xs space-y-1.5">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-550">Hedef ({room.players.find(x => x.id === gameState.targetBId)?.name}):</span>
+                      <span className="font-bold text-zinc-200">{answers[gameState.targetBId]}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-550">Tahmin ({room.players.find(x => x.id === gameState.askerBId)?.name}):</span>
+                      <span className="font-bold text-zinc-200">{answers[gameState.askerBId]}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            // FFA Mode Results Display
+            <>
+              {/* Correct Answer Display */}
+              <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-6 text-center max-w-md w-full mx-auto shadow-xl mb-6">
+                <span className="text-[9px] font-bold text-zinc-550 tracking-widest block mb-1">
+                  {targetPlayer ? `${getGenitiveSuffix(targetPlayer.name)} Cevabı` : "Hedef Kişinin Cevabı"}
+                </span>
+                <h2 className="text-3xl font-black text-emerald-400 drop-shadow-md">
+                  {targetAnswer}
+                </h2>
+                
+                {/* Visual Feedback Message */}
+                {!isMeTargetResult && (
+                  <p className={`mt-3 text-xs font-bold ${isMyGuessCorrect ? "text-emerald-400" : "text-zinc-500"}`}>
+                    {isMyGuessCorrect ? "🎉 Doğru Tahmin! +1 Puan Kazandın!" : "❌ Yanlış Tahmin! Puan alamadın."}
+                  </p>
+                )}
+              </div>
+
+              {/* Guesses list */}
+              <div className="bg-zinc-950/40 border border-zinc-900/60 rounded-3xl p-5 md:p-6 backdrop-blur-sm max-w-lg w-full mx-auto mb-6">
+                <h3 className="text-xs font-bold text-zinc-450 uppercase tracking-widest pb-2.5 border-b border-zinc-900 mb-4">
+                  OYUNCULARIN TAHMİNLERİ
+                </h3>
+
+                <div className="space-y-2.5 max-h-52 overflow-y-auto pr-1">
+                  {room.players.map(p => {
+                    if (p.id === gameState.targetId) return null; // Skip target player
+
+                    const guess = answers[p.id];
+                    const isCorrect = isQuestionOpenEnded 
+                      ? (gameState.winners && gameState.winners.includes(p.id))
+                      : (guess === targetAnswer);
+
+                    return (
+                      <div
+                        key={p.id}
+                        className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
+                          isCorrect 
+                            ? "bg-emerald-950/10 border-emerald-500/20" 
+                            : "bg-red-950/10 border-rose-500/10"
+                        }`}
+                      >
+                        <div className="flex items-center space-x-2.5">
+                          <span className="text-sm">{isCorrect ? "✔️" : "❌"}</span>
+                          <span className="text-xs font-semibold text-zinc-200">
+                            {p.name}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center space-x-4">
+                          <div className="text-right">
+                            <span className={`text-xs font-mono font-bold ${isCorrect ? "text-emerald-400" : "text-rose-400"}`}>
+                              {guess || "Seçmedi"}
+                            </span>
+                            <span className="block text-[8px] text-zinc-650">Tahmin</span>
+                          </div>
+                          <div className="text-right w-16">
+                            <span className={`text-xs font-bold ${isCorrect ? "text-emerald-400" : "text-zinc-500"}`}>
+                              {isCorrect ? "+1 Puan" : "0 Puan"}
+                            </span>
+                            <span className="block text-[8px] text-zinc-650">Kazanılan</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Scores Board and Action Buttons */}
           <div className="bg-[#0e0e11]/60 border border-zinc-900 rounded-3xl p-5 max-w-lg w-full mx-auto space-y-4">
@@ -714,7 +1225,7 @@ function KnowFriend({
                 .map((player, idx) => (
                   <div key={player.id} className="flex justify-between items-center bg-zinc-950/40 p-2.5 rounded-lg border border-zinc-900">
                     <span className="text-zinc-300 font-semibold truncate max-w-[100px]">
-                      #{idx + 1} {player.name} {player.id === gameState.targetId && "🎯"}
+                      #{idx + 1} {player.name} {(!isTeamMode && player.id === gameState.targetId) && "🎯"} {isTeamMode && (player.team ? `(${player.team} Takımı)` : "")}
                     </span>
                     <span className="font-mono font-bold text-white">{player.score} Puan</span>
                   </div>
@@ -740,7 +1251,7 @@ function KnowFriend({
             )}
 
             {/* "Bir sonraki soruyu sen sor" button override */}
-            {!isMeAsker && (
+            {!isMeAsker && !isTeamMode && (
               <div className="max-w-xs mx-auto pt-1">
                 <button
                   onClick={handleTakeNextTurn}

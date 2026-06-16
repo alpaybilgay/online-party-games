@@ -83,6 +83,22 @@ function clearRoomTimer(roomCode) {
   }
 }
 
+// Helper: Mark question/category as asked
+function markQuestionAsAsked(room, gameName, questionId) {
+  if (!room) return;
+  if (!room.askedQuestionIds) {
+    room.askedQuestionIds = {};
+  }
+  if (!room.askedQuestionIds[gameName]) {
+    room.askedQuestionIds[gameName] = [];
+  }
+  if (questionId !== undefined && questionId !== null) {
+    if (!room.askedQuestionIds[gameName].includes(questionId)) {
+      room.askedQuestionIds[gameName].push(questionId);
+    }
+  }
+}
+
 // Socket Connections
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
@@ -253,9 +269,27 @@ io.on('connection', (socket) => {
 
     let selectedQuestion = question;
     if (!selectedQuestion) {
-      const questions = presetQuestions[category] || presetQuestions.nufus;
+      let questions;
+      if (category === "hepsi") {
+        questions = [
+          ...(presetQuestions.nufus || []),
+          ...(presetQuestions.yil || []),
+          ...(presetQuestions.kilometre || []),
+          ...(presetQuestions.yas || []),
+          ...(presetQuestions.rekor || [])
+        ];
+      } else if (category === "kpss_hepsi") {
+        questions = [
+          ...(presetQuestions.kpss_tarih || []),
+          ...(presetQuestions.kpss_cografya || [])
+        ];
+      } else {
+        questions = presetQuestions[category] || presetQuestions.nufus;
+      }
       selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
     }
+
+    markQuestionAsAsked(room, "Kim Daha Yakın", selectedQuestion?.id);
 
     room.gameState = {
       status: "playing",
@@ -357,19 +391,22 @@ io.on('connection', (socket) => {
   // BOMBA KATEGORİ GAME EVENTS
   // ==========================================
 
-  socket.on('bomba-kategori-update-settings', ({ category, durationRange }) => {
+  socket.on('bomba-kategori-update-settings', ({ category, durationRange, pool }) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
 
     room.gameState.category = category;
     room.gameState.durationRange = durationRange;
+    room.gameState.pool = pool || "genel";
 
     io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
   });
 
-  socket.on('bomba-kategori-start', ({ category, durationRange }) => {
+  socket.on('bomba-kategori-start', ({ category, durationRange, pool }) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
+
+    markQuestionAsAsked(room, "Bomba Kategori", category);
 
     let min = 15, max = 50;
     if (durationRange === "5-50") { min = 5; max = 50; }
@@ -384,6 +421,7 @@ io.on('connection', (socket) => {
       status: "countdown",
       category: category,
       durationRange: durationRange,
+      pool: pool || "genel",
       secretDuration: secretDuration,
       timer: 3,
       loserId: null
@@ -423,6 +461,7 @@ io.on('connection', (socket) => {
       status: "preparing",
       category: room.gameState.category || "",
       durationRange: room.gameState.durationRange || "15-50",
+      pool: room.gameState.pool || "genel",
       secretDuration: 0,
       timer: 0,
       loserId: null
@@ -454,6 +493,8 @@ io.on('connection', (socket) => {
   socket.on('common-answer-start-question', ({ question }) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
+
+    markQuestionAsAsked(room, "Ortak Cevabı Bul", question?.id);
 
     room.gameState.status = "playing";
     room.gameState.currentQuestion = question;
@@ -516,6 +557,8 @@ io.on('connection', (socket) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
 
+    markQuestionAsAsked(room, "Hızlı Şık", question?.id);
+
     room.gameState.status = "playing";
     room.gameState.currentQuestion = question;
     room.gameState.answers = {};
@@ -572,15 +615,38 @@ io.on('connection', (socket) => {
   // KIM DAHA İYİ TANIYOR? GAME EVENTS
   // ==========================================
 
-  socket.on('know-friend-start-game', () => {
+  socket.on('know-friend-start-game', ({ mode, teams } = {}) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || room.hostId !== socket.id) return;
 
     const playersList = room.players;
-    if (playersList.length < 2) return;
+    const selectedMode = mode || "ffa";
+
+    if (selectedMode === "team") {
+      if (playersList.length !== 4) return;
+    } else {
+      if (playersList.length < 2) return;
+    }
+
+    if (selectedMode === "team" && teams) {
+      room.players.forEach(p => {
+        if (teams.A && teams.A.includes(p.id)) {
+          p.team = "A";
+        } else if (teams.B && teams.B.includes(p.id)) {
+          p.team = "B";
+        } else {
+          p.team = null;
+        }
+      });
+    } else {
+      room.players.forEach(p => { p.team = null; });
+    }
 
     room.gameState = {
       status: "selecting_target",
+      mode: selectedMode,
+      teams: selectedMode === "team" ? teams : null,
+      teamScores: selectedMode === "team" ? { A: 0, B: 0 } : null,
       askerId: playersList[0].id,
       targetId: null,
       currentQuestion: null,
@@ -596,11 +662,44 @@ io.on('connection', (socket) => {
     const room = rooms[GLOBAL_ROOM_CODE];
     if (!room || !room.gameState || room.gameState.askerId !== socket.id) return;
 
-    room.gameState.targetId = targetId;
-    room.gameState.currentQuestion = question;
-    room.gameState.status = "playing";
-    room.gameState.targetAnswer = null;
-    room.gameState.answers = {};
+    markQuestionAsAsked(room, "Kim Daha İyi Tanıyor?", question?.id);
+
+    const gameState = room.gameState;
+    gameState.currentQuestion = question;
+    gameState.answers = {};
+    gameState.status = "playing";
+
+    if (gameState.mode === "team") {
+      const askerAId = socket.id;
+      const askerAPlayer = room.players.find(p => p.id === askerAId);
+      const teamAName = askerAPlayer ? askerAPlayer.team : "A";
+      const teamBName = teamAName === "A" ? "B" : "A";
+
+      const teamAPlayers = room.players.filter(p => p.team === teamAName);
+      const teamBPlayers = room.players.filter(p => p.team === teamBName);
+
+      const targetAPlayer = teamAPlayers.find(p => p.id !== askerAId);
+      const targetAId = targetAPlayer ? targetAPlayer.id : null;
+
+      const randomTargetBPlayer = teamBPlayers[Math.floor(Math.random() * teamBPlayers.length)];
+      const targetBId = randomTargetBPlayer ? randomTargetBPlayer.id : null;
+
+      const askerBPlayer = teamBPlayers.find(p => p.id !== targetBId);
+      const askerBId = askerBPlayer ? askerBPlayer.id : null;
+
+      gameState.askerAId = askerAId;
+      gameState.targetAId = targetAId;
+      gameState.askerBId = askerBId;
+      gameState.targetBId = targetBId;
+
+      gameState.targetAAnswer = null;
+      gameState.targetBAnswer = null;
+      gameState.verifications = {};
+    } else {
+      gameState.targetId = targetId;
+      gameState.targetAnswer = null;
+      gameState.verifications = {};
+    }
 
     io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
   });
@@ -613,25 +712,119 @@ io.on('connection', (socket) => {
     }
 
     const gameState = room.gameState;
-    if (socket.id === gameState.targetId) {
-      gameState.targetAnswer = choice;
-    } else {
-      gameState.answers[socket.id] = choice;
-    }
+    gameState.answers[socket.id] = choice;
 
     if (callback) callback({ success: true });
 
-    const hasTargetAnswered = gameState.targetAnswer !== null && gameState.targetAnswer !== undefined;
-    const guessers = room.players.filter(p => p.id !== gameState.targetId);
-    const haveAllGuessersAnswered = guessers.every(g => gameState.answers[g.id] !== undefined);
+    const isQuestionOpenEnded = !gameState.currentQuestion.options || gameState.currentQuestion.options.length === 0 || gameState.currentQuestion.options.every(o => !o);
 
-    if (hasTargetAnswered && haveAllGuessersAnswered) {
-      guessers.forEach(g => {
-        if (gameState.answers[g.id] === gameState.targetAnswer) {
-          g.score += 1;
+    if (gameState.mode === "team") {
+      const requiredIds = [gameState.askerAId, gameState.targetAId, gameState.askerBId, gameState.targetBId].filter(id => id);
+      const allSubmitted = requiredIds.every(id => gameState.answers[id] !== undefined);
+
+      if (allSubmitted) {
+        if (!isQuestionOpenEnded) {
+          const guessA = gameState.answers[gameState.askerAId];
+          const ansA = gameState.answers[gameState.targetAId];
+          const guessB = gameState.answers[gameState.askerBId];
+          const ansB = gameState.answers[gameState.targetBId];
+
+          if (guessA === ansA && guessA !== undefined) {
+            const askerAPlayer = room.players.find(p => p.id === gameState.askerAId);
+            const targetAPlayer = room.players.find(p => p.id === gameState.targetAId);
+            if (askerAPlayer) askerAPlayer.score += 1;
+            if (targetAPlayer) targetAPlayer.score += 1;
+            gameState.teamScores[askerAPlayer ? askerAPlayer.team : "A"] += 1;
+          }
+          if (guessB === ansB && guessB !== undefined) {
+            const askerBPlayer = room.players.find(p => p.id === gameState.askerBId);
+            const targetBPlayer = room.players.find(p => p.id === gameState.targetBId);
+            if (askerBPlayer) askerBPlayer.score += 1;
+            if (targetBPlayer) targetBPlayer.score += 1;
+            gameState.teamScores[askerBPlayer ? askerBPlayer.team : "B"] += 1;
+          }
+          gameState.status = "result";
+        } else {
+          gameState.status = "evaluating";
         }
-      });
-      gameState.status = "result";
+      }
+    } else {
+      const allSubmitted = room.players.every(p => gameState.answers[p.id] !== undefined);
+
+      if (allSubmitted) {
+        if (!isQuestionOpenEnded) {
+          const targetAnswer = gameState.answers[gameState.targetId];
+          gameState.targetAnswer = targetAnswer;
+
+          const guessers = room.players.filter(p => p.id !== gameState.targetId);
+          guessers.forEach(g => {
+            if (gameState.answers[g.id] === targetAnswer) {
+              g.score += 1;
+            }
+          });
+          gameState.status = "result";
+        } else {
+          gameState.targetAnswer = gameState.answers[gameState.targetId];
+          gameState.status = "evaluating";
+        }
+      }
+    }
+
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('know-friend-verify-answer', ({ winners, correct }, callback) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || !room.gameState || room.gameState.status !== "evaluating") {
+      if (callback) callback({ success: false, message: "Değerlendirme yapılamaz." });
+      return;
+    }
+
+    const gameState = room.gameState;
+
+    if (callback) callback({ success: true });
+
+    if (gameState.mode === "team") {
+      if (!gameState.verifications) {
+        gameState.verifications = {};
+      }
+      gameState.verifications[socket.id] = correct;
+
+      if (correct) {
+        if (socket.id === gameState.targetAId) {
+          const askerAPlayer = room.players.find(p => p.id === gameState.askerAId);
+          const targetAPlayer = room.players.find(p => p.id === gameState.targetAId);
+          if (askerAPlayer) askerAPlayer.score += 1;
+          if (targetAPlayer) targetAPlayer.score += 1;
+          gameState.teamScores[askerAPlayer ? askerAPlayer.team : "A"] += 1;
+        } else if (socket.id === gameState.targetBId) {
+          const askerBPlayer = room.players.find(p => p.id === gameState.askerBId);
+          const targetBPlayer = room.players.find(p => p.id === gameState.targetBId);
+          if (askerBPlayer) askerBPlayer.score += 1;
+          if (targetBPlayer) targetBPlayer.score += 1;
+          gameState.teamScores[askerBPlayer ? askerBPlayer.team : "B"] += 1;
+        }
+      }
+
+      const requiredTargets = [gameState.targetAId, gameState.targetBId].filter(id => id);
+      const allVerified = requiredTargets.every(id => gameState.verifications[id] !== undefined);
+
+      if (allVerified) {
+        gameState.status = "result";
+      }
+    } else {
+      if (socket.id === gameState.targetId) {
+        if (Array.isArray(winners)) {
+          winners.forEach(wId => {
+            const player = room.players.find(p => p.id === wId);
+            if (player) {
+              player.score += 1;
+            }
+          });
+          gameState.winners = winners;
+        }
+        gameState.status = "result";
+      }
     }
 
     io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
@@ -657,6 +850,12 @@ io.on('connection', (socket) => {
     gameState.targetAnswer = null;
     gameState.answers = {};
     gameState.currentQuestion = null;
+    gameState.askerAId = null;
+    gameState.targetAId = null;
+    gameState.askerBId = null;
+    gameState.targetBId = null;
+    gameState.verifications = {};
+    gameState.winners = null;
 
     io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
   });

@@ -107,12 +107,20 @@ function CommonAnswer({
 
     // Choose a random question
     if (commonAnswerQuestions.length > 0) {
-      let randomQ = commonAnswerQuestions[Math.floor(Math.random() * commonAnswerQuestions.length)];
+      const askedIds = room.askedQuestionIds?.["Ortak Cevabı Bul"] || [];
+      let eligibleQuestions = commonAnswerQuestions.filter(q => !askedIds.includes(q.id));
+      if (eligibleQuestions.length === 0) {
+        eligibleQuestions = commonAnswerQuestions;
+      }
+      
+      let randomQ = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
       
       // Attempt to avoid repeating the last question if possible
-      if (gameState.currentQuestion && commonAnswerQuestions.length > 1) {
-        while (randomQ.id === gameState.currentQuestion.id) {
-          randomQ = commonAnswerQuestions[Math.floor(Math.random() * commonAnswerQuestions.length)];
+      if (gameState.currentQuestion && eligibleQuestions.length > 1) {
+        let attempts = 0;
+        while (randomQ.id === gameState.currentQuestion.id && attempts < 10) {
+          randomQ = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
+          attempts++;
         }
       }
 

@@ -62,25 +62,33 @@ function QuickChoice({
     if (quickChoiceQuestions.length === 0) return;
 
     // Filter questions by category
-    let eligibleQuestions = quickChoiceQuestions;
+    let categoryQuestions = quickChoiceQuestions;
     if (selectedCategory !== "all") {
-      eligibleQuestions = quickChoiceQuestions.filter(q => q.category === selectedCategory);
+      categoryQuestions = quickChoiceQuestions.filter(q => q.category === selectedCategory);
     }
 
-    if (eligibleQuestions.length === 0) {
+    if (categoryQuestions.length === 0) {
       setActiveError("Bu kategoriye ait soru bulunamadı.");
       return;
     }
 
     setActiveError("");
 
+    const askedIds = room.askedQuestionIds?.["Hızlı Şık"] || [];
+    let eligibleQuestions = categoryQuestions.filter(q => !askedIds.includes(q.id));
+    if (eligibleQuestions.length === 0) {
+      eligibleQuestions = categoryQuestions;
+    }
+
     // Select a random question
     let randomQ = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
 
     // Avoid picking the same question consecutively if there are options
     if (gameState.currentQuestion && eligibleQuestions.length > 1) {
-      while (randomQ.id === gameState.currentQuestion.id) {
+      let attempts = 0;
+      while (randomQ.id === gameState.currentQuestion.id && attempts < 10) {
         randomQ = eligibleQuestions[Math.floor(Math.random() * eligibleQuestions.length)];
+        attempts++;
       }
     }
 

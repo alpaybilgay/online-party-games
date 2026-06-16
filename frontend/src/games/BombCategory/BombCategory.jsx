@@ -14,6 +14,7 @@ function BombCategory({
 }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [durationRange, setDurationRange] = useState("15-50");
+  const [selectedPool, setSelectedPool] = useState("genel");
   
   // Local state to keep track of sound effects triggers
   const lastStatusRef = useRef(null);
@@ -25,19 +26,218 @@ function BombCategory({
   const myInfo = room?.players.find((p) => p.id === socket?.id);
   const myScore = myInfo ? myInfo.score : 0;
 
+  const currentPool = gameState?.pool || selectedPool || "genel";
+  const activePrompts = currentPool === "hepsi"
+    ? [...(bombCategories.genel || []), ...(bombCategories.kpss || [])]
+    : (currentPool === "kpss" ? (bombCategories.kpss || []) : (bombCategories.genel || []));
+
+  // Audio configuration states (load from localStorage, default is on/0.8)
+  const [volume, setVolume] = useState(() => {
+    const saved = localStorage.getItem("bomb_volume");
+    return saved !== null ? parseFloat(saved) : 0.8;
+  });
+  const [isMuted, setIsMuted] = useState(() => {
+    const saved = localStorage.getItem("bomb_muted");
+    return saved !== null ? saved === "true" : false;
+  });
+
+  const [showSlider, setShowSlider] = useState(false);
+  const sliderTimerRef = useRef(null);
+  const longPressTimerRef = useRef(null);
+
+  const audioContextRef = useRef(null);
+
+  const volumeRef = useRef(volume);
+  const isMutedRef = useRef(isMuted);
+
+  useEffect(() => {
+    volumeRef.current = volume;
+    localStorage.setItem("bomb_volume", volume.toString());
+  }, [volume]);
+
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+    localStorage.setItem("bomb_muted", isMuted.toString());
+  }, [isMuted]);
+
+  // Audio Context unlocker helper
+  const initAudio = () => {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return null;
+      if (!audioContextRef.current) {
+        audioContextRef.current = new AudioContextClass();
+      }
+      const ctx = audioContextRef.current;
+      if (ctx.state === "suspended") {
+        ctx.resume();
+      }
+      return ctx;
+    } catch (e) {
+      console.warn("AudioContext init error:", e);
+      return null;
+    }
+  };
+
+  // Auto-close volume slider on inactivity
+  const resetSliderTimer = () => {
+    if (sliderTimerRef.current) clearTimeout(sliderTimerRef.current);
+    sliderTimerRef.current = setTimeout(() => {
+      setShowSlider(false);
+    }, 3000);
+  };
+
+  useEffect(() => {
+    if (showSlider) {
+      resetSliderTimer();
+    }
+    return () => {
+      if (sliderTimerRef.current) clearTimeout(sliderTimerRef.current);
+    };
+  }, [showSlider, volume, isMuted]);
+
+  // Unlock audio on initial interaction
+  useEffect(() => {
+    const unlock = () => {
+      initAudio();
+    };
+    window.addEventListener("click", unlock);
+    window.addEventListener("touchstart", unlock, { passive: true });
+    return () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+  }, []);
+
+  // Tick-tock sound interval during gameplay
+  useEffect(() => {
+    if (!gameState || gameState.status !== "playing") return;
+
+    let tickCount = 0;
+    // Play immediately on start
+    playTickSound(false);
+
+    const tickInterval = setInterval(() => {
+      tickCount++;
+      playTickSound(tickCount % 2 === 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(tickInterval);
+    };
+  }, [gameState?.status]);
+
+  const renderVolumeWidget = () => {
+    return (
+      <div className="fixed bottom-4 right-4 z-50 flex items-center select-none">
+        {showSlider && (
+          <div 
+            className="h-10 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center px-3 mr-2 shadow-2xl space-x-2 animate-fade-in"
+            onMouseEnter={resetSliderTimer}
+            onTouchStart={resetSliderTimer}
+          >
+            <span className="text-[10px] font-bold text-zinc-500">SES</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              value={volume}
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                setVolume(val);
+                if (val > 0 && isMuted) {
+                  setIsMuted(false);
+                } else if (val === 0 && !isMuted) {
+                  setIsMuted(true);
+                }
+                resetSliderTimer();
+              }}
+              className="w-20 sm:w-24 h-1 bg-zinc-800 accent-red-500 rounded-lg appearance-none cursor-pointer"
+            />
+            <span className="text-[10px] font-mono font-bold text-zinc-350 min-w-[28px] text-right">
+              {Math.round(volume * 100)}%
+            </span>
+          </div>
+        )}
+
+        <button
+          onMouseDown={() => {
+            longPressTimerRef.current = setTimeout(() => {
+              setShowSlider(true);
+            }, 300);
+          }}
+          onMouseUp={() => {
+            if (longPressTimerRef.current) {
+              clearTimeout(longPressTimerRef.current);
+              longPressTimerRef.current = null;
+              if (!showSlider) {
+                setIsMuted(!isMuted);
+              }
+            }
+          }}
+          onMouseLeave={() => {
+            if (longPressTimerRef.current) {
+              clearTimeout(longPressTimerRef.current);
+              longPressTimerRef.current = null;
+            }
+          }}
+          onTouchStart={() => {
+            longPressTimerRef.current = setTimeout(() => {
+              setShowSlider(true);
+            }, 300);
+          }}
+          onTouchEnd={() => {
+            if (longPressTimerRef.current) {
+              clearTimeout(longPressTimerRef.current);
+              longPressTimerRef.current = null;
+              if (!showSlider) {
+                setIsMuted(!isMuted);
+              }
+            }
+          }}
+          className={`w-12 h-12 rounded-full flex items-center justify-center border shadow-lg transition-all active:scale-95 cursor-pointer ${
+            isMuted 
+              ? "bg-zinc-950/90 border-zinc-800 text-zinc-500 hover:text-zinc-400" 
+              : "bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-red-400"
+          }`}
+          title="Sesi aç/kapa (Ayar için basılı tutun)"
+        >
+          {isMuted ? (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+          )}
+        </button>
+      </div>
+    );
+  };
+
   // Sync admin settings from server to local state in lobby
   useEffect(() => {
     if (gameState && gameState.status === "preparing") {
+      const currentSyncPool = gameState.pool || "genel";
+      setSelectedPool(currentSyncPool);
+      
+      const syncPrompts = currentSyncPool === "hepsi"
+        ? [...(bombCategories.genel || []), ...(bombCategories.kpss || [])]
+        : (currentSyncPool === "kpss" ? (bombCategories.kpss || []) : (bombCategories.genel || []));
+
       if (gameState.category) {
         setSelectedCategory(gameState.category);
-      } else if (!selectedCategory && bombCategories.length > 0) {
-        setSelectedCategory(bombCategories[0]);
+      } else if (!selectedCategory && syncPrompts.length > 0) {
+        setSelectedCategory(syncPrompts[0]);
       }
       if (gameState.durationRange) {
         setDurationRange(gameState.durationRange);
       }
     }
-  }, [gameState?.status, gameState?.category, gameState?.durationRange]);
+  }, [gameState?.status, gameState?.category, gameState?.durationRange, gameState?.pool]);
 
   // Handle playing sound effects based on game state changes
   useEffect(() => {
@@ -77,16 +277,16 @@ function BombCategory({
   // Synthesis of sound effects using Web Audio API
   const playCountdownBeep = () => {
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-      const ctx = new AudioContext();
+      if (isMutedRef.current) return;
+      const ctx = initAudio();
+      if (!ctx) return;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       
       osc.type = "sine";
       osc.frequency.setValueAtTime(500, ctx.currentTime); // 500Hz beep
-      gain.gain.setValueAtTime(0.08, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.08 * volumeRef.current, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.12);
       
       osc.connect(gain);
       gain.connect(ctx.destination);
@@ -99,16 +299,16 @@ function BombCategory({
 
   const playTurnBeep = () => {
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-      const ctx = new AudioContext();
+      if (isMutedRef.current) return;
+      const ctx = initAudio();
+      if (!ctx) return;
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       
       osc.type = "sine";
       osc.frequency.setValueAtTime(700, ctx.currentTime); // Short high pitch beep
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.04 * volumeRef.current, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
       
       osc.connect(gain);
       gain.connect(ctx.destination);
@@ -119,9 +319,9 @@ function BombCategory({
 
   const playExplosionSound = () => {
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-      const ctx = new AudioContext();
+      if (isMutedRef.current) return;
+      const ctx = initAudio();
+      if (!ctx) return;
       
       // 1. Noise Node for debris explosion sound
       const bufferSize = ctx.sampleRate * 2.0; // 2 seconds
@@ -140,8 +340,8 @@ function BombCategory({
       filter.frequency.exponentialRampToValueAtTime(15, ctx.currentTime + 1.6);
       
       const gain = ctx.createGain();
-      gain.gain.setValueAtTime(0.6, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.8);
+      gain.gain.setValueAtTime(0.6 * volumeRef.current, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.8);
       
       noise.connect(filter);
       filter.connect(gain);
@@ -156,8 +356,8 @@ function BombCategory({
       osc.frequency.setValueAtTime(140, ctx.currentTime);
       osc.frequency.linearRampToValueAtTime(20, ctx.currentTime + 1.3);
       
-      oscGain.gain.setValueAtTime(0.5, ctx.currentTime);
-      oscGain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.3);
+      oscGain.gain.setValueAtTime(0.5 * volumeRef.current, ctx.currentTime);
+      oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.3);
       
       osc.connect(oscGain);
       oscGain.connect(ctx.destination);
@@ -169,25 +369,69 @@ function BombCategory({
     }
   };
 
+  const playTickSound = (isTock = false) => {
+    try {
+      if (isMutedRef.current) return;
+      const ctx = initAudio();
+      if (!ctx) return;
+      
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(isTock ? 400 : 650, ctx.currentTime);
+      gain.gain.setValueAtTime(0.03 * volumeRef.current, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.05);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.06);
+    } catch (e) {
+      console.warn("Tick audio error:", e);
+    }
+  };
+
   // Admin Actions
-  const handleUpdateSettings = (updatedCat, updatedRange) => {
+  const handleUpdateSettings = (updatedCat, updatedRange, updatedPool) => {
     if (socket && room && isMeHost) {
       socket.emit("bomba-kategori-update-settings", {
         category: updatedCat,
-        durationRange: updatedRange
+        durationRange: updatedRange,
+        pool: updatedPool || currentPool
       });
     }
   };
 
+  const handlePoolChange = (pool) => {
+    const prompts = pool === "hepsi"
+      ? [...(bombCategories.genel || []), ...(bombCategories.kpss || [])]
+      : (pool === "kpss" ? (bombCategories.kpss || []) : (bombCategories.genel || []));
+    const firstCat = prompts.length > 0 ? prompts[0] : "";
+    setSelectedPool(pool);
+    setSelectedCategory(firstCat);
+    handleUpdateSettings(firstCat, durationRange, pool);
+  };
+
   const handleRandomCategory = () => {
-    if (bombCategories.length > 0) {
-      let randomCat = selectedCategory;
-      // Loop to avoid picking the same category consecutively
-      while (randomCat === selectedCategory && bombCategories.length > 1) {
-        randomCat = bombCategories[Math.floor(Math.random() * bombCategories.length)];
+    if (activePrompts.length > 0) {
+      const askedIds = room.askedQuestionIds?.["Bomba Kategori"] || [];
+      let eligibleCategories = activePrompts.filter(cat => !askedIds.includes(cat));
+      if (eligibleCategories.length === 0) {
+        eligibleCategories = activePrompts;
+      }
+
+      let randomCat = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)];
+      // Loop to avoid picking the same category consecutively if possible
+      if (randomCat === selectedCategory && eligibleCategories.length > 1) {
+        let attempts = 0;
+        while (randomCat === selectedCategory && attempts < 10) {
+          randomCat = eligibleCategories[Math.floor(Math.random() * eligibleCategories.length)];
+          attempts++;
+        }
       }
       setSelectedCategory(randomCat);
-      handleUpdateSettings(randomCat, durationRange);
+      handleUpdateSettings(randomCat, durationRange, currentPool);
     }
   };
 
@@ -200,8 +444,9 @@ function BombCategory({
 
     if (socket && room && isMeHost) {
       socket.emit("bomba-kategori-start", {
-        category: selectedCategory || bombCategories[0],
-        durationRange: durationRange
+        category: selectedCategory || activePrompts[0],
+        durationRange: durationRange,
+        pool: currentPool
       });
     }
   };
@@ -290,6 +535,7 @@ function BombCategory({
             </button>
           </div>
         </div>
+        {renderVolumeWidget()}
       </div>
     );
   }
@@ -372,6 +618,31 @@ function BombCategory({
                   </div>
                 )}
 
+                {/* Pool Selector */}
+                <div className="space-y-3">
+                  <label className="block text-[10px] font-bold text-zinc-450 uppercase tracking-widest">Soru Havuzu Seçimi</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { key: "genel", label: "Genel" },
+                      { key: "kpss", label: "KPSS" },
+                      { key: "hepsi", label: "Hepsi" }
+                    ].map((poolItem) => (
+                      <button
+                        key={poolItem.key}
+                        type="button"
+                        onClick={() => handlePoolChange(poolItem.key)}
+                        className={`py-2 px-3 text-[11px] font-semibold rounded-xl border transition-all cursor-pointer ${
+                          currentPool === poolItem.key
+                            ? "bg-red-600/15 border-red-500 text-red-400 font-bold"
+                            : "bg-zinc-950/50 border-zinc-900 text-zinc-400 hover:border-zinc-800"
+                        }`}
+                      >
+                        {poolItem.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Category selector */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -388,11 +659,11 @@ function BombCategory({
                     value={selectedCategory}
                     onChange={(e) => {
                       setSelectedCategory(e.target.value);
-                      handleUpdateSettings(e.target.value, durationRange);
+                      handleUpdateSettings(e.target.value, durationRange, currentPool);
                     }}
                     className="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-900 text-xs font-medium text-zinc-200 focus:outline-none focus:border-red-500/50 cursor-pointer"
                   >
-                    {bombCategories.map((cat, index) => (
+                    {activePrompts.map((cat, index) => (
                       <option key={index} value={cat}>
                         {cat}
                       </option>
@@ -448,9 +719,13 @@ function BombCategory({
 
                 {/* Synchronized lobby values show for players */}
                 {selectedCategory && (
-                  <div className="mt-6 p-4 rounded-xl border border-zinc-900 bg-zinc-950/50 max-w-xs w-full space-y-2">
+                  <div className="mt-6 p-4 rounded-xl border border-zinc-900 bg-zinc-950/50 max-w-xs w-full space-y-2.5">
+                    <div className="flex justify-between items-center text-[10px] text-zinc-500 pb-1.5 border-b border-zinc-900">
+                      <span className="font-bold uppercase tracking-wider">Soru Havuzu:</span>
+                      <span className="font-extrabold text-red-400 uppercase tracking-widest">{currentPool === "hepsi" ? "Hepsi" : (currentPool === "kpss" ? "KPSS" : "Genel")}</span>
+                    </div>
                     <div className="text-[10px] text-zinc-500 font-bold uppercase">Seçilen Kategori:</div>
-                    <div className="text-xs font-bold text-red-400">{selectedCategory}</div>
+                    <div className="text-xs font-bold text-zinc-200">{selectedCategory}</div>
                     <div className="text-[10px] text-zinc-550 pt-2 border-t border-zinc-900 mt-2">
                       Süre Limit Aralığı: <span className="font-mono text-zinc-300 font-bold">{durationRange}s</span>
                     </div>
@@ -460,6 +735,7 @@ function BombCategory({
             )}
           </div>
         </main>
+        {renderVolumeWidget()}
       </div>
     );
   }
@@ -497,6 +773,7 @@ function BombCategory({
             </div>
           </div>
         </div>
+        {renderVolumeWidget()}
       </div>
     );
   }
@@ -583,6 +860,7 @@ function BombCategory({
           </div>
 
         </main>
+        {renderVolumeWidget()}
       </div>
     );
   }
@@ -782,6 +1060,7 @@ function BombCategory({
           </div>
 
         </main>
+        {renderVolumeWidget()}
       </div>
     );
   }
