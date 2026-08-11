@@ -137,19 +137,21 @@ io.on('connection', (socket) => {
           ? { status: "preparing", askerId: null, targetId: null, currentQuestion: null, targetAnswer: null, answers: {}, askerQueue: [] }
           : (gameName === "Hızlı Şık"
             ? { status: "preparing", category: "all", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, submissions: [] }
-            : (gameName === "Ortak Cevabı Bul"
-              ? { status: "preparing", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, teams: { A: [], B: [] }, teamScores: { A: 0, B: 0 } }
-              : (gameName === "Bomba Kategori"
-                ? { status: "preparing", category: "", durationRange: "15-45", secretDuration: 0, timer: 0, activePlayerId: null, loserId: null, turnOrder: [] }
-                : (gameName === "Kim Daha Yakın" 
-                  ? { status: "preparing", mode: "ready-made", category: "nufus", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, winnerId: null, results: [] }
-                  : { status: "preparing", winnerId: null }))))
+            : (gameName === "KPSS GÜNCEL"
+              ? { status: "preparing", categories: [], duration: 15, autoAdvance: false, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, submissions: [] }
+              : (gameName === "Ortak Cevabı Bul"
+                ? { status: "preparing", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, teams: { A: [], B: [] }, teamScores: { A: 0, B: 0 } }
+                : (gameName === "Bomba Kategori"
+                  ? { status: "preparing", category: "", durationRange: "15-45", secretDuration: 0, timer: 0, activePlayerId: null, loserId: null, turnOrder: [] }
+                  : (gameName === "Kim Daha Yakın" 
+                    ? { status: "preparing", mode: "ready-made", category: "nufus", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, winnerId: null, results: [] }
+                    : { status: "preparing", winnerId: null })))))
       };
       room = rooms[GLOBAL_ROOM_CODE];
       console.log(`Global Room Created by Host: ${playerName} (${socket.id}) for game ${room.activeGame}`);
     } else {
       // Room exists, check max limit based on selected game
-      const maxLimit = room.activeGame === "Kim Daha İyi Tanıyor?" ? 10 : (room.activeGame === "Hızlı Şık" ? 8 : (room.activeGame === "Ortak Cevabı Bul" ? 4 : (room.activeGame === "Bomba Kategori" ? 12 : (room.activeGame === "Kim Daha Yakın" ? 8 : 2))));
+      const maxLimit = room.activeGame === "Kim Daha İyi Tanıyor?" ? 10 : (room.activeGame === "Hızlı Şık" ? 8 : (room.activeGame === "KPSS GÜNCEL" ? 12 : (room.activeGame === "Ortak Cevabı Bul" ? 4 : (room.activeGame === "Bomba Kategori" ? 12 : (room.activeGame === "Kim Daha Yakın" ? 8 : 2)))));
       if (room.players.length >= maxLimit) {
         if (callback) callback({ success: false, message: `Oda dolu! Bu oyun maksimum ${maxLimit} oyuncu destekler.` });
         return;
@@ -634,6 +636,94 @@ io.on('connection', (socket) => {
   });
 
   // ==========================================
+  // KPSS GÜNCEL GAME EVENTS
+  // ==========================================
+
+  socket.on('kpss-guncel-update-settings', ({ categories, duration, autoAdvance }) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    room.gameState.categories = categories || [];
+    room.gameState.duration = duration || 15;
+    room.gameState.autoAdvance = !!autoAdvance;
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-guncel-start-question', ({ question }) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    markQuestionAsAsked(room, "KPSS GÜNCEL", question?.id);
+
+    room.activeGame = "KPSS GÜNCEL";
+    room.gameState.status = "playing";
+    room.gameState.currentQuestion = question;
+    room.gameState.answers = {};
+    room.gameState.submissions = [];
+    room.gameState.timer = room.gameState.duration;
+    room.gameState.isTimerActive = true;
+
+    startKpssGuncelTimer(GLOBAL_ROOM_CODE);
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-guncel-submit-choice', ({ choice }, callback) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || !room.gameState || room.gameState.status !== "playing") {
+      if (callback) callback({ success: false, message: "Oyun aktif değil." });
+      return;
+    }
+
+    const remainingTime = room.gameState.timer;
+    room.gameState.answers[socket.id] = choice;
+    
+    // Avoid duplicates
+    room.gameState.submissions = (room.gameState.submissions || []).filter(sub => sub.playerId !== socket.id);
+    room.gameState.submissions.push({
+      playerId: socket.id,
+      choice: choice,
+      timestamp: Date.now(),
+      remainingTime: remainingTime
+    });
+
+    if (callback) callback({ success: true });
+
+    // Check if everyone has submitted to end early
+    const totalPlayers = room.players.length;
+    const answeredCount = Object.keys(room.gameState.answers).length;
+
+    if (answeredCount >= totalPlayers) {
+      calculateKpssGuncelResults(GLOBAL_ROOM_CODE);
+    } else {
+      io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+    }
+  });
+
+  socket.on('kpss-guncel-next-round', () => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    clearRoomTimer(GLOBAL_ROOM_CODE);
+    room.gameState.status = "preparing";
+    room.gameState.currentQuestion = null;
+    room.gameState.answers = {};
+    room.gameState.submissions = [];
+    room.gameState.isTimerActive = false;
+
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-guncel-reset-pool', () => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    if (room.askedQuestionIds) {
+      room.askedQuestionIds["KPSS GÜNCEL"] = [];
+    }
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  // ==========================================
   // KIM DAHA İYİ TANIYOR? GAME EVENTS
   // ==========================================
 
@@ -975,6 +1065,18 @@ function handleUserLeaving(socket) {
         answers: {},
         submissions: []
       };
+    } else if (room.activeGame === "KPSS GÜNCEL") {
+      room.gameState = {
+        status: "preparing",
+        categories: [],
+        duration: 15,
+        autoAdvance: false,
+        timer: 0,
+        isTimerActive: false,
+        currentQuestion: null,
+        answers: {},
+        submissions: []
+      };
     } else if (room.activeGame === "Ortak Cevabı Bul") {
       room.gameState = {
         status: "preparing",
@@ -1268,6 +1370,66 @@ function calculateQuickChoiceResults(roomCode) {
   submissions.forEach(sub => {
     if (sub.choice !== correctAnswer) {
       sub.pointsAwarded = 0;
+    }
+  });
+
+  io.to(roomCode).emit('room-updated', room);
+}
+
+// Helper: Start KPSS GÜNCEL timer countdown
+function startKpssGuncelTimer(roomCode) {
+  clearRoomTimer(roomCode);
+
+  roomIntervals[roomCode] = setInterval(() => {
+    const room = rooms[roomCode];
+    if (!room || room.activeGame !== "KPSS GÜNCEL" || !room.gameState || !room.gameState.isTimerActive) {
+      clearRoomTimer(roomCode);
+      return;
+    }
+
+    const gameState = room.gameState;
+    gameState.timer--;
+
+    if (gameState.timer <= 0) {
+      calculateKpssGuncelResults(roomCode);
+    } else {
+      io.to(roomCode).emit('room-updated', room);
+    }
+  }, 1000);
+}
+
+// Helper: Calculate results for KPSS GÜNCEL
+function calculateKpssGuncelResults(roomCode) {
+  clearRoomTimer(roomCode);
+  const room = rooms[roomCode];
+  if (!room || !room.gameState) return;
+
+  const gameState = room.gameState;
+  gameState.isTimerActive = false;
+  gameState.status = "result";
+
+  // Check correct answer
+  const currentQuestion = gameState.currentQuestion;
+  const correctAnswer = currentQuestion?.correctAnswer || currentQuestion?.answer;
+  const submissions = gameState.submissions || [];
+  const duration = gameState.duration || 15;
+
+  submissions.forEach((sub) => {
+    const player = room.players.find(p => p.id === sub.playerId);
+    if (player) {
+      if (sub.choice === correctAnswer) {
+        // Points based on remaining time percentage (decaying score)
+        // e.g. if remainingTime is 15 out of 15, points = 100.
+        // If remainingTime is 0 out of 15, points = 10.
+        const remaining = Math.max(0, sub.remainingTime);
+        const points = Math.max(10, Math.round(100 * (remaining / duration)));
+        player.score += points;
+        sub.pointsAwarded = points;
+        sub.isCorrect = true;
+      } else {
+        sub.pointsAwarded = 0;
+        sub.isCorrect = false;
+      }
     }
   });
 

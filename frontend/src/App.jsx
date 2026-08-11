@@ -8,6 +8,7 @@ import BombCategory from "./games/BombCategory/BombCategory";
 import CommonAnswer from "./games/CommonAnswer/CommonAnswer";
 import QuickChoice from "./games/QuickChoice/QuickChoice";
 import KnowFriend from "./games/KnowFriend/KnowFriend";
+import KpssGuncel from "./games/KpssGuncel/KpssGuncel";
 
 function App() {
   const [serverStatus, setServerStatus] = useState("connecting"); // 'connecting' | 'online'
@@ -123,7 +124,7 @@ function App() {
     { id: 4, name: "Ortak Cevabı Bul", category: "Grup Oyunu • Aynı Seçim", icon: "🤝", active: true, desc: "Aynı sorularda eşleşen cevapları seçin. Arkadaşınızla ortak karara varın!" },
     { id: 5, name: "Hızlı Şık", category: "Grup Oyunu • Hızlı Cevap", icon: "⚡", active: true, desc: "Sorunun doğru cevabını en hızlı bilen en çok puanı alır!" },
     { id: 6, name: "Kim Daha İyi Tanıyor?", category: "Grup Oyunu • Arkadaşlık", icon: "🧩", active: true, desc: "Bir arkadaşınızın sorulara vereceği cevabı tahmin edin. En iyi tanıyan kazansın!" },
-    { id: 7, name: "Oyun 7", category: "Yakında", icon: "🔮", active: false, desc: "Yeni parti oyunu yakında eklenecek." },
+    { id: 7, name: "KPSS GÜNCEL", category: "Grup Oyunu • Bilgi Yarışı", icon: "👑", active: true, desc: "2026 KPSS güncel bilgiler soru havuzu. Çoklu kategori seçimi, süreye bağlı katsayılı puanlama sistemi ve detaylı açıklamalarıyla arkadaşlarınızla yarışın!" },
     { id: 8, name: "Oyun 8", category: "Yakında", icon: "🃏", active: false, desc: "Yeni parti oyunu yakında eklenecek." },
     { id: 9, name: "Oyun 9", category: "Yakında", icon: "🎭", active: false, desc: "Yeni parti oyunu yakında eklenecek." },
     { id: 10, name: "Oyun 10", category: "Yakında", icon: "🎯", active: false, desc: "Yeni parti oyunu yakında eklenecek." },
@@ -213,6 +214,21 @@ function App() {
   if (activeGameFlow === "Kim Daha Yakın") {
     return (
       <ClosestGuess
+        room={room}
+        isInRoom={isInRoom}
+        playerName={playerName}
+        setPlayerName={setPlayerName}
+        onLeave={handleLeaveRoom}
+        activeError={activeError}
+        setActiveError={setActiveError}
+        handleJoinGame={handleJoinGame}
+      />
+    );
+  }
+
+  if (activeGameFlow === "KPSS GÜNCEL") {
+    return (
+      <KpssGuncel
         room={room}
         isInRoom={isInRoom}
         playerName={playerName}

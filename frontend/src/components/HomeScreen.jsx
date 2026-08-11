@@ -42,17 +42,76 @@ function HomeScreen({ games, onGameSelect, onToast, toastMessage }) {
           </div>
         )}
 
+        {/* Featured KPSS GÜNCEL Hero Card */}
+        {(() => {
+          const kpssGame = games.find(g => g.name === "KPSS GÜNCEL");
+          if (!kpssGame) return null;
+          return (
+            <div
+              onClick={() => {
+                if (kpssGame.active) {
+                  onGameSelect(kpssGame.name);
+                } else {
+                  onToast(`${kpssGame.name} hazırlanıyor...`);
+                }
+              }}
+              className="group relative cursor-pointer rounded-3xl border border-amber-500/35 bg-gradient-to-r from-[#1e1a15]/90 via-[#0e0e11]/90 to-[#0e0e11]/60 p-6 md:p-8 hover:border-amber-500/60 hover:bg-[#1e1a15]/75 transition-all duration-300 shadow-[0_0_25px_rgba(245,158,11,0.03)] hover:shadow-[0_0_35px_rgba(245,158,11,0.08)] mb-6 flex flex-col justify-between overflow-hidden"
+            >
+              {/* Highlight Glow Effect */}
+              <div className="absolute -right-16 -top-16 w-44 h-44 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/15 transition-all duration-300 pointer-events-none" />
+
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex space-x-2">
+                    <span className="px-2.5 py-0.5 text-[9px] font-extrabold tracking-wider uppercase rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                      Öne Çıkan Oyun 👑
+                    </span>
+                    <span className="px-2 py-0.5 text-[9px] font-extrabold tracking-wider uppercase rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20 animate-pulse">
+                      Yeni Mod 🔥
+                    </span>
+                  </div>
+                  <span className="text-2xl group-hover:scale-110 transition-transform duration-250 select-none">👑</span>
+                </div>
+
+                <h2 className="text-xl sm:text-2xl font-black text-amber-400 group-hover:text-amber-300 transition-colors duration-200 tracking-tight">
+                  {kpssGame.name}
+                </h2>
+                
+                <p className="mt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed group-hover:text-zinc-300 transition-colors duration-200 max-w-2xl">
+                  {kpssGame.desc}
+                </p>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-zinc-900/80 flex items-center justify-between text-xs font-bold text-amber-500/80 group-hover:text-amber-450 transition-colors duration-300">
+                <span>Oyuna Giriş Yap (Mobil Uyumlu)</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Other Games Header */}
+        <div className="mb-4">
+          <h3 className="text-[10px] font-extrabold text-zinc-550 uppercase tracking-widest">
+            Diğer Parti Oyunları
+          </h3>
+        </div>
+
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-          {games.map((game, index) => (
-            <GameCard
-              key={game.id}
-              game={game}
-              index={index}
-              onClick={onGameSelect}
-              onToast={onToast}
-            />
-          ))}
+          {games
+            .filter(game => game.name !== "KPSS GÜNCEL")
+            .map((game, index) => (
+              <GameCard
+                key={game.id}
+                game={game}
+                index={index}
+                onClick={onGameSelect}
+                onToast={onToast}
+              />
+            ))}
         </div>
       </main>
 

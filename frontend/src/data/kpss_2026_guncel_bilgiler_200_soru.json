@@ -1,0 +1,3453 @@
+{
+    "meta": {
+        "title": "2026 KPSS Güncel Bilgiler - 200 Soru",
+        "language": "tr-TR",
+        "questionCount": 200,
+        "verifiedAt": "2026-08-11",
+        "yearsCovered": [
+            2024,
+            2025,
+            2026
+        ],
+        "formatVersion": "1.0",
+        "answerIndexBase": 0,
+        "note": "Sorular KPSS güncel bilgiler tarzında özgün olarak hazırlanmıştır. ÖSYM'nin geçmiş sınav soruları birebir kopyalanmamıştır; KPSS'de sorulabilecek/önceden yoklanmış bilgi alanlarından yararlanılmıştır. 2026 içinde gelecekte gerçekleşmesi planlanan etkinlikler sorularda 'planlanan/yapılacaktır' biçiminde belirtilmiştir.",
+        "correctOptionDistribution": {
+            "B": 50,
+            "A": 50,
+            "D": 50,
+            "C": 50
+        },
+        "yearDistribution": {
+            "2024": 81,
+            "2025": 72,
+            "2026": 47
+        },
+        "categoryDistribution": {
+            "Bilim ve Uzay": 20,
+            "Spor - Basketbol": 8,
+            "Spor - Futbol": 32,
+            "Spor - Olimpiyat": 8,
+            "Türkiye - Demografi": 11,
+            "Türkiye - KPSS": 1,
+            "Türkiye - Kamu Politikası": 4,
+            "Türkiye - Kültür": 5,
+            "Türkiye - Savunma ve Teknoloji": 2,
+            "Türkiye - Uluslararası Etkinlik": 2,
+            "Türkiye - Uzay": 11,
+            "Türkiye - Çevre ve Mevzuat": 3,
+            "Uluslararası - BM": 5,
+            "Uluslararası - G20": 6,
+            "Uluslararası - Kültür": 12,
+            "Uluslararası - Mimarlık": 2,
+            "Uluslararası - NATO": 3,
+            "Uluslararası - İklim": 6,
+            "Ödüller - Edebiyat": 10,
+            "Ödüller - Müzik": 7,
+            "Ödüller - Nobel": 23,
+            "Ödüller - Sinema": 19
+        }
+    },
+    "questions": [
+        {
+            "id": 1,
+            "category": "Türkiye - Demografi",
+            "year": 2024,
+            "question": "TÜİK ADNKS 2024 sonuçlarına göre Türkiye'nin nüfusu yaklaşık kaç kişidir?",
+            "choices": [
+                "84 milyon 812 bin",
+                "85 milyon 665 bin",
+                "87 milyon 240 bin",
+                "86 milyon 92 bin"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "85 milyon 665 bin",
+            "explanation": "2024 yıl sonu nüfusu 85.664.944 olarak açıklandı.",
+            "source": "TÜİK - ADNKS 2024"
+        },
+        {
+            "id": 2,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "TÜİK ADNKS 2025 sonuçlarına göre Türkiye'nin nüfusu yaklaşık kaç kişidir?",
+            "choices": [
+                "86 milyon 92 bin",
+                "86 milyon 915 bin",
+                "85 milyon 665 bin",
+                "87 milyon 401 bin"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "86 milyon 92 bin",
+            "explanation": "2025 yıl sonu nüfusu 86.092.168 olarak açıklandı.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 3,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 ADNKS sonuçlarına göre Türkiye nüfusu 2024'e kıyasla nasıl değişmiştir?",
+            "choices": [
+                "Azalmıştır",
+                "Yarı yarıya düşmüştür",
+                "Değişmemiştir",
+                "Artmıştır"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Artmıştır",
+            "explanation": "2025 nüfusu, 2024 nüfusunun üzerindedir.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 4,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 yılında Türkiye nüfusunun ortanca yaşı kaçtır?",
+            "choices": [
+                "34,9",
+                "33,6",
+                "32,7",
+                "36,2"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "34,9",
+            "explanation": "Türkiye'nin ortanca yaşı 2025'te 34,9'a yükseldi.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 5,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 ADNKS sonuçlarına göre ortanca yaşın en yüksek olduğu il hangisidir?",
+            "choices": [
+                "Sinop",
+                "Ağrı",
+                "Şanlıurfa",
+                "Hakkâri"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Sinop",
+            "explanation": "Ortanca yaşın en yüksek olduğu il Sinop'tur.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 6,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 ADNKS sonuçlarına göre ortanca yaşın en düşük olduğu il hangisidir?",
+            "choices": [
+                "Sinop",
+                "Balıkesir",
+                "Kastamonu",
+                "Şanlıurfa"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Şanlıurfa",
+            "explanation": "Ortanca yaşın en düşük olduğu il Şanlıurfa'dır.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 7,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 verilerine göre 15-24 yaş grubundaki genç nüfusun toplam nüfusa oranı yaklaşık kaçtır?",
+            "choices": [
+                "%14,8",
+                "%9,6",
+                "%24,8",
+                "%18,7"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "%14,8",
+            "explanation": "15-24 yaş grubunun nüfus içindeki payı %14,8'dir.",
+            "source": "TÜİK - İstatistiklerle Gençlik 2025"
+        },
+        {
+            "id": 8,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 verilerine göre çocuk nüfusun toplam nüfusa oranı yaklaşık kaçtır?",
+            "choices": [
+                "%24,8",
+                "%31,6",
+                "%19,2",
+                "%14,8"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "%24,8",
+            "explanation": "Çocuk nüfusun toplam nüfus içindeki payı %24,8'dir.",
+            "source": "TÜİK - İstatistiklerle Çocuk 2025"
+        },
+        {
+            "id": 9,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025 verilerine göre Türkiye, yaklaşık 86,1 milyonluk nüfusuyla dünya ülkeleri arasında kaçıncı sıradadır?",
+            "choices": [
+                "24.",
+                "18.",
+                "12.",
+                "31."
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "18.",
+            "explanation": "TÜİK'in uluslararası karşılaştırmasına göre Türkiye 18. sıradadır.",
+            "source": "TÜİK - Dünya Nüfus Günü 2026"
+        },
+        {
+            "id": 10,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025'te nüfus yoğunluğu en yüksek il hangisidir?",
+            "choices": [
+                "İstanbul",
+                "Kocaeli",
+                "İzmir",
+                "Ankara"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "İstanbul",
+            "explanation": "İstanbul kilometrekare başına yaklaşık 2.943 kişiyle ilk sıradadır.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 11,
+            "category": "Türkiye - Demografi",
+            "year": 2025,
+            "question": "2025'te nüfus yoğunluğu bakımından İstanbul'dan sonra gelen il hangisidir?",
+            "choices": [
+                "İzmir",
+                "Bursa",
+                "Kocaeli",
+                "Yalova"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Kocaeli",
+            "explanation": "Kocaeli yaklaşık 633 kişi/km² ile ikinci sıradadır.",
+            "source": "TÜİK - ADNKS 2025"
+        },
+        {
+            "id": 12,
+            "category": "Türkiye - Kamu Politikası",
+            "year": 2024,
+            "question": "Türkiye'de 2024 yılı Cumhurbaşkanlığı tarafından hangi tema ile ilan edilmiştir?",
+            "choices": [
+                "Yeşil Dönüşüm Yılı",
+                "Aile Yılı",
+                "Emekliler Yılı",
+                "Gençlik Yılı"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Emekliler Yılı",
+            "explanation": "2024 yılı 'Emekliler Yılı' olarak ilan edildi.",
+            "source": "T.C. Cumhurbaşkanlığı / SGK"
+        },
+        {
+            "id": 13,
+            "category": "Türkiye - Kamu Politikası",
+            "year": 2025,
+            "question": "Türkiye'de 2025 yılı hangi tema ile ilan edilmiştir?",
+            "choices": [
+                "Kültür Yılı",
+                "Emekliler Yılı",
+                "Çocuk Yılı",
+                "Aile Yılı"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Aile Yılı",
+            "explanation": "2025 yılı 'Aile Yılı' olarak ilan edildi.",
+            "source": "T.C. Cumhurbaşkanlığı / Aile ve Sosyal Hizmetler Bakanlığı"
+        },
+        {
+            "id": 14,
+            "category": "Türkiye - Kamu Politikası",
+            "year": 2026,
+            "question": "Türkiye'de 2026-2035 dönemi hangi adla ilan edilmiştir?",
+            "choices": [
+                "Türkiye Yüzyılı Eğitim 10 Yılı",
+                "Dijital Dönüşüm 10 Yılı",
+                "Aile ve Nüfus 10 Yılı",
+                "Yeşil Kalkınma 10 Yılı"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Aile ve Nüfus 10 Yılı",
+            "explanation": "2026-2035 dönemi 'Aile ve Nüfus 10 Yılı' olarak ilan edildi.",
+            "source": "T.C. Cumhurbaşkanlığı / Aile ve Sosyal Hizmetler Bakanlığı"
+        },
+        {
+            "id": 15,
+            "category": "Türkiye - Kamu Politikası",
+            "year": 2026,
+            "question": "2026'da yapılan düzenlemeyle mayıs ayının son haftası hangi adla anılmaya başlanmıştır?",
+            "choices": [
+                "Sosyal Dayanışma Haftası",
+                "Millî Gençlik Haftası",
+                "Nüfus Haftası",
+                "Millî Aile Haftası"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Millî Aile Haftası",
+            "explanation": "Mayıs ayının son haftası 'Millî Aile Haftası' olarak belirlendi.",
+            "source": "Aile ve Sosyal Hizmetler Bakanlığı"
+        },
+        {
+            "id": 16,
+            "category": "Türkiye - Çevre ve Mevzuat",
+            "year": 2025,
+            "question": "Türkiye'nin ilk İklim Kanunu'nun kanun numarası kaçtır?",
+            "choices": [
+                "7521",
+                "7568",
+                "7538",
+                "7552"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "7552",
+            "explanation": "Türkiye'nin ilk İklim Kanunu 7552 sayılı Kanun'dur.",
+            "source": "İklim Değişikliği Başkanlığı / Resmî Gazete"
+        },
+        {
+            "id": 17,
+            "category": "Türkiye - Çevre ve Mevzuat",
+            "year": 2025,
+            "question": "Türkiye'nin ilk İklim Kanunu hangi yılda kabul edilmiştir?",
+            "choices": [
+                "2026",
+                "2024",
+                "2025",
+                "2023"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "2025",
+            "explanation": "İklim Kanunu 2025 yılında kabul edildi.",
+            "source": "İklim Değişikliği Başkanlığı / TBMM"
+        },
+        {
+            "id": 18,
+            "category": "Türkiye - Çevre ve Mevzuat",
+            "year": 2025,
+            "question": "Türkiye'nin İklim Kanunu'nda da yer alan net sıfır emisyon hedefi hangi yıldır?",
+            "choices": [
+                "2060",
+                "2030",
+                "2040",
+                "2053"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "2053",
+            "explanation": "Türkiye'nin net sıfır emisyon hedefi 2053'tür.",
+            "source": "İklim Değişikliği Başkanlığı"
+        },
+        {
+            "id": 19,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Uzaya çıkan ilk Türk astronot kimdir?",
+            "choices": [
+                "Alper Gezeravcı",
+                "Lagari Hasan Çelebi",
+                "Tuva Cihangir Atasever",
+                "Selçuk Bayraktar"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Alper Gezeravcı",
+            "explanation": "Alper Gezeravcı, Ocak 2024'te uzaya çıkan ilk Türk astronot oldu.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 20,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Alper Gezeravcı'nın 2024'teki uzay görevinin ana hedefi hangi istasyondu?",
+            "choices": [
+                "Ay yörüngesi",
+                "Uluslararası Uzay İstasyonu (ISS)",
+                "Hubble Uzay Teleskobu",
+                "Tiangong Uzay İstasyonu"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Uluslararası Uzay İstasyonu (ISS)",
+            "explanation": "Gezeravcı, Ax-3 göreviyle ISS'ye gitti.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 21,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Türkiye'nin ilk astronotu Alper Gezeravcı'nın uzay yolculuğu hangi ayda başladı?",
+            "choices": [
+                "Eylül 2024",
+                "Haziran 2024",
+                "Ocak 2024",
+                "Mart 2024"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Ocak 2024",
+            "explanation": "Ax-3 görevi 19 Ocak 2024'te fırlatıldı.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 22,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Türkiye'nin ikinci astronotu kimdir?",
+            "choices": [
+                "Alper Gezeravcı",
+                "Murat Özpala",
+                "Tuva Cihangir Atasever",
+                "İsmail Demir"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Tuva Cihangir Atasever",
+            "explanation": "Tuva Cihangir Atasever Türkiye'nin ikinci astronotudur.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 23,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Tuva Cihangir Atasever'in Haziran 2024'te gerçekleştirdiği araştırma uçuşu hangi türdeydi?",
+            "choices": [
+                "Ay yüzeyi görevi",
+                "ISS'de 6 aylık görev",
+                "Mars yörünge görevi",
+                "Yörünge altı (suborbital)"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Yörünge altı (suborbital)",
+            "explanation": "Atasever 8 Haziran 2024'te yörünge altı araştırma uçuşu yaptı.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 24,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "Tuva Cihangir Atasever'in yörünge altı araştırma uçuşu hangi tarihte gerçekleşmiştir?",
+            "choices": [
+                "9 Temmuz 2024",
+                "19 Ocak 2024",
+                "21 Şubat 2024",
+                "8 Haziran 2024"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "8 Haziran 2024",
+            "explanation": "Atasever'in uçuşu 8 Haziran 2024'te gerçekleştirildi.",
+            "source": "Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 25,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "TÜRKSAT 6A'nın Türkiye açısından temel özelliği nedir?",
+            "choices": [
+                "İlk gözlem uydusu olması",
+                "İlk meteoroloji uydusu olması",
+                "İlk yerli ve millî haberleşme uydusu olması",
+                "İlk Ay sondası olması"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "İlk yerli ve millî haberleşme uydusu olması",
+            "explanation": "TÜRKSAT 6A, Türkiye'nin ilk yerli ve millî haberleşme uydusudur.",
+            "source": "Türksat"
+        },
+        {
+            "id": 26,
+            "category": "Türkiye - Uzay",
+            "year": 2024,
+            "question": "TÜRKSAT 6A uzaya hangi tarihte fırlatılmıştır?",
+            "choices": [
+                "19 Ocak 2024",
+                "9 Temmuz 2024",
+                "21 Nisan 2025",
+                "17 Nisan 2023"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "9 Temmuz 2024",
+            "explanation": "TÜRKSAT 6A, 9 Temmuz 2024'te fırlatıldı.",
+            "source": "Türksat / Türkiye Uzay Ajansı"
+        },
+        {
+            "id": 27,
+            "category": "Türkiye - Uzay",
+            "year": 2025,
+            "question": "TÜRKSAT 6A hangi tarihte hizmete alınmıştır?",
+            "choices": [
+                "29 Ekim 2025",
+                "17 Şubat 2025",
+                "9 Temmuz 2024",
+                "21 Nisan 2025"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "21 Nisan 2025",
+            "explanation": "Uydu 21 Nisan 2025'te hizmete alındı.",
+            "source": "Türksat"
+        },
+        {
+            "id": 28,
+            "category": "Türkiye - Uzay",
+            "year": 2025,
+            "question": "TÜRKSAT 6A ile Türkiye, kendi haberleşme uydusunu üretebilen yaklaşık kaç ülkeden biri olmuştur?",
+            "choices": [
+                "5",
+                "11",
+                "24",
+                "17"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "11",
+            "explanation": "Türksat'a göre Türkiye bu kabiliyete sahip 11 ülkeden biri oldu.",
+            "source": "Türksat"
+        },
+        {
+            "id": 29,
+            "category": "Türkiye - Uzay",
+            "year": 2025,
+            "question": "TÜRKSAT 6A'nın yerlilik oranı hangi düzeyin üzerindedir?",
+            "choices": [
+                "%65",
+                "%30",
+                "%80",
+                "%50"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "%80",
+            "explanation": "Uydu için %80'in üzerinde yerlilik oranı açıklanmıştır.",
+            "source": "Türksat"
+        },
+        {
+            "id": 30,
+            "category": "Türkiye - Savunma ve Teknoloji",
+            "year": 2024,
+            "question": "KAAN millî muharip uçağının ilk uçuşu hangi tarihte yapılmıştır?",
+            "choices": [
+                "21 Şubat 2024",
+                "19 Ocak 2024",
+                "30 Ağustos 2024",
+                "6 Mayıs 2024"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "21 Şubat 2024",
+            "explanation": "KAAN ilk uçuşunu 21 Şubat 2024'te yaptı.",
+            "source": "TUSAŞ"
+        },
+        {
+            "id": 31,
+            "category": "Türkiye - Savunma ve Teknoloji",
+            "year": 2024,
+            "question": "KAAN'ın ikinci uçuşu hangi tarihte gerçekleşmiştir?",
+            "choices": [
+                "21 Şubat 2024",
+                "8 Haziran 2024",
+                "9 Temmuz 2024",
+                "6 Mayıs 2024"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "6 Mayıs 2024",
+            "explanation": "KAAN ikinci uçuşunu 6 Mayıs 2024'te yaptı.",
+            "source": "TUSAŞ"
+        },
+        {
+            "id": 32,
+            "category": "Türkiye - Kültür",
+            "year": 2025,
+            "question": "2025'te UNESCO Somut Olmayan Kültürel Miras Temsili Listesi'ne Türkiye'den kaydedilen 'Antep İşi' hangi sanat dalıyla ilgilidir?",
+            "choices": [
+                "Ebru sanatı",
+                "Çini yapımı",
+                "Çekme iplik işi / nakış",
+                "Ahşap oymacılığı"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Çekme iplik işi / nakış",
+            "explanation": "Antep İşi, Gaziantep'e özgü çekme iplik esaslı geleneksel nakış sanatıdır.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 33,
+            "category": "Türkiye - Kültür",
+            "year": 2025,
+            "question": "UNESCO listesine 2025'te giren 'Antep İşi' hangi şehirle özdeşleşmiştir?",
+            "choices": [
+                "Kütahya",
+                "Tokat",
+                "Gaziantep",
+                "Bursa"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Gaziantep",
+            "explanation": "Antep İşi Gaziantep ile özdeşleşmiştir.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 34,
+            "category": "Türkiye - Kültür",
+            "year": 2024,
+            "question": "2024'te UNESCO listesine Türkiye ile Kuzey Makedonya'nın ortak unsuru olarak giren geleneksel çalgı kültürü hangisidir?",
+            "choices": [
+                "Gayda / Tulum yapımı ve icrası",
+                "Ney yapımı ve icrası",
+                "Bağlama yapımı ve icrası",
+                "Kemençe yapımı ve icrası"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Gayda / Tulum yapımı ve icrası",
+            "explanation": "Traditional bagpipe (Gayda/Tulum) making and performing, iki ülkenin ortak dosyasıdır.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 35,
+            "category": "Türkiye - Kültür",
+            "year": 2024,
+            "question": "2024'te UNESCO Somut Olmayan Kültürel Miras listesinde çok uluslu dosya olarak güncellenen bahar bayramı hangisidir?",
+            "choices": [
+                "Mesir Macunu Festivali",
+                "Nevruz",
+                "Kırkpınar",
+                "Hıdırellez"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Nevruz",
+            "explanation": "Nevruz çok uluslu ortak kültürel miras unsurlarındandır.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 36,
+            "category": "Türkiye - Kültür",
+            "year": 2024,
+            "question": "UNESCO'nun ilk 'Somut Olmayan Kültürel Miras Uluslararası Günü' hangi tarihte kutlanmıştır?",
+            "choices": [
+                "18 Mayıs 2024",
+                "10 Kasım 2024",
+                "17 Ekim 2024",
+                "21 Mart 2024"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "17 Ekim 2024",
+            "explanation": "İlk uluslararası gün 17 Ekim 2024'te kutlandı.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 37,
+            "category": "Türkiye - KPSS",
+            "year": 2026,
+            "question": "ÖSYM takvimine göre 2026 KPSS Lisans Genel Yetenek-Genel Kültür oturumu hangi tarihte yapılacaktır?",
+            "choices": [
+                "6 Eylül 2026",
+                "13 Eylül 2026",
+                "4 Ekim 2026",
+                "23 Ağustos 2026"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "6 Eylül 2026",
+            "explanation": "2026 KPSS Lisans GY-GK oturumu 6 Eylül 2026 olarak planlandı.",
+            "source": "ÖSYM - 2026 Sınav Takvimi"
+        },
+        {
+            "id": 38,
+            "category": "Türkiye - Uluslararası Etkinlik",
+            "year": 2026,
+            "question": "2026 Birleşmiş Milletler İklim Değişikliği Konferansı COP31'e Türkiye'de hangi şehir ev sahipliği yapacaktır?",
+            "choices": [
+                "Ankara",
+                "Antalya",
+                "İstanbul",
+                "İzmir"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Antalya",
+            "explanation": "COP31'in 9-20 Kasım 2026'da Antalya'da yapılması planlanmaktadır.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 39,
+            "category": "Türkiye - Uluslararası Etkinlik",
+            "year": 2026,
+            "question": "2026 NATO Zirvesi Türkiye'de hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "İzmir",
+                "Antalya",
+                "İstanbul",
+                "Ankara"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Ankara",
+            "explanation": "2026 NATO Zirvesi 7-8 Temmuz'da Ankara'da düzenlendi.",
+            "source": "NATO"
+        },
+        {
+            "id": 40,
+            "category": "Uluslararası - İklim",
+            "year": 2026,
+            "question": "COP31'in planlanan tarih aralığı hangisidir?",
+            "choices": [
+                "7-18 Aralık 2026",
+                "1-12 Ekim 2026",
+                "10-21 Kasım 2025",
+                "9-20 Kasım 2026"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "9-20 Kasım 2026",
+            "explanation": "COP31'in 9-20 Kasım 2026'da Antalya'da yapılması planlanmaktadır.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 41,
+            "category": "Uluslararası - İklim",
+            "year": 2025,
+            "question": "COP30 hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "Baku",
+                "Glasgow",
+                "Dubai",
+                "Belém"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Belém",
+            "explanation": "COP30, Kasım 2025'te Brezilya'nın Belém kentinde düzenlendi.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 42,
+            "category": "Uluslararası - İklim",
+            "year": 2025,
+            "question": "COP30'a ev sahipliği yapan ülke hangisidir?",
+            "choices": [
+                "Birleşik Arap Emirlikleri",
+                "Brezilya",
+                "Mısır",
+                "Azerbaycan"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Brezilya",
+            "explanation": "COP30'un ev sahibi Brezilya'dır.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 43,
+            "category": "Uluslararası - İklim",
+            "year": 2024,
+            "question": "COP29 hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "Şarm eş-Şeyh",
+                "Bakü",
+                "Belém",
+                "Dubai"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Bakü",
+            "explanation": "COP29, Kasım 2024'te Bakü'de gerçekleştirildi.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 44,
+            "category": "Uluslararası - İklim",
+            "year": 2024,
+            "question": "COP29'a ev sahipliği yapan ülke hangisidir?",
+            "choices": [
+                "Kazakistan",
+                "Azerbaycan",
+                "Gürcistan",
+                "Brezilya"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Azerbaycan",
+            "explanation": "COP29'un ev sahibi Azerbaycan'dır.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 45,
+            "category": "Uluslararası - İklim",
+            "year": 2024,
+            "question": "COP29'da gelişmekte olan ülkelere yönelik yıllık iklim finansmanı hedefi 2035'e kadar hangi tutara çıkarılmıştır?",
+            "choices": [
+                "300 milyar ABD doları",
+                "100 milyar ABD doları",
+                "1 trilyon ABD doları",
+                "500 milyar ABD doları"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "300 milyar ABD doları",
+            "explanation": "COP29'da önceki 100 milyar dolarlık hedefin 300 milyar dolara çıkarılması kararlaştırıldı.",
+            "source": "UNFCCC"
+        },
+        {
+            "id": 46,
+            "category": "Uluslararası - G20",
+            "year": 2024,
+            "question": "2024 yılında G20 dönem başkanlığını hangi ülke yürütmüştür?",
+            "choices": [
+                "Brezilya",
+                "Güney Afrika",
+                "ABD",
+                "Hindistan"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Brezilya",
+            "explanation": "2024 G20 dönem başkanlığı Brezilya'daydı.",
+            "source": "G20 / Güney Afrika Hükûmeti"
+        },
+        {
+            "id": 47,
+            "category": "Uluslararası - G20",
+            "year": 2025,
+            "question": "2025 yılında G20 dönem başkanlığını hangi ülke yürütmüştür?",
+            "choices": [
+                "Brezilya",
+                "ABD",
+                "Endonezya",
+                "Güney Afrika"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Güney Afrika",
+            "explanation": "Güney Afrika 1 Aralık 2024-30 Kasım 2025 arasında dönem başkanlığını yürüttü.",
+            "source": "G20 South Africa"
+        },
+        {
+            "id": 48,
+            "category": "Uluslararası - G20",
+            "year": 2025,
+            "question": "G20 dönem başkanlığını üstlenen ilk Afrika ülkesi hangisidir?",
+            "choices": [
+                "Mısır",
+                "Kenya",
+                "Nijerya",
+                "Güney Afrika"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Güney Afrika",
+            "explanation": "Güney Afrika, G20 dönem başkanlığını üstlenen ilk Afrika ülkesi oldu.",
+            "source": "G20 South Africa"
+        },
+        {
+            "id": 49,
+            "category": "Uluslararası - G20",
+            "year": 2025,
+            "question": "2025 G20 Liderler Zirvesi hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "Johannesburg",
+                "Pretoria",
+                "Durban",
+                "Cape Town"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Johannesburg",
+            "explanation": "2025 Liderler Zirvesi Johannesburg'da düzenlendi.",
+            "source": "G20 South Africa"
+        },
+        {
+            "id": 50,
+            "category": "Uluslararası - G20",
+            "year": 2026,
+            "question": "2026 yılında G20 dönem başkanlığını hangi ülke üstlenmiştir?",
+            "choices": [
+                "Kanada",
+                "Almanya",
+                "Amerika Birleşik Devletleri",
+                "Meksika"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Amerika Birleşik Devletleri",
+            "explanation": "2026 G20 dönem başkanlığı ABD'dedir.",
+            "source": "G20 Miami 2026"
+        },
+        {
+            "id": 51,
+            "category": "Uluslararası - G20",
+            "year": 2026,
+            "question": "2026 G20 Liderler Zirvesi için açıklanan ev sahibi şehir hangisidir?",
+            "choices": [
+                "New York",
+                "Los Angeles",
+                "Washington, DC",
+                "Miami"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Miami",
+            "explanation": "ABD dönem başkanlığında zirvenin Miami'de düzenlenmesi açıklanmıştır.",
+            "source": "G20 Miami 2026"
+        },
+        {
+            "id": 52,
+            "category": "Uluslararası - NATO",
+            "year": 2024,
+            "question": "2024 NATO Zirvesi hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "Vilnius",
+                "Washington, DC",
+                "Brüksel",
+                "Lahey"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Washington, DC",
+            "explanation": "2024 NATO Zirvesi Washington'da yapıldı.",
+            "source": "NATO"
+        },
+        {
+            "id": 53,
+            "category": "Uluslararası - NATO",
+            "year": 2025,
+            "question": "2025 NATO Zirvesi hangi şehirde düzenlenmiştir?",
+            "choices": [
+                "Brüksel",
+                "Ankara",
+                "Lahey",
+                "Varşova"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Lahey",
+            "explanation": "2025 NATO Zirvesi Hollanda'nın Lahey kentinde düzenlendi.",
+            "source": "NATO"
+        },
+        {
+            "id": 54,
+            "category": "Uluslararası - NATO",
+            "year": 2026,
+            "question": "2026 NATO Zirvesi hangi tarihlerde düzenlenmiştir?",
+            "choices": [
+                "9-10 Eylül 2026",
+                "7-8 Temmuz 2026",
+                "20-21 Kasım 2026",
+                "14-15 Haziran 2026"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "7-8 Temmuz 2026",
+            "explanation": "Ankara Zirvesi 7-8 Temmuz 2026'da gerçekleştirildi.",
+            "source": "NATO"
+        },
+        {
+            "id": 55,
+            "category": "Uluslararası - BM",
+            "year": 2024,
+            "question": "Birleşmiş Milletler 2024 yılını aşağıdakilerden hangisinin Uluslararası Yılı olarak ilan etmiştir?",
+            "choices": [
+                "Kadın Çiftçiler",
+                "Devegiller (Camelids)",
+                "Kuantum Bilimi ve Teknolojisi",
+                "Kooperatifler"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Devegiller (Camelids)",
+            "explanation": "2024, BM tarafından International Year of Camelids olarak ilan edildi.",
+            "source": "Birleşmiş Milletler"
+        },
+        {
+            "id": 56,
+            "category": "Uluslararası - BM",
+            "year": 2025,
+            "question": "Birleşmiş Milletler tarafından 2025 hangi bilimsel alanın Uluslararası Yılı ilan edilmiştir?",
+            "choices": [
+                "Genetik Mühendisliği",
+                "Nükleer Füzyon",
+                "Kuantum Bilimi ve Teknolojisi",
+                "Okyanus Robotikleri"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Kuantum Bilimi ve Teknolojisi",
+            "explanation": "2025, Uluslararası Kuantum Bilimi ve Teknolojisi Yılı'dır.",
+            "source": "Birleşmiş Milletler / UNESCO"
+        },
+        {
+            "id": 57,
+            "category": "Uluslararası - BM",
+            "year": 2025,
+            "question": "Birleşmiş Milletler 2025'i aynı zamanda hangi yapının Uluslararası Yılı ilan etmiştir?",
+            "choices": [
+                "Sendikalar",
+                "Kooperatifler",
+                "Belediyeler",
+                "Üniversiteler"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Kooperatifler",
+            "explanation": "2025, ikinci kez Uluslararası Kooperatifler Yılı olarak ilan edildi.",
+            "source": "Birleşmiş Milletler"
+        },
+        {
+            "id": 58,
+            "category": "Uluslararası - BM",
+            "year": 2026,
+            "question": "Birleşmiş Milletler 2026'yı hangi grubun Uluslararası Yılı ilan etmiştir?",
+            "choices": [
+                "Kadın Çiftçiler",
+                "Göçmen İşçiler",
+                "Genç Girişimciler",
+                "Kadın Bilim İnsanları"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Kadın Çiftçiler",
+            "explanation": "2026, International Year of the Woman Farmer olarak ilan edilmiştir.",
+            "source": "Birleşmiş Milletler"
+        },
+        {
+            "id": 59,
+            "category": "Uluslararası - BM",
+            "year": 2026,
+            "question": "Birleşmiş Milletlerin 2026 için ilan ettiği uluslararası yıllardan biri aşağıdakilerden hangisidir?",
+            "choices": [
+                "Dijital Eğitim Yılı",
+                "Dağ Turizmi Yılı",
+                "Kutup Bilimi Yılı",
+                "Meralar ve Çobanlar Yılı"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Meralar ve Çobanlar Yılı",
+            "explanation": "2026, International Year of Rangelands and Pastoralists'tir.",
+            "source": "Birleşmiş Milletler / FAO"
+        },
+        {
+            "id": 60,
+            "category": "Uluslararası - Kültür",
+            "year": 2024,
+            "question": "UNESCO Dünya Kitap Başkenti 2024 hangi şehirdir?",
+            "choices": [
+                "Rabat",
+                "Medellín",
+                "Rio de Janeiro",
+                "Strasbourg"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Strasbourg",
+            "explanation": "2024 Dünya Kitap Başkenti Strasbourg'dur.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 61,
+            "category": "Uluslararası - Kültür",
+            "year": 2024,
+            "question": "2024 UNESCO Dünya Kitap Başkenti Strasbourg hangi ülkededir?",
+            "choices": [
+                "Fransa",
+                "Almanya",
+                "İsviçre",
+                "Belçika"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Fransa",
+            "explanation": "Strasbourg Fransa'dadır.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 62,
+            "category": "Uluslararası - Kültür",
+            "year": 2025,
+            "question": "UNESCO Dünya Kitap Başkenti 2025 hangi şehirdir?",
+            "choices": [
+                "Rio de Janeiro",
+                "Brasília",
+                "São Paulo",
+                "Buenos Aires"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Rio de Janeiro",
+            "explanation": "2025 Dünya Kitap Başkenti Rio de Janeiro'dur.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 63,
+            "category": "Uluslararası - Kültür",
+            "year": 2026,
+            "question": "UNESCO Dünya Kitap Başkenti 2026 hangi şehirdir?",
+            "choices": [
+                "Kazablanka",
+                "Marakeş",
+                "Tunus",
+                "Rabat"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Rabat",
+            "explanation": "2026 Dünya Kitap Başkenti Rabat'tır.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 64,
+            "category": "Uluslararası - Kültür",
+            "year": 2026,
+            "question": "2026 UNESCO Dünya Kitap Başkenti Rabat hangi ülkededir?",
+            "choices": [
+                "Tunus",
+                "Cezayir",
+                "Fas",
+                "Ürdün"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Fas",
+            "explanation": "Rabat, Fas'ın başkentidir.",
+            "source": "UNESCO"
+        },
+        {
+            "id": 65,
+            "category": "Uluslararası - Kültür",
+            "year": 2024,
+            "question": "2024 Avrupa Kültür Başkentlerinden biri hangisidir?",
+            "choices": [
+                "Oulu",
+                "Trenčín",
+                "Tartu",
+                "Chemnitz"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Tartu",
+            "explanation": "Tartu, Bad Ischl ve Bodø 2024 Avrupa Kültür Başkentleridir.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 66,
+            "category": "Uluslararası - Kültür",
+            "year": 2024,
+            "question": "2024 Avrupa Kültür Başkenti Bad Ischl hangi ülkededir?",
+            "choices": [
+                "Slovenya",
+                "Almanya",
+                "Avusturya",
+                "İsviçre"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Avusturya",
+            "explanation": "Bad Ischl Avusturya'dadır.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 67,
+            "category": "Uluslararası - Kültür",
+            "year": 2024,
+            "question": "2024 Avrupa Kültür Başkenti Bodø hangi ülkededir?",
+            "choices": [
+                "İsveç",
+                "Norveç",
+                "Danimarka",
+                "Finlandiya"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Norveç",
+            "explanation": "Bodø Norveç'tedir.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 68,
+            "category": "Uluslararası - Kültür",
+            "year": 2025,
+            "question": "2025 Avrupa Kültür Başkentlerinden biri hangisidir?",
+            "choices": [
+                "Rijeka",
+                "Tartu",
+                "Chemnitz",
+                "Oulu"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Chemnitz",
+            "explanation": "2025 Avrupa Kültür Başkentleri Chemnitz ve Nova Gorica'dır.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 69,
+            "category": "Uluslararası - Kültür",
+            "year": 2025,
+            "question": "2025 Avrupa Kültür Başkenti Nova Gorica hangi ülkededir?",
+            "choices": [
+                "Sırbistan",
+                "Slovakya",
+                "Slovenya",
+                "Hırvatistan"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Slovenya",
+            "explanation": "Nova Gorica Slovenya'dadır.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 70,
+            "category": "Uluslararası - Kültür",
+            "year": 2026,
+            "question": "2026 Avrupa Kültür Başkentlerinden biri hangisidir?",
+            "choices": [
+                "Bodø",
+                "Chemnitz",
+                "Oulu",
+                "Tartu"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Oulu",
+            "explanation": "2026 Avrupa Kültür Başkentleri Oulu ve Trenčín'dir.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 71,
+            "category": "Uluslararası - Kültür",
+            "year": 2026,
+            "question": "2026 Avrupa Kültür Başkenti Trenčín hangi ülkededir?",
+            "choices": [
+                "Çekya",
+                "Slovenya",
+                "Slovakya",
+                "Hırvatistan"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Slovakya",
+            "explanation": "Trenčín Slovakya'dadır.",
+            "source": "Avrupa Komisyonu"
+        },
+        {
+            "id": 72,
+            "category": "Uluslararası - Mimarlık",
+            "year": 2024,
+            "question": "2024 Pritzker Mimarlık Ödülü'nü kim kazanmıştır?",
+            "choices": [
+                "Smiljan Radić Clarke",
+                "Liu Jiakun",
+                "David Chipperfield",
+                "Riken Yamamoto"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Riken Yamamoto",
+            "explanation": "2024 Pritzker Ödülü Riken Yamamoto'ya verildi.",
+            "source": "The Pritzker Architecture Prize"
+        },
+        {
+            "id": 73,
+            "category": "Uluslararası - Mimarlık",
+            "year": 2025,
+            "question": "2025 Pritzker Mimarlık Ödülü'nü kim kazanmıştır?",
+            "choices": [
+                "Liu Jiakun",
+                "Tadao Ando",
+                "Smiljan Radić Clarke",
+                "Riken Yamamoto"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Liu Jiakun",
+            "explanation": "2025 Pritzker Ödülü Liu Jiakun'a verildi.",
+            "source": "The Pritzker Architecture Prize"
+        },
+        {
+            "id": 74,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024 şampiyonu hangi ülkedir?",
+            "choices": [
+                "İspanya",
+                "Almanya",
+                "İngiltere",
+                "Fransa"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "İspanya",
+            "explanation": "İspanya finalde İngiltere'yi yenerek şampiyon oldu.",
+            "source": "UEFA"
+        },
+        {
+            "id": 75,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024 finalinde İspanya'nın rakibi hangi ülkeydi?",
+            "choices": [
+                "Almanya",
+                "İngiltere",
+                "Hollanda",
+                "Fransa"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "İngiltere",
+            "explanation": "Final İspanya ile İngiltere arasında oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 76,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024 finalinin skoru nedir?",
+            "choices": [
+                "İngiltere 2-1 İspanya",
+                "İspanya 2-1 İngiltere",
+                "İspanya 1-0 İngiltere",
+                "İspanya 3-1 Fransa"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "İspanya 2-1 İngiltere",
+            "explanation": "İspanya finali 2-1 kazandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 77,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024 finali hangi şehirde oynanmıştır?",
+            "choices": [
+                "Dortmund",
+                "Berlin",
+                "Münih",
+                "Hamburg"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Berlin",
+            "explanation": "Final Berlin'deki Olympiastadion'da oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 78,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024'ün Turnuvanın Oyuncusu ödülünü kim kazanmıştır?",
+            "choices": [
+                "Lamine Yamal",
+                "Dani Olmo",
+                "Jude Bellingham",
+                "Rodri"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Rodri",
+            "explanation": "Rodri, UEFA tarafından Turnuvanın Oyuncusu seçildi.",
+            "source": "UEFA"
+        },
+        {
+            "id": 79,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024'ün En İyi Genç Oyuncusu kim seçilmiştir?",
+            "choices": [
+                "Jamal Musiala",
+                "Nico Williams",
+                "Lamine Yamal",
+                "Florian Wirtz"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Lamine Yamal",
+            "explanation": "Lamine Yamal turnuvanın en iyi genç oyuncusu oldu.",
+            "source": "UEFA"
+        },
+        {
+            "id": 80,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "EURO 2024 finalinde İspanya'ya şampiyonluğu getiren 86. dakika golünü kim atmıştır?",
+            "choices": [
+                "Rodri",
+                "Álvaro Morata",
+                "Dani Carvajal",
+                "Mikel Oyarzabal"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Mikel Oyarzabal",
+            "explanation": "Mikel Oyarzabal finalin son bölümünde şampiyonluk golünü attı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 81,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "İspanya EURO 2024 ile Avrupa Şampiyonası tarihinde kaçıncı kez şampiyon olmuştur?",
+            "choices": [
+                "3.",
+                "2.",
+                "4.",
+                "5."
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "4.",
+            "explanation": "İspanya dördüncü Avrupa Şampiyonluğu ile rekor kırdı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 82,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "UEFA EURO 2024'e ev sahipliği yapan ülke hangisidir?",
+            "choices": [
+                "İspanya",
+                "Almanya",
+                "İtalya",
+                "Fransa"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Almanya",
+            "explanation": "EURO 2024 Almanya'da düzenlendi.",
+            "source": "UEFA"
+        },
+        {
+            "id": 83,
+            "category": "Spor - Futbol",
+            "year": 2024,
+            "question": "EURO 2024 yarı finalinde İspanya hangi takımı eleyerek finale yükselmiştir?",
+            "choices": [
+                "Almanya",
+                "Portekiz",
+                "Fransa",
+                "Hollanda"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Fransa",
+            "explanation": "İspanya yarı finalde Fransa'yı 2-1 mağlup etti.",
+            "source": "UEFA"
+        },
+        {
+            "id": 84,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024 Olimpiyatları'nda Türkiye'nin olimpiyat tarihindeki ilk atıcılık madalyasını kazanan ikili hangisidir?",
+            "choices": [
+                "Şevval İlayda Tarhan - Yusuf Dikeç",
+                "Mete Gazoz - Ulaş Berkim Tümer",
+                "Nafia Kuş - Merve Dinçel Kavurat",
+                "Hatice Akbaş - Buse Naz Çakıroğlu"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Şevval İlayda Tarhan - Yusuf Dikeç",
+            "explanation": "Tarhan ve Dikeç karışık takım 10 m havalı tabancada gümüş kazandı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 85,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Şevval İlayda Tarhan ve Yusuf Dikeç Paris 2024'te hangi branşta madalya kazanmıştır?",
+            "choices": [
+                "10 m havalı tüfek karışık takım",
+                "10 m havalı tabanca karışık takım",
+                "Trap karışık takım",
+                "25 m sürat tabanca"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "10 m havalı tabanca karışık takım",
+            "explanation": "İkili 10 m havalı tabanca karışık takım yarışmasında gümüş madalya aldı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 86,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Yusuf Dikeç ve Şevval İlayda Tarhan'ın Paris 2024'te kazandığı madalyanın rengi nedir?",
+            "choices": [
+                "Altın",
+                "Bronz",
+                "Gümüş",
+                "Platin"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Gümüş",
+            "explanation": "Türkiye bu branşta gümüş madalya kazandı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 87,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024 erkekler takım okçulukta Türkiye hangi madalyayı kazanmıştır?",
+            "choices": [
+                "Altın",
+                "Madalya kazanamadı",
+                "Gümüş",
+                "Bronz"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Bronz",
+            "explanation": "Türkiye erkekler takım okçulukta bronz madalya kazandı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 88,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024 Olimpiyatları'nda Türkiye toplam kaç madalya kazanmıştır?",
+            "choices": [
+                "12",
+                "10",
+                "5",
+                "8"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "8",
+            "explanation": "Türkiye 3 gümüş ve 5 bronz olmak üzere 8 madalya kazandı.",
+            "source": "Olympics.com - Madalya Tablosu"
+        },
+        {
+            "id": 89,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024'te Türkiye'nin madalya dağılımı hangisidir?",
+            "choices": [
+                "4 gümüş, 4 bronz",
+                "3 gümüş, 5 bronz",
+                "2 altın, 3 gümüş, 3 bronz",
+                "1 altın, 2 gümüş, 5 bronz"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "3 gümüş, 5 bronz",
+            "explanation": "Türkiye Paris 2024'ü altın madalyasız, 3 gümüş ve 5 bronzla tamamladı.",
+            "source": "Olympics.com - Madalya Tablosu"
+        },
+        {
+            "id": 90,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024'te kadınlar 54 kg boksta Türkiye adına gümüş madalya kazanan sporcu kimdir?",
+            "choices": [
+                "Hatice Akbaş",
+                "Buse Naz Çakıroğlu",
+                "Busenaz Sürmeneli",
+                "Esra Yıldız Kahraman"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Hatice Akbaş",
+            "explanation": "Hatice Akbaş kadınlar 54 kg boksta gümüş madalya kazandı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 91,
+            "category": "Spor - Olimpiyat",
+            "year": 2024,
+            "question": "Paris 2024'te kadınlar +67 kg tekvandoda Türkiye adına bronz madalya kazanan sporcu kimdir?",
+            "choices": [
+                "Nur Tatar",
+                "Nafia Kuş",
+                "Hatice Kübra İlgün",
+                "Merve Dinçel Kavurat"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Nafia Kuş",
+            "explanation": "Nafia Kuş kadınlar +67 kg kategorisinde bronz madalya kazandı.",
+            "source": "Olympics.com"
+        },
+        {
+            "id": 92,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "FIBA EuroBasket 2025 şampiyonu hangi ülkedir?",
+            "choices": [
+                "Türkiye",
+                "Fransa",
+                "Yunanistan",
+                "Almanya"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Almanya",
+            "explanation": "Almanya finalde Türkiye'yi yenerek şampiyon oldu.",
+            "source": "FIBA"
+        },
+        {
+            "id": 93,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "FIBA EuroBasket 2025'te Türkiye hangi dereceyi elde etmiştir?",
+            "choices": [
+                "İkinci",
+                "Dördüncü",
+                "Birinci",
+                "Üçüncü"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "İkinci",
+            "explanation": "Türkiye turnuvayı gümüş madalyayla ikinci sırada tamamladı.",
+            "source": "FIBA"
+        },
+        {
+            "id": 94,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "EuroBasket 2025 finalinde Türkiye hangi ülkeyle karşılaşmıştır?",
+            "choices": [
+                "Almanya",
+                "Polonya",
+                "Yunanistan",
+                "Sırbistan"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Almanya",
+            "explanation": "Final Türkiye-Almanya arasında oynandı.",
+            "source": "FIBA"
+        },
+        {
+            "id": 95,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "EuroBasket 2025 finalinin skoru nedir?",
+            "choices": [
+                "Almanya 91-77 Türkiye",
+                "Türkiye 86-82 Almanya",
+                "Türkiye 94-68 Almanya",
+                "Almanya 88-83 Türkiye"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Almanya 88-83 Türkiye",
+            "explanation": "Almanya finali 88-83 kazandı.",
+            "source": "FIBA"
+        },
+        {
+            "id": 96,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "Türkiye EuroBasket 2025 yarı finalinde hangi ülkeyi 94-68 mağlup etmiştir?",
+            "choices": [
+                "Polonya",
+                "Fransa",
+                "İtalya",
+                "Yunanistan"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Yunanistan",
+            "explanation": "Türkiye yarı finalde Yunanistan'ı 94-68 yendi.",
+            "source": "FIBA"
+        },
+        {
+            "id": 97,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "Türkiye EuroBasket 2025'te kaç yıl sonra finale yükselmiştir?",
+            "choices": [
+                "24 yıl",
+                "12 yıl",
+                "32 yıl",
+                "16 yıl"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "24 yıl",
+            "explanation": "Türkiye 2001'den 24 yıl sonra yeniden finale yükseldi.",
+            "source": "FIBA"
+        },
+        {
+            "id": 98,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "Türkiye EuroBasket 2025 çeyrek finalinde hangi ülkeyi 91-77 yenmiştir?",
+            "choices": [
+                "Polonya",
+                "Litvanya",
+                "Letonya",
+                "İspanya"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Polonya",
+            "explanation": "Türkiye çeyrek finalde Polonya'yı 91-77 mağlup etti.",
+            "source": "FIBA"
+        },
+        {
+            "id": 99,
+            "category": "Spor - Basketbol",
+            "year": 2025,
+            "question": "EuroBasket 2025 çeyrek finalinde Polonya'ya karşı triple-double yapan Türk oyuncu kimdir?",
+            "choices": [
+                "Cedi Osman",
+                "Shane Larkin",
+                "Alperen Şengün",
+                "Ercan Osmani"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Alperen Şengün",
+            "explanation": "Alperen Şengün Polonya karşısında triple-double yaptı.",
+            "source": "FIBA"
+        },
+        {
+            "id": 100,
+            "category": "Spor - Futbol",
+            "year": 2025,
+            "question": "2024-25 UEFA Şampiyonlar Ligi şampiyonu hangi kulüptür?",
+            "choices": [
+                "Manchester City",
+                "Paris Saint-Germain",
+                "Real Madrid",
+                "Inter"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Paris Saint-Germain",
+            "explanation": "PSG, 2025 finalinde Inter'i yenerek ilk Şampiyonlar Ligi kupasını kazandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 101,
+            "category": "Spor - Futbol",
+            "year": 2025,
+            "question": "2025 UEFA Şampiyonlar Ligi finalinde PSG'nin rakibi hangi takımdı?",
+            "choices": [
+                "Barcelona",
+                "Arsenal",
+                "Bayern Münih",
+                "Inter"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Inter",
+            "explanation": "Final PSG ile Inter arasında oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 102,
+            "category": "Spor - Futbol",
+            "year": 2025,
+            "question": "2025 UEFA Şampiyonlar Ligi finalinin skoru nedir?",
+            "choices": [
+                "Inter 2-1 PSG",
+                "PSG 2-0 Arsenal",
+                "PSG 5-0 Inter",
+                "PSG 3-1 Inter"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "PSG 5-0 Inter",
+            "explanation": "PSG finali 5-0 kazanarak final tarihinin en farklı galibiyetlerinden birine imza attı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 103,
+            "category": "Spor - Futbol",
+            "year": 2025,
+            "question": "2025 UEFA Şampiyonlar Ligi finali hangi şehirde oynanmıştır?",
+            "choices": [
+                "Madrid",
+                "Londra",
+                "Paris",
+                "Münih"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Münih",
+            "explanation": "Final Münih'teki Allianz Arena'da oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 104,
+            "category": "Spor - Futbol",
+            "year": 2025,
+            "question": "PSG'nin 2025'te kazandığı UEFA Şampiyonlar Ligi kupası kulüp tarihindeki kaçıncı şampiyonluktur?",
+            "choices": [
+                "İkinci",
+                "Dördüncü",
+                "Üçüncü",
+                "İlk"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "İlk",
+            "explanation": "PSG 2025'te turnuvadaki ilk şampiyonluğunu elde etti.",
+            "source": "UEFA"
+        },
+        {
+            "id": 105,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2025-26 UEFA Şampiyonlar Ligi şampiyonu hangi kulüptür?",
+            "choices": [
+                "Bayern Münih",
+                "Real Madrid",
+                "Paris Saint-Germain",
+                "Arsenal"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Paris Saint-Germain",
+            "explanation": "PSG, 2026 finalinde Arsenal'i penaltılarla geçerek unvanını korudu.",
+            "source": "UEFA"
+        },
+        {
+            "id": 106,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 UEFA Şampiyonlar Ligi finalinde PSG'nin rakibi hangi takımdı?",
+            "choices": [
+                "Inter",
+                "Arsenal",
+                "Liverpool",
+                "Barcelona"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Arsenal",
+            "explanation": "2026 finali PSG ile Arsenal arasında oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 107,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 UEFA Şampiyonlar Ligi finalinde normal ve uzatma süresi sonunda skor kaçtı?",
+            "choices": [
+                "2-2",
+                "2-1",
+                "0-0",
+                "1-1"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "1-1",
+            "explanation": "Karşılaşma 1-1 bitti ve penaltılara gitti.",
+            "source": "UEFA"
+        },
+        {
+            "id": 108,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "PSG, 2026 UEFA Şampiyonlar Ligi finalinde penaltı atışlarını kaç kaç kazanmıştır?",
+            "choices": [
+                "4-3",
+                "3-2",
+                "4-2",
+                "5-4"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "4-3",
+            "explanation": "PSG penaltı atışlarında Arsenal'i 4-3 mağlup etti.",
+            "source": "UEFA"
+        },
+        {
+            "id": 109,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 UEFA Şampiyonlar Ligi finali hangi şehirde oynanmıştır?",
+            "choices": [
+                "Münih",
+                "Roma",
+                "Budapeşte",
+                "Londra"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Budapeşte",
+            "explanation": "Final Budapeşte'deki Puskás Aréna'da oynandı.",
+            "source": "UEFA"
+        },
+        {
+            "id": 110,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "FIFA Dünya Kupası 2026 şampiyonu hangi ülkedir?",
+            "choices": [
+                "İspanya",
+                "Fransa",
+                "Arjantin",
+                "Brezilya"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "İspanya",
+            "explanation": "İspanya finalde Arjantin'i 1-0 yenerek dünya şampiyonu oldu.",
+            "source": "FIFA"
+        },
+        {
+            "id": 111,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "FIFA Dünya Kupası 2026 finalinde İspanya'nın rakibi hangi ülkeydi?",
+            "choices": [
+                "Fransa",
+                "İngiltere",
+                "Almanya",
+                "Arjantin"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Arjantin",
+            "explanation": "Final İspanya-Arjantin arasında oynandı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 112,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "FIFA Dünya Kupası 2026 finalinin skoru nedir?",
+            "choices": [
+                "İspanya 1-0 Arjantin",
+                "İspanya 3-1 Fransa",
+                "İspanya 2-1 Arjantin",
+                "Arjantin 1-0 İspanya"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "İspanya 1-0 Arjantin",
+            "explanation": "İspanya uzatmada gelen golle finali 1-0 kazandı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 113,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 Dünya Kupası finalinde şampiyonluk golünü kim atmıştır?",
+            "choices": [
+                "Mikel Oyarzabal",
+                "Ferran Torres",
+                "Lamine Yamal",
+                "Rodri"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Ferran Torres",
+            "explanation": "Ferran Torres 106. dakikada finalin tek golünü attı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 114,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası'nın ortak ev sahipleri hangi üç ülkedir?",
+            "choices": [
+                "ABD - Kanada - Meksika",
+                "Kanada - ABD - Brezilya",
+                "ABD - Meksika - Kosta Rika",
+                "Meksika - Kanada - Arjantin"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "ABD - Kanada - Meksika",
+            "explanation": "Turnuva ABD, Kanada ve Meksika'nın ortak ev sahipliğinde düzenlendi.",
+            "source": "FIFA"
+        },
+        {
+            "id": 115,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası kaç takımla düzenlenen ilk Dünya Kupası olmuştur?",
+            "choices": [
+                "40",
+                "32",
+                "64",
+                "48"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "48",
+            "explanation": "2026 turnuvası 48 takımlı yeni formatın ilk Dünya Kupasıdır.",
+            "source": "FIFA"
+        },
+        {
+            "id": 116,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası Altın Top (Golden Ball) ödülünü kim kazanmıştır?",
+            "choices": [
+                "Lionel Messi",
+                "Rodri",
+                "Kylian Mbappé",
+                "Lamine Yamal"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Rodri",
+            "explanation": "Turnuvanın en iyi oyuncusu Rodri seçildi.",
+            "source": "FIFA"
+        },
+        {
+            "id": 117,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası Altın Ayakkabı (Golden Boot) ödülünü kim kazanmıştır?",
+            "choices": [
+                "Ferran Torres",
+                "Rodri",
+                "Kylian Mbappé",
+                "Erling Haaland"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Kylian Mbappé",
+            "explanation": "Turnuvanın gol kralı ödülü Kylian Mbappé'ye gitti.",
+            "source": "FIFA"
+        },
+        {
+            "id": 118,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası Altın Eldiven (Golden Glove) ödülünü kim kazanmıştır?",
+            "choices": [
+                "Unai Simón",
+                "Emiliano Martínez",
+                "Mike Maignan",
+                "Thibaut Courtois"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Unai Simón",
+            "explanation": "İspanya kalecisi Unai Simón Altın Eldiven'i kazandı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 119,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 FIFA Dünya Kupası En İyi Genç Oyuncu ödülünü kim kazanmıştır?",
+            "choices": [
+                "Lamine Yamal",
+                "Pau Cubarsí",
+                "Jude Bellingham",
+                "Endrick"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Pau Cubarsí",
+            "explanation": "Pau Cubarsí turnuvanın en iyi genç oyuncusu seçildi.",
+            "source": "FIFA"
+        },
+        {
+            "id": 120,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "2026 Dünya Kupası finali hangi stadyumda oynanmıştır?",
+            "choices": [
+                "New York New Jersey Stadium",
+                "Azteca Stadyumu",
+                "Hard Rock Stadium",
+                "SoFi Stadium"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "New York New Jersey Stadium",
+            "explanation": "Final New York New Jersey Stadium'da oynandı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 121,
+            "category": "Spor - Futbol",
+            "year": 2026,
+            "question": "İspanya 2026 Dünya Kupası ile tarihinde kaçıncı kez dünya şampiyonu olmuştur?",
+            "choices": [
+                "Dördüncü kez",
+                "İkinci kez",
+                "Üçüncü kez",
+                "İlk kez"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "İkinci kez",
+            "explanation": "İspanya 2010'dan sonra ikinci Dünya Kupası şampiyonluğunu kazandı.",
+            "source": "FIFA"
+        },
+        {
+            "id": 122,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Edebiyat Ödülü'nü kim kazanmıştır?",
+            "choices": [
+                "László Krasznahorkai",
+                "Annie Ernaux",
+                "Han Kang",
+                "Jon Fosse"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Han Kang",
+            "explanation": "2024 Nobel Edebiyat Ödülü Güney Koreli yazar Han Kang'a verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 123,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Barış Ödülü hangi kuruluşa verilmiştir?",
+            "choices": [
+                "Sınır Tanımayan Doktorlar",
+                "ICRC",
+                "Nihon Hidankyo",
+                "UNHCR"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Nihon Hidankyo",
+            "explanation": "Ödül, Japon atom bombası mağdurlarının örgütü Nihon Hidankyo'ya verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 124,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Ekonomi Ödülü'nü paylaşan isimlerden biri kimdir?",
+            "choices": [
+                "Orhan Pamuk",
+                "Uğur Şahin",
+                "Daron Acemoğlu",
+                "Aziz Sancar"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Daron Acemoğlu",
+            "explanation": "Daron Acemoğlu, Simon Johnson ve James A. Robinson ödülü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 125,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "Daron Acemoğlu 2024'te hangi Nobel kategorisinde ödül kazanmıştır?",
+            "choices": [
+                "Fizik",
+                "Ekonomi Bilimleri",
+                "Barış",
+                "Kimya"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Ekonomi Bilimleri",
+            "explanation": "Acemoğlu 2024 Nobel Ekonomi Bilimleri Ödülü'nü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 126,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Ekonomi Ödülü hangi temel konuya ilişkin çalışmalar nedeniyle verilmiştir?",
+            "choices": [
+                "Kuantum dolanıklığı",
+                "Protein katlanması",
+                "Kurumların oluşumu ve refahı nasıl etkilediği",
+                "MikroRNA"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Kurumların oluşumu ve refahı nasıl etkilediği",
+            "explanation": "Ödül kurumların nasıl oluştuğu ve refahı nasıl etkilediği üzerine çalışmalara verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 127,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Fizik Ödülü'nü hangi ikili paylaşmıştır?",
+            "choices": [
+                "John J. Hopfield - Geoffrey Hinton",
+                "Alain Aspect - Anton Zeilinger",
+                "David Baker - John Jumper",
+                "Victor Ambros - Gary Ruvkun"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "John J. Hopfield - Geoffrey Hinton",
+            "explanation": "Hopfield ve Hinton yapay sinir ağları ve makine öğrenmesine temel katkıları nedeniyle ödüllendirildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 128,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "Geoffrey Hinton ve John Hopfield'ın 2024 Nobel Fizik Ödülü'ne konu olan çalışmaları en çok hangi alanla ilişkilidir?",
+            "choices": [
+                "Gen düzenleme",
+                "Yapay sinir ağları ve makine öğrenmesi",
+                "Aşı teknolojileri",
+                "Kara delik gözlemleri"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Yapay sinir ağları ve makine öğrenmesi",
+            "explanation": "Ödül, sinir ağlarıyla makine öğrenmesini mümkün kılan temel keşif ve icatlara verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 129,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Kimya Ödülü sahipleri arasında aşağıdakilerden hangisi vardır?",
+            "choices": [
+                "Geoffrey Hinton",
+                "Victor Ambros",
+                "Daron Acemoğlu",
+                "Demis Hassabis"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Demis Hassabis",
+            "explanation": "David Baker, Demis Hassabis ve John Jumper 2024 Nobel Kimya Ödülü'nü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 130,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "David Baker 2024 Nobel Kimya Ödülü'nü hangi çalışmasıyla kazanmıştır?",
+            "choices": [
+                "Hesaplamalı protein tasarımı",
+                "Metal-organik çerçeveler",
+                "MikroRNA keşfi",
+                "Lityum iyon pil"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Hesaplamalı protein tasarımı",
+            "explanation": "David Baker hesaplamalı protein tasarımındaki çalışmaları nedeniyle ödüllendirildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 131,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "Demis Hassabis ve John Jumper 2024 Nobel Kimya Ödülü'nü hangi konudaki çalışmalarıyla kazanmıştır?",
+            "choices": [
+                "Kuantum tünelleme",
+                "Grafen sentezi",
+                "Protein yapı tahmini",
+                "DNA dizileme"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Protein yapı tahmini",
+            "explanation": "İkili, protein yapılarının tahmini üzerine çalışmaları nedeniyle ödüllendirildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 132,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "2024 Nobel Fizyoloji veya Tıp Ödülü'nü kimler kazanmıştır?",
+            "choices": [
+                "David Baker - John Jumper",
+                "Victor Ambros - Gary Ruvkun",
+                "Katalin Karikó - Drew Weissman",
+                "Mary Brunkow - Fred Ramsdell"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Victor Ambros - Gary Ruvkun",
+            "explanation": "Victor Ambros ve Gary Ruvkun ödülü birlikte kazandı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 133,
+            "category": "Ödüller - Nobel",
+            "year": 2024,
+            "question": "Victor Ambros ve Gary Ruvkun 2024 Nobel Tıp Ödülü'nü hangi keşif nedeniyle kazanmıştır?",
+            "choices": [
+                "Hücrelerin oksijen algısı",
+                "CRISPR-Cas9",
+                "mRNA aşı teknolojisi",
+                "microRNA ve gen düzenlenmesindeki rolü"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "microRNA ve gen düzenlenmesindeki rolü",
+            "explanation": "Ödül microRNA'nın keşfi ve transkripsiyon sonrası gen düzenlenmesindeki rolü için verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 134,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Edebiyat Ödülü'nü kim kazanmıştır?",
+            "choices": [
+                "László Krasznahorkai",
+                "Olga Tokarczuk",
+                "Salman Rushdie",
+                "Han Kang"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "László Krasznahorkai",
+            "explanation": "2025 Nobel Edebiyat Ödülü László Krasznahorkai'ye verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 135,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Barış Ödülü'nü kim kazanmıştır?",
+            "choices": [
+                "Maria Ressa",
+                "Nihon Hidankyo",
+                "María Corina Machado",
+                "Narges Mohammadi"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "María Corina Machado",
+            "explanation": "2025 Nobel Barış Ödülü María Corina Machado'ya verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 136,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Barış Ödülü sahibi María Corina Machado hangi ülkeyle ilişkilidir?",
+            "choices": [
+                "Şili",
+                "Venezuela",
+                "Kolombiya",
+                "Arjantin"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Venezuela",
+            "explanation": "María Corina Machado Venezuelalı siyasetçi ve demokrasi aktivistidir.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 137,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Kimya Ödülü'nü paylaşan bilim insanlarından biri kimdir?",
+            "choices": [
+                "Gary Ruvkun",
+                "John J. Hopfield",
+                "Joel Mokyr",
+                "Omar M. Yaghi"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Omar M. Yaghi",
+            "explanation": "Susumu Kitagawa, Richard Robson ve Omar M. Yaghi ödülü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 138,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Kimya Ödülü hangi yapıların geliştirilmesine ilişkin çalışmalar nedeniyle verilmiştir?",
+            "choices": [
+                "Perovskit güneş hücreleri",
+                "Grafen",
+                "MikroRNA",
+                "Metal-organik çerçeveler (MOF)"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Metal-organik çerçeveler (MOF)",
+            "explanation": "Ödül metal-organik çerçevelerin geliştirilmesine verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 139,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Fizyoloji veya Tıp Ödülü'nü paylaşan üçlü hangisidir?",
+            "choices": [
+                "Daron Acemoğlu - Simon Johnson - James Robinson",
+                "Victor Ambros - Gary Ruvkun - David Baker",
+                "Mary E. Brunkow - Fred Ramsdell - Shimon Sakaguchi",
+                "John Clarke - Michel Devoret - John Martinis"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Mary E. Brunkow - Fred Ramsdell - Shimon Sakaguchi",
+            "explanation": "Ödül Brunkow, Ramsdell ve Sakaguchi'ye verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 140,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Tıp Ödülü hangi konudaki keşiflere verilmiştir?",
+            "choices": [
+                "MikroRNA",
+                "Periferik bağışıklık toleransı",
+                "Protein tasarımı",
+                "Kuantum tünelleme"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Periferik bağışıklık toleransı",
+            "explanation": "Ödül periferik bağışıklık toleransına ilişkin keşiflere verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 141,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Fizik Ödülü'nü paylaşan isimlerden biri kimdir?",
+            "choices": [
+                "David Baker",
+                "Geoffrey Hinton",
+                "Omar Yaghi",
+                "John Clarke"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "John Clarke",
+            "explanation": "John Clarke, Michel H. Devoret ve John M. Martinis ödülü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 142,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Fizik Ödülü hangi olgunun elektrik devresinde gözlenmesine ilişkin çalışmalara verilmiştir?",
+            "choices": [
+                "Karanlık madde",
+                "Makroskopik kuantum mekanik tünelleme ve enerji kuantizasyonu",
+                "Higgs bozonu",
+                "Kütleçekim dalgaları"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Makroskopik kuantum mekanik tünelleme ve enerji kuantizasyonu",
+            "explanation": "Ödül makroskopik kuantum tünelleme ve enerji kuantizasyonuna verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 143,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Ekonomi Ödülü'nü paylaşan isimlerden biri kimdir?",
+            "choices": [
+                "Joel Mokyr",
+                "Daron Acemoğlu",
+                "Paul Krugman",
+                "Esther Duflo"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Joel Mokyr",
+            "explanation": "Joel Mokyr, Philippe Aghion ve Peter Howitt ödülü paylaştı.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 144,
+            "category": "Ödüller - Nobel",
+            "year": 2025,
+            "question": "2025 Nobel Ekonomi Ödülü'nün ana teması aşağıdakilerden hangisidir?",
+            "choices": [
+                "Yenilikçilik kaynaklı ekonomik büyüme",
+                "Açık artırma teorisi",
+                "Döviz kuru rejimleri",
+                "Davranışsal finans"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Yenilikçilik kaynaklı ekonomik büyüme",
+            "explanation": "Ödül inovasyonun sürdürülebilir ekonomik büyümeyi nasıl yönlendirdiğini açıklayan çalışmalara verildi.",
+            "source": "Nobel Prize"
+        },
+        {
+            "id": 145,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Film ödülünü hangi yapım kazanmıştır?",
+            "choices": [
+                "Poor Things",
+                "Oppenheimer",
+                "Barbie",
+                "Killers of the Flower Moon"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Oppenheimer",
+            "explanation": "96. Oscar Ödülleri'nde En İyi Film Oppenheimer oldu.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 146,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Yönetmen kim seçilmiştir?",
+            "choices": [
+                "Christopher Nolan",
+                "Martin Scorsese",
+                "Yorgos Lanthimos",
+                "Justine Triet"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Christopher Nolan",
+            "explanation": "Christopher Nolan, Oppenheimer ile En İyi Yönetmen ödülünü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 147,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Erkek Oyuncu ödülünü kim kazanmıştır?",
+            "choices": [
+                "Cillian Murphy",
+                "Bradley Cooper",
+                "Jeffrey Wright",
+                "Paul Giamatti"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Cillian Murphy",
+            "explanation": "Cillian Murphy, Oppenheimer ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 148,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Kadın Oyuncu ödülünü kim kazanmıştır?",
+            "choices": [
+                "Emma Stone",
+                "Sandra Hüller",
+                "Lily Gladstone",
+                "Carey Mulligan"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Emma Stone",
+            "explanation": "Emma Stone, Poor Things ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 149,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Uluslararası Film ödülünü hangi yapım kazanmıştır?",
+            "choices": [
+                "The Zone of Interest",
+                "Society of the Snow",
+                "Perfect Days",
+                "Io Capitano"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "The Zone of Interest",
+            "explanation": "Birleşik Krallık adına yarışan The Zone of Interest ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 150,
+            "category": "Ödüller - Sinema",
+            "year": 2024,
+            "question": "2024 Oscar Ödülleri'nde En İyi Görsel Efekt ödülünü hangi film kazanmıştır?",
+            "choices": [
+                "The Creator",
+                "Oppenheimer",
+                "Godzilla Minus One",
+                "Napoleon"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Godzilla Minus One",
+            "explanation": "Godzilla Minus One görsel efekt dalında Oscar kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 151,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Film hangisidir?",
+            "choices": [
+                "Dune: Part Two",
+                "The Brutalist",
+                "Conclave",
+                "Anora"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Anora",
+            "explanation": "97. Oscar Ödülleri'nde En İyi Film Anora oldu.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 152,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Yönetmen ödülünü kim kazanmıştır?",
+            "choices": [
+                "Coralie Fargeat",
+                "Jacques Audiard",
+                "Sean Baker",
+                "Brady Corbet"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Sean Baker",
+            "explanation": "Sean Baker, Anora ile En İyi Yönetmen ödülünü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 153,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Erkek Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Adrien Brody",
+                "Colman Domingo",
+                "Timothée Chalamet",
+                "Ralph Fiennes"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Adrien Brody",
+            "explanation": "Adrien Brody, The Brutalist ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 154,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Kadın Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Mikey Madison",
+                "Cynthia Erivo",
+                "Fernanda Torres",
+                "Demi Moore"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Mikey Madison",
+            "explanation": "Mikey Madison, Anora ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 155,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Animasyon Film hangisidir?",
+            "choices": [
+                "The Wild Robot",
+                "Inside Out 2",
+                "Memoir of a Snail",
+                "Flow"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Flow",
+            "explanation": "Flow, En İyi Animasyon Film Oscar'ını kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 156,
+            "category": "Ödüller - Sinema",
+            "year": 2025,
+            "question": "2025 Oscar Ödülleri'nde En İyi Uluslararası Film ödülü hangi ülkenin 'I'm Still Here' filmine verilmiştir?",
+            "choices": [
+                "İspanya",
+                "Almanya",
+                "Fransa",
+                "Brezilya"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Brezilya",
+            "explanation": "I'm Still Here, Brezilya adına En İyi Uluslararası Film ödülünü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 157,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Film hangisidir?",
+            "choices": [
+                "Sinners",
+                "Hamnet",
+                "One Battle after Another",
+                "Marty Supreme"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "One Battle after Another",
+            "explanation": "98. Oscar Ödülleri'nde En İyi Film One Battle after Another oldu.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 158,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Yönetmen ödülünü kim kazanmıştır?",
+            "choices": [
+                "Ryan Coogler",
+                "Chloé Zhao",
+                "Paul Thomas Anderson",
+                "Josh Safdie"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Paul Thomas Anderson",
+            "explanation": "Paul Thomas Anderson, One Battle after Another ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 159,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Erkek Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Leonardo DiCaprio",
+                "Michael B. Jordan",
+                "Wagner Moura",
+                "Timothée Chalamet"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Michael B. Jordan",
+            "explanation": "Michael B. Jordan, Sinners ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 160,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Kadın Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Rose Byrne",
+                "Renate Reinsve",
+                "Jessie Buckley",
+                "Emma Stone"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Jessie Buckley",
+            "explanation": "Jessie Buckley, Hamnet ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 161,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Yardımcı Erkek Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Delroy Lindo",
+                "Sean Penn",
+                "Benicio Del Toro",
+                "Jacob Elordi"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Sean Penn",
+            "explanation": "Sean Penn, One Battle after Another ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 162,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Yardımcı Kadın Oyuncu kim seçilmiştir?",
+            "choices": [
+                "Teyana Taylor",
+                "Amy Madigan",
+                "Wunmi Mosaku",
+                "Elle Fanning"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Amy Madigan",
+            "explanation": "Amy Madigan, Weapons ile ödülü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 163,
+            "category": "Ödüller - Sinema",
+            "year": 2026,
+            "question": "2026 Oscar Ödülleri'nde En İyi Uluslararası Film ödülünü hangi ülke kazanmıştır?",
+            "choices": [
+                "Brezilya",
+                "Fransa",
+                "İspanya",
+                "Norveç"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Norveç",
+            "explanation": "Norveç'in Sentimental Value filmi En İyi Uluslararası Film ödülünü kazandı.",
+            "source": "Academy of Motion Picture Arts and Sciences"
+        },
+        {
+            "id": 164,
+            "category": "Ödüller - Müzik",
+            "year": 2025,
+            "question": "2025 Grammy Ödülleri'nde Yılın Albümü ödülünü hangi albüm kazanmıştır?",
+            "choices": [
+                "Short n' Sweet",
+                "HIT ME HARD AND SOFT",
+                "COWBOY CARTER",
+                "The Tortured Poets Department"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "COWBOY CARTER",
+            "explanation": "Beyoncé'nin COWBOY CARTER albümü Yılın Albümü seçildi.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 165,
+            "category": "Ödüller - Müzik",
+            "year": 2025,
+            "question": "COWBOY CARTER ile 2025 Grammy Yılın Albümü ödülünü kazanan sanatçı kimdir?",
+            "choices": [
+                "Sabrina Carpenter",
+                "Taylor Swift",
+                "Beyoncé",
+                "Billie Eilish"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Beyoncé",
+            "explanation": "Beyoncé 2025'te kariyerinin ilk Yılın Albümü Grammy'sini kazandı.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 166,
+            "category": "Ödüller - Müzik",
+            "year": 2026,
+            "question": "2026 Grammy Ödülleri'nde Yılın Albümü ödülünü kim kazanmıştır?",
+            "choices": [
+                "Sabrina Carpenter",
+                "Bad Bunny",
+                "Kendrick Lamar",
+                "Lady Gaga"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Bad Bunny",
+            "explanation": "Bad Bunny, DeBÍ TiRAR MáS FOToS ile Yılın Albümü ödülünü kazandı.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 167,
+            "category": "Ödüller - Müzik",
+            "year": 2026,
+            "question": "Bad Bunny'nin 2026 Grammy Yılın Albümü ödülünü kazanan albümü hangisidir?",
+            "choices": [
+                "GNX",
+                "MAYHEM",
+                "DeBÍ TiRAR MáS FOToS",
+                "Man's Best Friend"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "DeBÍ TiRAR MáS FOToS",
+            "explanation": "DeBÍ TiRAR MáS FOToS 2026 Yılın Albümü seçildi.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 168,
+            "category": "Ödüller - Müzik",
+            "year": 2026,
+            "question": "2026 Grammy Ödülleri'nde Yılın Kaydı (Record of the Year) ödülünü hangi şarkı kazanmıştır?",
+            "choices": [
+                "DtMF",
+                "luther",
+                "WILDFLOWER",
+                "APT."
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "luther",
+            "explanation": "Kendrick Lamar ve SZA'nın 'luther' parçası Yılın Kaydı oldu.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 169,
+            "category": "Ödüller - Müzik",
+            "year": 2026,
+            "question": "2026 Grammy Ödülleri'nde Yılın Şarkısı (Song of the Year) ödülünü hangi parça kazanmıştır?",
+            "choices": [
+                "WILDFLOWER",
+                "luther",
+                "Abracadabra",
+                "Anxiety"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "WILDFLOWER",
+            "explanation": "Billie Eilish'in WILDFLOWER parçası Yılın Şarkısı ödülünü kazandı.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 170,
+            "category": "Ödüller - Müzik",
+            "year": 2026,
+            "question": "2026 Grammy Ödülleri'nde En İyi Yeni Sanatçı kim seçilmiştir?",
+            "choices": [
+                "sombr",
+                "Olivia Dean",
+                "Addison Rae",
+                "Lola Young"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Olivia Dean",
+            "explanation": "Olivia Dean 2026 Grammy En İyi Yeni Sanatçı ödülünü kazandı.",
+            "source": "Recording Academy / GRAMMY"
+        },
+        {
+            "id": 171,
+            "category": "Ödüller - Edebiyat",
+            "year": 2024,
+            "question": "2024 Booker Ödülü'nü kazanan roman hangisidir?",
+            "choices": [
+                "Orbital",
+                "Kairos",
+                "Flesh",
+                "Heart Lamp"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Orbital",
+            "explanation": "Samantha Harvey'nin Orbital romanı 2024 Booker Prize'ı kazandı.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 172,
+            "category": "Ödüller - Edebiyat",
+            "year": 2024,
+            "question": "2024 Booker Ödülü sahibi 'Orbital' romanının yazarı kimdir?",
+            "choices": [
+                "Jenny Erpenbeck",
+                "Samantha Harvey",
+                "David Szalay",
+                "Banu Mushtaq"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Samantha Harvey",
+            "explanation": "Orbital'ın yazarı Samantha Harvey'dir.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 173,
+            "category": "Ödüller - Edebiyat",
+            "year": 2025,
+            "question": "2025 Booker Ödülü'nü kazanan eser hangisidir?",
+            "choices": [
+                "The Safekeep",
+                "Flesh",
+                "Orbital",
+                "James"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Flesh",
+            "explanation": "David Szalay'ın Flesh adlı eseri 2025 Booker Prize'ı kazandı.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 174,
+            "category": "Ödüller - Edebiyat",
+            "year": 2025,
+            "question": "2025 Booker Ödülü sahibi 'Flesh'in yazarı kimdir?",
+            "choices": [
+                "Samantha Harvey",
+                "Percival Everett",
+                "Kiran Desai",
+                "David Szalay"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "David Szalay",
+            "explanation": "Flesh'in yazarı David Szalay'dır.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 175,
+            "category": "Ödüller - Edebiyat",
+            "year": 2025,
+            "question": "2025 Uluslararası Booker Ödülü'nü kazanan eser hangisidir?",
+            "choices": [
+                "Kairos",
+                "Taiwan Travelogue",
+                "Tomb of Sand",
+                "Heart Lamp"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Heart Lamp",
+            "explanation": "Heart Lamp 2025 International Booker Prize'ı kazandı.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 176,
+            "category": "Ödüller - Edebiyat",
+            "year": 2025,
+            "question": "2025 Uluslararası Booker ödüllü 'Heart Lamp'ın yazarı kimdir?",
+            "choices": [
+                "Yáng Shuāng-zǐ",
+                "Geetanjali Shree",
+                "Banu Mushtaq",
+                "Jenny Erpenbeck"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Banu Mushtaq",
+            "explanation": "Heart Lamp'ın yazarı Banu Mushtaq'tır.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 177,
+            "category": "Ödüller - Edebiyat",
+            "year": 2025,
+            "question": "'Heart Lamp'ı İngilizceye çevirerek 2025 Uluslararası Booker Ödülü'nü yazarla paylaşan çevirmen kimdir?",
+            "choices": [
+                "Lin King",
+                "Anton Hur",
+                "Michael Hofmann",
+                "Deepa Bhasthi"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Deepa Bhasthi",
+            "explanation": "Deepa Bhasthi, Heart Lamp'ın İngilizce çevirmenidir.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 178,
+            "category": "Ödüller - Edebiyat",
+            "year": 2026,
+            "question": "2026 Uluslararası Booker Ödülü'nü kazanan eser hangisidir?",
+            "choices": [
+                "Taiwan Travelogue",
+                "The Witch",
+                "Heart Lamp",
+                "Women Without Men"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Taiwan Travelogue",
+            "explanation": "Taiwan Travelogue 2026 International Booker Prize'ı kazandı.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 179,
+            "category": "Ödüller - Edebiyat",
+            "year": 2026,
+            "question": "2026 Uluslararası Booker ödüllü 'Taiwan Travelogue'un yazarı kimdir?",
+            "choices": [
+                "Banu Mushtaq",
+                "Yáng Shuāng-zǐ",
+                "Marie NDiaye",
+                "Olga Ravn"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Yáng Shuāng-zǐ",
+            "explanation": "Taiwan Travelogue'un yazarı Tayvanlı Yáng Shuāng-zǐ'dir.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 180,
+            "category": "Ödüller - Edebiyat",
+            "year": 2026,
+            "question": "'Taiwan Travelogue'u İngilizceye çevirerek 2026 Uluslararası Booker Ödülü'nü paylaşan çevirmen kimdir?",
+            "choices": [
+                "Deepa Bhasthi",
+                "Jordan Stump",
+                "Lin King",
+                "Martin Aitken"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Lin King",
+            "explanation": "Lin King eseri Mandarin Çincesinden İngilizceye çevirdi.",
+            "source": "The Booker Prizes"
+        },
+        {
+            "id": 181,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "NASA'nın Ekim 2024'te fırlattığı Europa Clipper görevinin ana hedefi hangi gök cismidir?",
+            "choices": [
+                "Titan",
+                "Enceladus",
+                "Ganymede",
+                "Europa"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Europa",
+            "explanation": "Europa Clipper, Jüpiter'in uydusu Europa'nın yaşanabilirlik koşullarını incelemek için gönderildi.",
+            "source": "NASA"
+        },
+        {
+            "id": 182,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Europa Clipper hangi gezegenin uydusunu incelemek üzere gönderilmiştir?",
+            "choices": [
+                "Satürn",
+                "Jüpiter",
+                "Mars",
+                "Neptün"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Jüpiter",
+            "explanation": "Europa, Jüpiter'in uydusudur.",
+            "source": "NASA"
+        },
+        {
+            "id": 183,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "NASA'nın Europa Clipper görevi hangi tarihte fırlatılmıştır?",
+            "choices": [
+                "7 Ekim 2024",
+                "2 Haziran 2024",
+                "14 Ekim 2024",
+                "2 Mart 2025"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "14 Ekim 2024",
+            "explanation": "Europa Clipper 14 Ekim 2024'te fırlatıldı.",
+            "source": "NASA"
+        },
+        {
+            "id": 184,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Europa Clipper'ın Jüpiter sistemine ulaşmasının planlandığı yıl hangisidir?",
+            "choices": [
+                "2032",
+                "2030",
+                "2028",
+                "2027"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "2030",
+            "explanation": "Uzay aracının Nisan 2030'da Jüpiter sistemine ulaşması planlanmaktadır.",
+            "source": "NASA"
+        },
+        {
+            "id": 185,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "ESA'nın Hera görevi hangi amaçla geliştirilmiştir?",
+            "choices": [
+                "Venüs atmosferini incelemek",
+                "Güneş'e yaklaşmak",
+                "Mars'tan örnek getirmek",
+                "Gezegen savunması ve asteroid saptırma testinin incelenmesi"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Gezegen savunması ve asteroid saptırma testinin incelenmesi",
+            "explanation": "Hera, DART çarpmasının Dimorphos üzerindeki etkilerini ayrıntılı incelemek için tasarlandı.",
+            "source": "ESA"
+        },
+        {
+            "id": 186,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "ESA'nın Hera uzay aracı hangi tarihte fırlatılmıştır?",
+            "choices": [
+                "25 Haziran 2024",
+                "7 Ekim 2024",
+                "2 Mart 2025",
+                "14 Ekim 2024"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "7 Ekim 2024",
+            "explanation": "Hera 7 Ekim 2024'te fırlatıldı.",
+            "source": "ESA"
+        },
+        {
+            "id": 187,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Hera görevinin inceleyeceği ikili asteroid sistemi hangisidir?",
+            "choices": [
+                "Vesta-Ceres",
+                "Didymos-Dimorphos",
+                "Bennu-Ryugu",
+                "Eros-Psyche"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Didymos-Dimorphos",
+            "explanation": "Hera, Didymos ve uydusu Dimorphos sistemine gidecek.",
+            "source": "ESA"
+        },
+        {
+            "id": 188,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Hera görevi, NASA'nın hangi asteroid saptırma görevinin devamı niteliğindedir?",
+            "choices": [
+                "DART",
+                "Psyche",
+                "Lucy",
+                "OSIRIS-REx"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "DART",
+            "explanation": "Hera, DART'ın Dimorphos'a çarpmasının sonuçlarını inceleyecek.",
+            "source": "ESA / NASA"
+        },
+        {
+            "id": 189,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Ay'ın uzak yüzünden ilk kez örnek getirerek tarihe geçen görev hangisidir?",
+            "choices": [
+                "Luna-25",
+                "Chang'e-6",
+                "Chang'e-5",
+                "Artemis I"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "Chang'e-6",
+            "explanation": "Çin'in Chang'e-6 görevi Ay'ın uzak yüzünden ilk örnekleri Dünya'ya getirdi.",
+            "source": "CNSA"
+        },
+        {
+            "id": 190,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Chang'e-6 görevi hangi ülkeye aittir?",
+            "choices": [
+                "Çin",
+                "Japonya",
+                "Hindistan",
+                "Güney Kore"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Çin",
+            "explanation": "Chang'e-6 Çin'in Ay keşif programının bir parçasıdır.",
+            "source": "CNSA"
+        },
+        {
+            "id": 191,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Chang'e-6 örnek kapsülü Dünya'ya hangi tarihte dönmüştür?",
+            "choices": [
+                "7 Ekim 2024",
+                "2 Haziran 2024",
+                "25 Haziran 2024",
+                "14 Aralık 2024"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "25 Haziran 2024",
+            "explanation": "Örnek kapsülü 25 Haziran 2024'te Dünya'ya döndü.",
+            "source": "CNSA"
+        },
+        {
+            "id": 192,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Chang'e-6'nın örnek topladığı bölge Ay'daki hangi büyük havza içindedir?",
+            "choices": [
+                "Güney Kutbu-Aitken Havzası",
+                "Oceanus Procellarum",
+                "Mare Imbrium",
+                "Mare Tranquillitatis"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Güney Kutbu-Aitken Havzası",
+            "explanation": "Görev Ay'ın uzak yüzündeki Güney Kutbu-Aitken Havzası içinde çalıştı.",
+            "source": "CNSA"
+        },
+        {
+            "id": 193,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Chang'e-6 Ay'ın hangi yüzüne iniş yapmıştır?",
+            "choices": [
+                "Ay'ın kuzey kutbuna",
+                "Ay'ın ekvator yörüngesine, iniş yapmadan",
+                "Dünya'dan görünmeyen uzak yüzüne",
+                "Dünya'ya bakan yakın yüzüne"
+            ],
+            "correctIndex": 2,
+            "correctOption": "C",
+            "correctAnswer": "Dünya'dan görünmeyen uzak yüzüne",
+            "explanation": "Chang'e-6, Ay'ın uzak yüzüne iniş yaptı.",
+            "source": "CNSA"
+        },
+        {
+            "id": 194,
+            "category": "Bilim ve Uzay",
+            "year": 2025,
+            "question": "Blue Ghost Mission 1 adlı Ay görevi hangi şirket tarafından gerçekleştirilmiştir?",
+            "choices": [
+                "Rocket Lab",
+                "Blue Origin",
+                "Axiom Space",
+                "Firefly Aerospace"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Firefly Aerospace",
+            "explanation": "Blue Ghost Mission 1, Firefly Aerospace tarafından yürütüldü.",
+            "source": "NASA / Firefly Aerospace"
+        },
+        {
+            "id": 195,
+            "category": "Bilim ve Uzay",
+            "year": 2025,
+            "question": "Blue Ghost Mission 1 Ay'a hangi tarihte başarıyla iniş yapmıştır?",
+            "choices": [
+                "7 Haziran 2025",
+                "2 Mart 2025",
+                "15 Ocak 2025",
+                "21 Nisan 2025"
+            ],
+            "correctIndex": 1,
+            "correctOption": "B",
+            "correctAnswer": "2 Mart 2025",
+            "explanation": "Blue Ghost 2 Mart 2025'te Ay'a başarılı iniş yaptı.",
+            "source": "NASA / Firefly Aerospace"
+        },
+        {
+            "id": 196,
+            "category": "Bilim ve Uzay",
+            "year": 2025,
+            "question": "Blue Ghost Mission 1 Ay'ın hangi bölgesine iniş yapmıştır?",
+            "choices": [
+                "Mare Crisium",
+                "Mare Tranquillitatis",
+                "Shackleton Krateri",
+                "Oceanus Procellarum"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Mare Crisium",
+            "explanation": "Araç Mare Crisium bölgesindeki Mons Latreille yakınlarına indi.",
+            "source": "NASA / Firefly Aerospace"
+        },
+        {
+            "id": 197,
+            "category": "Bilim ve Uzay",
+            "year": 2025,
+            "question": "Blue Ghost Mission 1, NASA'nın hangi ticari Ay programı kapsamında bilimsel yükler taşımıştır?",
+            "choices": [
+                "Artemis Gateway",
+                "Commercial Crew",
+                "New Frontiers",
+                "CLPS"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "CLPS",
+            "explanation": "Görev NASA'nın Commercial Lunar Payload Services (CLPS) programı kapsamında yükler taşıdı.",
+            "source": "NASA"
+        },
+        {
+            "id": 198,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Europa Clipper görevinin temel bilimsel sorusu aşağıdakilerden hangisidir?",
+            "choices": [
+                "Europa'da yaşamı destekleyebilecek koşullar bulunup bulunmadığı",
+                "Europa'da insan kolonisi kurmak",
+                "Jüpiter'in halkalarını kaldırmak",
+                "Europa'nın yaşını kesin olarak belirlemek"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Europa'da yaşamı destekleyebilecek koşullar bulunup bulunmadığı",
+            "explanation": "Görev doğrudan yaşam aramaktan çok Europa'nın yaşanabilirliğini değerlendirecek.",
+            "source": "NASA"
+        },
+        {
+            "id": 199,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Hera görevinin ana hedeflerinden Dimorphos, aşağıdakilerden hangisidir?",
+            "choices": [
+                "Mars'ın uydusu",
+                "Tek başına bir cüce gezegen",
+                "Jüpiter'in uydusu",
+                "Didymos'un küçük uydusu"
+            ],
+            "correctIndex": 3,
+            "correctOption": "D",
+            "correctAnswer": "Didymos'un küçük uydusu",
+            "explanation": "Dimorphos, Didymos adlı asteroidin küçük uydusudur.",
+            "source": "ESA"
+        },
+        {
+            "id": 200,
+            "category": "Bilim ve Uzay",
+            "year": 2024,
+            "question": "Chang'e-6'nın tarihî başarısını doğru ifade eden seçenek hangisidir?",
+            "choices": [
+                "Ay'ın uzak yüzünden Dünya'ya ilk kez örnek getirmesi",
+                "Mars'tan ilk örneği getirmesi",
+                "Ay'ın güney kutbunda ilk insanlı üs kurması",
+                "Ay'a ilk insanı indirmesi"
+            ],
+            "correctIndex": 0,
+            "correctOption": "A",
+            "correctAnswer": "Ay'ın uzak yüzünden Dünya'ya ilk kez örnek getirmesi",
+            "explanation": "Chang'e-6, Ay'ın uzak yüzünden örnek getiren ilk görevdir.",
+            "source": "CNSA"
+        }
+    ]
+}
