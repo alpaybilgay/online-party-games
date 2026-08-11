@@ -26,21 +26,42 @@ function KpssGuncel({
   const [autoAdvanceTimer, setAutoAdvanceTimer] = useState(5);
 
   const gameState = room?.gameState;
-  const isMeHost = room?.hostId === socket?.id;
   const myInfo = room?.players?.find((p) => p.id === socket?.id);
+  const isMeHost = myInfo?.isHost || room?.hostId === socket?.id || (room?.players?.length > 0 && room.players[0].id === socket?.id);
   const myScore = myInfo ? myInfo.score : 0;
+
+  // Debug state sync logs
+  console.log("KPSS GUNCEL STATE UPDATE:", {
+    socketId: socket?.id,
+    hostId: room?.hostId,
+    isMeHost,
+    myInfo,
+    selectedCategories,
+    selectedDuration,
+    autoAdvance,
+    gameStateStatus: gameState?.status
+  });
 
   // Sync lobby settings from server (GUESTS ONLY to prevent host latency override)
   useEffect(() => {
-    if (gameState && gameState.status === "preparing" && !isMeHost) {
-      if (gameState.categories) {
-        setSelectedCategories(gameState.categories);
-      }
-      if (gameState.duration) {
-        setSelectedDuration(gameState.duration);
-      }
-      if (typeof gameState.autoAdvance !== "undefined") {
-        setAutoAdvance(gameState.autoAdvance);
+    if (gameState && gameState.status === "preparing") {
+      if (!isMeHost) {
+        console.log("Guest syncing lobby settings from server:", gameState);
+        if (gameState.categories) {
+          setSelectedCategories(gameState.categories);
+        }
+        if (gameState.duration) {
+          setSelectedDuration(gameState.duration);
+        }
+        if (typeof gameState.autoAdvance !== "undefined") {
+          setAutoAdvance(gameState.autoAdvance);
+        }
+      } else {
+        // Host only syncs on initial load when local state is empty
+        if (selectedCategories.length === 0 && gameState.categories && gameState.categories.length > 0) {
+          console.log("Host syncing initial settings from server:", gameState.categories);
+          setSelectedCategories(gameState.categories);
+        }
       }
       setOutOfQuestions(false);
     }
@@ -85,6 +106,7 @@ function KpssGuncel({
 
   // Admin updates lobby settings
   const handleToggleCategory = (cat) => {
+    console.log("handleToggleCategory CLICKED:", cat, "isMeHost:", isMeHost);
     if (!isMeHost) return;
     let newCats = [...selectedCategories];
     if (newCats.includes(cat)) {
@@ -97,6 +119,7 @@ function KpssGuncel({
   };
 
   const handleUpdateSettings = (cats, dur, autoAdv) => {
+    console.log("handleUpdateSettings EMITTING:", { cats, dur, autoAdv, isMeHost });
     if (socket && room && isMeHost) {
       socket.emit("kpss-guncel-update-settings", {
         categories: cats,
@@ -108,7 +131,11 @@ function KpssGuncel({
 
   // Start question
   const handleStartQuestion = () => {
-    if (allQuestions.length === 0) return;
+    console.log("handleStartQuestion CLICKED. Questions length:", allQuestions.length, "isMeHost:", isMeHost);
+    if (allQuestions.length === 0) {
+      console.warn("handleStartQuestion: No questions found in JSON!");
+      return;
+    }
 
     // Filter questions by categories
     let categoryQuestions = allQuestions;
@@ -118,6 +145,7 @@ function KpssGuncel({
 
     if (categoryQuestions.length === 0) {
       setActiveError("Seçilen kategorilere ait soru bulunamadı.");
+      console.warn("handleStartQuestion: No questions match selected categories:", selectedCategories);
       return;
     }
 
@@ -126,7 +154,10 @@ function KpssGuncel({
     const askedIds = room?.askedQuestionIds?.["KPSS GÜNCEL"] || [];
     let eligibleQuestions = categoryQuestions.filter(q => !askedIds.includes(q.id));
 
+    console.log("handleStartQuestion: Asked IDs count:", askedIds.length, "Eligible questions count:", eligibleQuestions.length);
+
     if (eligibleQuestions.length === 0) {
+      console.warn("handleStartQuestion: No more eligible questions left! Toggling outOfQuestions.");
       setOutOfQuestions(true);
       return;
     }
@@ -145,6 +176,7 @@ function KpssGuncel({
       }
     }
 
+    console.log("handleStartQuestion: Emitting start-question event for ID:", randomQ.id, randomQ.question);
     socket.emit("kpss-guncel-start-question", { question: randomQ });
   };
 
