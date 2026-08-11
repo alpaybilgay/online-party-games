@@ -137,7 +137,7 @@ io.on('connection', (socket) => {
           ? { status: "preparing", askerId: null, targetId: null, currentQuestion: null, targetAnswer: null, answers: {}, askerQueue: [] }
           : (gameName === "Hızlı Şık"
             ? { status: "preparing", category: "all", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, submissions: [] }
-            : (gameName === "KPSS GÜNCEL"
+            : (gameName === "KPSS GÜNCEL" || gameName === "KPSS VATANDAŞLIK"
               ? { status: "preparing", categories: [], duration: 15, autoAdvance: false, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, submissions: [] }
               : (gameName === "Ortak Cevabı Bul"
                 ? { status: "preparing", duration: 15, timer: 0, isTimerActive: false, currentQuestion: null, answers: {}, teams: { A: [], B: [] }, teamScores: { A: 0, B: 0 } }
@@ -151,7 +151,7 @@ io.on('connection', (socket) => {
       console.log(`Global Room Created by Host: ${playerName} (${socket.id}) for game ${room.activeGame}`);
     } else {
       // Room exists, check max limit based on selected game
-      const maxLimit = room.activeGame === "Kim Daha İyi Tanıyor?" ? 10 : (room.activeGame === "Hızlı Şık" ? 8 : (room.activeGame === "KPSS GÜNCEL" ? 12 : (room.activeGame === "Ortak Cevabı Bul" ? 4 : (room.activeGame === "Bomba Kategori" ? 12 : (room.activeGame === "Kim Daha Yakın" ? 8 : 2)))));
+      const maxLimit = room.activeGame === "Kim Daha İyi Tanıyor?" ? 10 : (room.activeGame === "Hızlı Şık" ? 8 : (room.activeGame === "KPSS GÜNCEL" || room.activeGame === "KPSS VATANDAŞLIK" ? 12 : (room.activeGame === "Ortak Cevabı Bul" ? 4 : (room.activeGame === "Bomba Kategori" ? 12 : (room.activeGame === "Kim Daha Yakın" ? 8 : 2)))));
       if (room.players.length >= maxLimit) {
         if (callback) callback({ success: false, message: `Oda dolu! Bu oyun maksimum ${maxLimit} oyuncu destekler.` });
         return;
@@ -719,6 +719,94 @@ io.on('connection', (socket) => {
 
     if (room.askedQuestionIds) {
       room.askedQuestionIds["KPSS GÜNCEL"] = [];
+    }
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  // ==========================================
+  // KPSS VATANDAŞLIK GAME EVENTS
+  // ==========================================
+
+  socket.on('kpss-vatandaslik-update-settings', ({ categories, duration, autoAdvance }) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    room.gameState.categories = categories || [];
+    room.gameState.duration = duration || 15;
+    room.gameState.autoAdvance = !!autoAdvance;
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-vatandaslik-start-question', ({ question }) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    markQuestionAsAsked(room, "KPSS VATANDAŞLIK", question?.id);
+
+    room.activeGame = "KPSS VATANDAŞLIK";
+    room.gameState.status = "playing";
+    room.gameState.currentQuestion = question;
+    room.gameState.answers = {};
+    room.gameState.submissions = [];
+    room.gameState.timer = room.gameState.duration;
+    room.gameState.isTimerActive = true;
+
+    startKpssVatandaslikTimer(GLOBAL_ROOM_CODE);
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-vatandaslik-submit-choice', ({ choice }, callback) => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || !room.gameState || room.gameState.status !== "playing") {
+      if (callback) callback({ success: false, message: "Oyun aktif değil." });
+      return;
+    }
+
+    const remainingTime = room.gameState.timer;
+    room.gameState.answers[socket.id] = choice;
+    
+    // Avoid duplicates
+    room.gameState.submissions = (room.gameState.submissions || []).filter(sub => sub.playerId !== socket.id);
+    room.gameState.submissions.push({
+      playerId: socket.id,
+      choice: choice,
+      timestamp: Date.now(),
+      remainingTime: remainingTime
+    });
+
+    if (callback) callback({ success: true });
+
+    // Check if everyone has submitted to end early
+    const totalPlayers = room.players.length;
+    const answeredCount = Object.keys(room.gameState.answers).length;
+
+    if (answeredCount >= totalPlayers) {
+      calculateKpssVatandaslikResults(GLOBAL_ROOM_CODE);
+    } else {
+      io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+    }
+  });
+
+  socket.on('kpss-vatandaslik-next-round', () => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    clearRoomTimer(GLOBAL_ROOM_CODE);
+    room.gameState.status = "preparing";
+    room.gameState.currentQuestion = null;
+    room.gameState.answers = {};
+    room.gameState.submissions = [];
+    room.gameState.isTimerActive = false;
+
+    io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
+  });
+
+  socket.on('kpss-vatandaslik-reset-pool', () => {
+    const room = rooms[GLOBAL_ROOM_CODE];
+    if (!room || room.hostId !== socket.id) return;
+
+    if (room.askedQuestionIds) {
+      room.askedQuestionIds["KPSS VATANDAŞLIK"] = [];
     }
     io.to(GLOBAL_ROOM_CODE).emit('room-updated', room);
   });
@@ -1421,6 +1509,64 @@ function calculateKpssGuncelResults(roomCode) {
         // Points based on remaining time percentage (decaying score)
         // e.g. if remainingTime is 15 out of 15, points = 100.
         // If remainingTime is 0 out of 15, points = 10.
+        const remaining = Math.max(0, sub.remainingTime);
+        const points = Math.max(10, Math.round(100 * (remaining / duration)));
+        player.score += points;
+        sub.pointsAwarded = points;
+        sub.isCorrect = true;
+      } else {
+        sub.pointsAwarded = 0;
+        sub.isCorrect = false;
+      }
+    }
+  });
+
+  io.to(roomCode).emit('room-updated', room);
+}
+
+// Helper: Start KPSS VATANDAŞLIK timer countdown
+function startKpssVatandaslikTimer(roomCode) {
+  clearRoomTimer(roomCode);
+
+  roomIntervals[roomCode] = setInterval(() => {
+    const room = rooms[roomCode];
+    if (!room || room.activeGame !== "KPSS VATANDAŞLIK" || !room.gameState || !room.gameState.isTimerActive) {
+      clearRoomTimer(roomCode);
+      return;
+    }
+
+    const gameState = room.gameState;
+    gameState.timer--;
+
+    if (gameState.timer <= 0) {
+      calculateKpssVatandaslikResults(roomCode);
+    } else {
+      io.to(roomCode).emit('room-updated', room);
+    }
+  }, 1000);
+}
+
+// Helper: Calculate results for KPSS VATANDAŞLIK
+function calculateKpssVatandaslikResults(roomCode) {
+  clearRoomTimer(roomCode);
+  const room = rooms[roomCode];
+  if (!room || !room.gameState) return;
+
+  const gameState = room.gameState;
+  gameState.isTimerActive = false;
+  gameState.status = "result";
+
+  // Check correct answer
+  const currentQuestion = gameState.currentQuestion;
+  const correctAnswer = currentQuestion?.correctAnswer || currentQuestion?.answer;
+  const submissions = gameState.submissions || [];
+  const duration = gameState.duration || 15;
+
+  submissions.forEach((sub) => {
+    const player = room.players.find(p => p.id === sub.playerId);
+    if (player) {
+      if (sub.choice === correctAnswer) {
+        // Points based on remaining time percentage (decaying score)
         const remaining = Math.max(0, sub.remainingTime);
         const points = Math.max(10, Math.round(100 * (remaining / duration)));
         player.score += points;
