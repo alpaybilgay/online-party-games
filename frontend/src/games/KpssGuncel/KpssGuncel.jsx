@@ -27,12 +27,12 @@ function KpssGuncel({
 
   const gameState = room?.gameState;
   const isMeHost = room?.hostId === socket?.id;
-  const myInfo = room?.players.find((p) => p.id === socket?.id);
+  const myInfo = room?.players?.find((p) => p.id === socket?.id);
   const myScore = myInfo ? myInfo.score : 0;
 
-  // Sync lobby settings from server
+  // Sync lobby settings from server (GUESTS ONLY to prevent host latency override)
   useEffect(() => {
-    if (gameState && gameState.status === "preparing") {
+    if (gameState && gameState.status === "preparing" && !isMeHost) {
       if (gameState.categories) {
         setSelectedCategories(gameState.categories);
       }
@@ -44,7 +44,7 @@ function KpssGuncel({
       }
       setOutOfQuestions(false);
     }
-  }, [gameState?.status, gameState?.categories, gameState?.duration, gameState?.autoAdvance]);
+  }, [gameState?.status, gameState?.categories, gameState?.duration, gameState?.autoAdvance, isMeHost]);
 
   // Reset local answer status when a new question starts
   useEffect(() => {
@@ -123,7 +123,7 @@ function KpssGuncel({
 
     setActiveError("");
 
-    const askedIds = room.askedQuestionIds?.["KPSS GÜNCEL"] || [];
+    const askedIds = room?.askedQuestionIds?.["KPSS GÜNCEL"] || [];
     let eligibleQuestions = categoryQuestions.filter(q => !askedIds.includes(q.id));
 
     if (eligibleQuestions.length === 0) {
@@ -243,8 +243,18 @@ function KpssGuncel({
     );
   }
 
+  // Loading state fallback
+  if (isInRoom && !gameState) {
+    return (
+      <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col items-center justify-center font-sans">
+        <span className="w-6 h-6 rounded-full border-2 border-amber-500/25 border-t-amber-500 animate-spin" />
+        <span className="text-xs text-zinc-500 mt-3 font-semibold animate-pulse">Bağlanılıyor...</span>
+      </div>
+    );
+  }
+
   // 2. Lobby / Selection screen
-  if (gameState.status === "preparing") {
+  if (gameState?.status === "preparing") {
     return (
       <div className="relative min-h-screen bg-[#070709] text-zinc-100 flex flex-col font-sans overflow-x-hidden">
         <header className="relative z-10 border-b border-zinc-900/50 bg-[#09090b]/60 backdrop-blur-md">
@@ -266,12 +276,12 @@ function KpssGuncel({
           {/* Players list */}
           <div className="lg:col-span-5 bg-[#0e0e11]/60 border border-zinc-900 p-5 rounded-2xl backdrop-blur-sm">
             <div className="flex justify-between items-center mb-4 pb-2 border-b border-zinc-800/45">
-              <h2 className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Oyuncular ({room.players.length}/12)</h2>
+              <h2 className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Oyuncular ({(room?.players?.length || 0)}/12)</h2>
               {isMeHost && <span className="text-[9px] text-amber-500 font-bold uppercase">Yönetici 👑</span>}
             </div>
 
             <div className="space-y-2 max-h-64 sm:max-h-72 overflow-y-auto pr-1">
-              {room.players.map((player) => (
+              {(room?.players || []).map((player) => (
                 <div
                   key={player.id}
                   className={`flex items-center justify-between p-3 rounded-xl border ${
@@ -508,13 +518,13 @@ function KpssGuncel({
   const isResult = gameState?.status === "result";
 
   if (isPlaying || isResult) {
-    const currentQuestion = gameState.currentQuestion;
+    const currentQuestion = gameState?.currentQuestion;
     const choices = currentQuestion?.choices || currentQuestion?.options || [];
     const rightAnswer = currentQuestion?.correctAnswer || currentQuestion?.answer;
 
     // Decaying progress timer calculation
-    const timerValue = gameState.timer;
-    const totalDuration = gameState.duration || 15;
+    const timerValue = gameState?.timer || 0;
+    const totalDuration = gameState?.duration || 15;
     const timerPercentage = Math.max(0, Math.min(100, (timerValue / totalDuration) * 100));
 
     // Get color based on time remaining
@@ -552,17 +562,13 @@ function KpssGuncel({
           </div>
         )}
 
-        <main className="relative z-10 flex-grow w-full max-w-3xl mx-auto px-4 py-4 flex flex-col justify-center items-center animate-fade-in">
-          {/* Card Flip Container */}
-          <div className="w-full perspective-1000 my-auto">
-            <div
-              className={`relative w-full transition-transform duration-700 preserve-3d ${
-                isResult ? "rotate-y-180" : ""
-              }`}
-            >
-              
-              {/* FRONT SIDE (ACTIVE QUESTION CARD) */}
-              <div className="w-full bg-[#0e0e11] border border-zinc-900 rounded-3xl p-5 shadow-2xl flex flex-col justify-between backface-hidden">
+        <main className="relative z-10 flex-grow w-full max-w-3xl mx-auto px-4 py-4 flex flex-col justify-center items-center">
+          {/* Card Container (Responsive & height-safe toggled based on isResult) */}
+          <div className="w-full bg-[#0e0e11] border border-zinc-900 rounded-3xl p-5 shadow-2xl flex flex-col justify-between my-auto min-h-[350px]">
+            
+            {!isResult ? (
+              /* FRONT SIDE (ACTIVE QUESTION CARD) */
+              <div className="flex flex-col justify-between h-full space-y-5 animate-fade-in">
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
@@ -606,16 +612,16 @@ function KpssGuncel({
                 {/* Status Bar */}
                 <div className="mt-5 pt-3 border-t border-zinc-900/80 flex items-center justify-between text-[9px] font-bold text-zinc-500 uppercase tracking-wider">
                   <span>
-                    {Object.keys(gameState.answers || {}).length} / {room.players.length} Oyuncu Cevapladı
+                    {Object.keys(gameState?.answers || {}).length} / {room?.players?.length || 0} Oyuncu Cevapladı
                   </span>
                   <span>
                     {hasSubmitted ? "Cevap Kaydedildi" : "Cevabınız Bekleniyor"}
                   </span>
                 </div>
               </div>
-
-              {/* BACK SIDE (RESOLUTION & EXPLANATION CARD) */}
-              <div className="absolute top-0 left-0 w-full min-h-full bg-[#0e0e11] border border-zinc-900 rounded-3xl p-5 shadow-2xl flex flex-col justify-between rotate-y-180 backface-hidden">
+            ) : (
+              /* BACK SIDE (RESOLUTION & EXPLANATION CARD) */
+              <div className="flex flex-col justify-between h-full space-y-5 animate-fade-in">
                 <div>
                   <div className="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900/60">
                     <span className="text-[9px] font-extrabold text-emerald-500 uppercase tracking-widest flex items-center space-x-1">
@@ -637,7 +643,7 @@ function KpssGuncel({
                       {currentQuestion?.explanation || "Bu soru için ek bir açıklama bulunmamaktadır."}
                     </p>
                     {currentQuestion?.source && (
-                      <span className="block text-[9px] text-zinc-600 font-bold uppercase tracking-wider text-right">
+                      <span className="block text-[9px] text-zinc-650 font-bold uppercase tracking-wider text-right">
                         Kaynak: {currentQuestion.source}
                       </span>
                     )}
@@ -652,8 +658,8 @@ function KpssGuncel({
                       Bu Tur Kim Kaç Puan Aldı?
                     </h4>
                     <div className="space-y-1.5 max-h-24 overflow-y-auto pr-1">
-                      {room.players.map((p) => {
-                        const sub = (gameState.submissions || []).find((s) => s.playerId === p.id);
+                      {(room?.players || []).map((p) => {
+                        const sub = (gameState?.submissions || []).find((s) => s.playerId === p.id);
                         const isCorrect = sub?.choice === rightAnswer;
                         const points = sub?.pointsAwarded || 0;
                         return (
@@ -695,19 +701,18 @@ function KpssGuncel({
                     )}
                   </div>
                 </div>
-
               </div>
+            )}
 
-            </div>
           </div>
 
           {/* Leaderboard Section */}
           <div className="w-full mt-6 bg-[#0e0e11]/50 border border-zinc-900 rounded-3xl p-4">
-            <h4 className="text-[9px] font-bold text-zinc-505 uppercase tracking-widest mb-3 border-b border-zinc-900 pb-1.5">
+            <h4 className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mb-3 border-b border-zinc-900 pb-1.5">
               Genel Sıralama (Skor Tablosu)
             </h4>
             <div className="grid grid-cols-2 gap-2 max-h-24 overflow-y-auto pr-1">
-              {[...room.players]
+              {[...(room?.players || [])]
                 .sort((a, b) => b.score - a.score)
                 .map((p, idx) => (
                   <div
@@ -715,7 +720,7 @@ function KpssGuncel({
                     className="flex justify-between items-center bg-zinc-950/30 border border-zinc-900/60 px-3 py-1.5 rounded-xl text-[10.5px] font-semibold text-zinc-350"
                   >
                     <span className="flex items-center space-x-1.5">
-                      <span className="text-[9px] font-bold text-zinc-550">#{idx + 1}</span>
+                      <span className="text-[9px] font-bold text-zinc-500">#{idx + 1}</span>
                       <span className="truncate max-w-[80px]">{p.name}</span>
                     </span>
                     <span className="font-bold text-amber-500 font-mono">{p.score} XP</span>
